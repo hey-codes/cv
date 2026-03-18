@@ -1,46 +1,24 @@
-"use client";
-
-import Image from "next/image";
-import * as React from "react";
 import { cn } from "@/lib/utils";
 
-interface OptimizedAvatarProps {
-  src: string;
+interface AvatarProps {
   alt: string;
   fallback: string;
   className?: string;
 }
 
-export function Avatar({
-  src,
-  alt,
-  fallback,
-  className,
-}: OptimizedAvatarProps) {
-  const [error, setError] = React.useState(false);
-
+export function Avatar({ alt, fallback, className }: AvatarProps) {
   return (
     <div
       className={cn(
-        "relative flex shrink-0 overflow-hidden rounded-xl bg-muted",
-        className
+        "relative flex shrink-0 overflow-hidden rounded-xl bg-accent-brand",
+        className,
       )}
+      role="img"
+      aria-label={alt}
     >
-      {!error && src ? (
-        <Image
-          src={src}
-          alt={alt}
-          width={112}
-          height={112}
-          className="aspect-square h-full w-full object-cover"
-          onError={() => setError(true)}
-          priority={true}
-        />
-      ) : (
-        <div className="flex h-full w-full items-center justify-center text-lg font-semibold">
-          {fallback}
-        </div>
-      )}
+      <div className="flex h-full w-full items-center justify-center font-mono text-3xl font-bold tracking-tight text-white">
+        {fallback}
+      </div>
     </div>
   );
 }

@@ -5,19 +5,21 @@ import type { RESUME_DATA } from "@/data/resume-data";
 type Education = (typeof RESUME_DATA)["education"][number];
 
 interface EducationPeriodProps {
+  location?: string;
   start: Education["start"];
   end: Education["end"];
 }
 
 /**
- * Displays the education period in a consistent format
+ * Displays location and education period in a consistent format
  */
-function EducationPeriod({ start, end }: EducationPeriodProps) {
+function EducationPeriod({ location, start, end }: EducationPeriodProps) {
   return (
     <div
-      className="text-sm tabular-nums text-gray-500"
+      className="shrink-0 whitespace-nowrap font-mono text-sm tabular-nums text-gray-500"
       title={`Period: ${start} to ${end}`}
     >
+      {location && <>{location} · </>}
       {start} - {end}
     </div>
   );
@@ -31,21 +33,32 @@ interface EducationItemProps {
  * Individual education card component
  */
 function EducationItem({ education }: EducationItemProps) {
-  const { school, start, end, degree } = education;
+  const { school, link, location, start, end, degree } = education;
   const schoolId = `education-${school.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
     <Card className="border-none">
       <CardHeader>
-        <div className="flex items-center justify-between gap-x-2 text-base">
-          <h3 className="font-semibold leading-none" id={schoolId}>
-            {school}
+        <div className="flex items-center justify-between gap-x-2">
+          <h3 className="text-[18px] font-semibold leading-none" id={schoolId}>
+            {link ? (
+              <a
+                className="hover:underline hover:text-accent-brand"
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {school}
+              </a>
+            ) : (
+              school
+            )}
           </h3>
-          <EducationPeriod start={start} end={end} />
+          <EducationPeriod location={location} start={start} end={end} />
         </div>
       </CardHeader>
       <CardContent
-        className="mt-2 text-foreground/80 print:text-[12px]"
+        className="mt-2 font-mono text-sm text-foreground/80 print:text-[10px]"
         aria-labelledby={schoolId}
       >
         {degree}
@@ -65,7 +78,7 @@ interface EducationListProps {
 export function Education({ education }: EducationListProps) {
   return (
     <Section>
-      <h2 className="text-xl font-bold" id="education-section">
+      <h2 className="text-[22px] font-bold uppercase" id="education-section">
         Education
       </h2>
       <div

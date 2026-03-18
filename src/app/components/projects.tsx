@@ -10,18 +10,56 @@ import { Section } from "@/components/ui/section";
 import type { RESUME_DATA } from "@/data/resume-data";
 
 type ProjectTags = readonly string[];
+type ProjectStatus = "on-boarding" | "in-progress" | "complete";
 
-interface ProjectLinkProps {
+const STATUS_COLORS: Record<ProjectStatus, string> = {
+  "on-boarding": "bg-yellow-500",
+  "in-progress": "bg-green-500",
+  complete: "bg-blue-500",
+};
+
+const STATUS_LABELS: Record<ProjectStatus, string> = {
+  "on-boarding": "On-boarding",
+  "in-progress": "In progress",
+  complete: "Complete",
+};
+
+interface StatusIndicatorProps {
+  status: ProjectStatus;
+}
+
+/**
+ * Renders a colored dot indicating project status
+ */
+function StatusIndicator({ status }: StatusIndicatorProps) {
+  return (
+    <span
+      className={`size-1.5 rounded-full ${STATUS_COLORS[status]}`}
+      title={STATUS_LABELS[status]}
+      aria-label={`Status: ${STATUS_LABELS[status]}`}
+    />
+  );
+}
+
+interface ProjectTitleProps {
   title: string;
+  status: ProjectStatus;
   link?: string;
 }
 
 /**
- * Renders project title with optional link and status indicator
+ * Renders project title with status indicator and optional link
  */
-function ProjectLink({ title, link }: ProjectLinkProps) {
+function ProjectTitle({ title, status, link }: ProjectTitleProps) {
+  const titleContent = (
+    <span className="inline-flex items-center gap-1.5">
+      {title}
+      <StatusIndicator status={status} />
+    </span>
+  );
+
   if (!link) {
-    return <span>{title}</span>;
+    return titleContent;
   }
 
   return (
@@ -30,15 +68,11 @@ function ProjectLink({ title, link }: ProjectLinkProps) {
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 hover:underline"
+        className="inline-flex items-center gap-1.5 hover:underline"
         aria-label={`${title} project (opens in new tab)`}
       >
         {title}
-        <span
-          className="size-1 rounded-full bg-green-500"
-          title="Active project indicator"
-          aria-hidden="true"
-        />
+        <StatusIndicator status={status} />
       </a>
       <div
         className="hidden font-mono text-xs underline print:visible"
@@ -55,7 +89,7 @@ interface ProjectTagsProps {
 }
 
 /**
- * Renders a list of technology tags used in the project
+ * Renders a list of scope-of-work tags
  */
 function ProjectTags({ tags }: ProjectTagsProps) {
   if (tags.length === 0) return null;
@@ -63,7 +97,7 @@ function ProjectTags({ tags }: ProjectTagsProps) {
   return (
     <ul
       className="mt-2 flex list-none flex-wrap gap-1 p-0"
-      aria-label="Technologies used"
+      aria-label="Scope of work"
     >
       {tags.map((tag) => (
         <li key={tag}>
@@ -83,20 +117,32 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tags: ProjectTags;
+  location: string;
+  status: ProjectStatus;
   link?: string;
 }
 
 /**
  * Card component displaying project information
  */
-function ProjectCard({ title, description, tags, link }: ProjectCardProps) {
+function ProjectCard({
+  title,
+  description,
+  tags,
+  location,
+  status,
+  link,
+}: ProjectCardProps) {
   return (
     <Card className="flex h-full flex-col overflow-hidden border p-3">
       <CardHeader>
         <div className="space-y-1">
           <CardTitle className="text-base">
-            <ProjectLink title={title} link={link} />
+            <ProjectTitle title={title} status={status} link={link} />
           </CardTitle>
+          <div className="font-mono text-xs text-muted-foreground">
+            {location}
+          </div>
           <CardDescription
             className="text-pretty font-mono text-xs print:text-[10px]"
             aria-label="Project description"
@@ -117,13 +163,13 @@ interface ProjectsProps {
 }
 
 /**
- * Section component displaying all side projects
+ * Section component displaying independent consulting projects
  */
 export function Projects({ projects }: ProjectsProps) {
   return (
     <Section className="scroll-mb-16 print:space-y-4">
-      <h2 className="text-xl font-bold" id="side-projects">
-        Side projects
+      <h2 className="text-[22px] font-bold uppercase" id="side-projects">
+        Independent Consulting
       </h2>
       <div
         className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2"
@@ -139,6 +185,8 @@ export function Projects({ projects }: ProjectsProps) {
               title={project.title}
               description={project.description}
               tags={project.techStack}
+              location={project.location}
+              status={project.status}
               link={project.link?.href}
             />
           </article>

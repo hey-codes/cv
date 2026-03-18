@@ -1,6 +1,7 @@
 "use client";
 
-import { CommandIcon } from "lucide-react";
+import { CommandIcon, MoonIcon, SunIcon, MonitorIcon } from "lucide-react";
+import { useTheme } from "next-themes";
 import * as React from "react";
 import {
   CommandDialog,
@@ -20,6 +21,7 @@ interface Props {
 export const CommandMenu = ({ links }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [isMac, setIsMac] = React.useState(false);
+  const { setTheme } = useTheme();
 
   React.useEffect(() => {
     setIsMac(window.navigator.userAgent.includes("Mac"));
@@ -64,6 +66,35 @@ export const CommandMenu = ({ links }: Props) => {
               }}
             >
               <span>Print</span>
+            </CommandItem>
+          </CommandGroup>
+          <CommandGroup heading="Theme">
+            <CommandItem
+              onSelect={() => {
+                setTheme("light");
+                setOpen(false);
+              }}
+            >
+              <SunIcon className="mr-2 size-4" />
+              <span>Light</span>
+            </CommandItem>
+            <CommandItem
+              onSelect={() => {
+                setTheme("dark");
+                setOpen(false);
+              }}
+            >
+              <MoonIcon className="mr-2 size-4" />
+              <span>Dark</span>
+            </CommandItem>
+            <CommandItem
+              onSelect={() => {
+                setTheme("system");
+                setOpen(false);
+              }}
+            >
+              <MonitorIcon className="mr-2 size-4" />
+              <span>System</span>
             </CommandItem>
           </CommandGroup>
           <CommandGroup heading="Links">

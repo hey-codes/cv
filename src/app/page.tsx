@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CommandMenu } from "@/components/command-menu";
 import { RESUME_DATA } from "@/data/resume-data";
 import { generateResumeStructuredData } from "@/lib/structured-data";
+import { CareerHighlights } from "./components/career-highlights";
 import { Education } from "./components/education";
 import { Header } from "./components/header";
 import { Projects } from "./components/projects";
@@ -77,7 +78,7 @@ export default function ResumePage() {
         </div>
 
         <section
-          className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-4 dark:bg-background"
+          className="mx-auto w-full max-w-2xl space-y-8 bg-background print:space-y-4"
           aria-label="Resume Content"
         >
           <div className="animate-fade-in" style={{ animationDelay: "0ms" }}>
@@ -88,31 +89,59 @@ export default function ResumePage() {
             <div className="animate-fade-in" style={{ animationDelay: "75ms" }}>
               <Summary summary={RESUME_DATA.summary} />
             </div>
+            <hr className="border-border" />
             <div
               className="animate-fade-in"
               style={{ animationDelay: "150ms" }}
             >
-              <WorkExperience work={RESUME_DATA.work} />
+              <CareerHighlights highlights={RESUME_DATA.careerHighlights} />
             </div>
+            <hr className="border-border" />
             <div
               className="animate-fade-in"
               style={{ animationDelay: "225ms" }}
             >
-              <Education education={RESUME_DATA.education} />
+              <WorkExperience work={RESUME_DATA.work} />
             </div>
+            <hr className="border-border" />
             <div
               className="animate-fade-in"
               style={{ animationDelay: "300ms" }}
             >
-              <Skills skills={RESUME_DATA.skills} />
+              <Education education={RESUME_DATA.education} />
             </div>
+            <hr className="border-border" />
             <div
               className="animate-fade-in"
               style={{ animationDelay: "375ms" }}
             >
+              <Skills skills={RESUME_DATA.skills} />
+            </div>
+            <hr className="border-border" />
+            <div
+              className="animate-fade-in"
+              style={{ animationDelay: "450ms" }}
+            >
               <Projects projects={RESUME_DATA.projects} />
             </div>
           </div>
+
+          <hr className="mt-12 border-t-2 border-accent-brand/30" />
+
+          <footer className="pb-8 pt-4 text-center font-mono text-xs text-foreground/50 print:hidden">
+            <p>Last updated March 2026</p>
+            <p className="mt-1">
+              Built with{" "}
+              <a
+                href="https://nextjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-accent-brand"
+              >
+                Next.js
+              </a>
+            </p>
+          </footer>
         </section>
 
         <nav className="print:hidden" aria-label="Quick navigation">

@@ -1,3 +1,4 @@
+import { parseLinks } from "@/components/parse-links";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
@@ -39,19 +40,21 @@ function BadgeList({ className, badges }: BadgeListProps) {
 }
 
 interface WorkPeriodProps {
+  location?: string;
   start: WorkExperience["start"];
   end?: WorkExperience["end"];
 }
 
 /**
- * Displays the work period in a consistent format
+ * Displays location and work period in a consistent format
  */
-function WorkPeriod({ start, end }: WorkPeriodProps) {
+function WorkPeriod({ location, start, end }: WorkPeriodProps) {
   return (
     <div
-      className="text-sm tabular-nums text-gray-500"
+      className="shrink-0 whitespace-nowrap font-mono text-sm tabular-nums text-gray-500"
       title={`Employment period: ${start} to ${end ?? "Present"}`}
     >
+      {location && <>{location} · </>}
       {start} - {end ?? "Present"}
     </div>
   );
@@ -68,7 +71,7 @@ interface CompanyLinkProps {
 function CompanyLink({ company, link }: CompanyLinkProps) {
   return (
     <a
-      className="hover:underline"
+      className="hover:underline hover:text-accent-brand"
       href={link}
       target="_blank"
       rel="noopener noreferrer"
@@ -88,21 +91,26 @@ interface WorkExperienceItemProps {
  * Handles responsive layout for badges (mobile/desktop)
  */
 function WorkExperienceItem({ work }: WorkExperienceItemProps) {
-  const { company, link, badges, title, start, end, description, highlights } =
-    work;
+  const {
+    company,
+    link,
+    location,
+    badges,
+    title,
+    start,
+    end,
+    description,
+    highlights,
+  } = work;
 
   return (
     <Card className="border-none py-1 print:py-0">
       <CardHeader className="print:space-y-1">
-        <div className="flex items-center justify-between gap-x-2 text-base">
-          <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none print:text-sm">
+        <div className="flex items-center justify-between gap-x-2">
+          <h3 className="text-[18px] font-semibold leading-none print:text-sm">
             <CompanyLink company={company} link={link} />
-            <BadgeList
-              className="hidden gap-x-1 sm:inline-flex"
-              badges={badges}
-            />
           </h3>
-          <WorkPeriod start={start} end={end} />
+          <WorkPeriod location={location} start={start} end={end} />
         </div>
 
         <h4 className="font-mono text-sm font-semibold leading-none print:text-[12px]">
@@ -111,21 +119,18 @@ function WorkExperienceItem({ work }: WorkExperienceItemProps) {
       </CardHeader>
 
       <CardContent>
-        <div className="mt-2 text-xs text-foreground/80 print:mt-1 print:text-[10px] text-pretty">
-          {description}
+        <div className="mt-2 text-sm text-foreground/80 print:mt-1 print:text-[10px] text-pretty">
+          <p className="italic">{description}</p>
           {highlights && highlights.length > 0 && (
-            <ul className="list-inside list-disc">
+            <ul className="mt-1 ml-4 list-outside list-disc">
               {highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
+                <li key={highlight}>{parseLinks(highlight)}</li>
               ))}
             </ul>
           )}
         </div>
         <div className="mt-2">
-          <BadgeList
-            className="-mx-2 flex-wrap gap-1 sm:hidden"
-            badges={badges}
-          />
+          <BadgeList className="flex-wrap gap-1" badges={badges} />
         </div>
       </CardContent>
     </Card>
@@ -143,11 +148,11 @@ interface WorkExperienceProps {
 export function WorkExperience({ work }: WorkExperienceProps) {
   return (
     <Section>
-      <h2 className="text-xl font-bold" id="work-experience">
+      <h2 className="text-[22px] font-bold uppercase" id="work-experience">
         Work Experience
       </h2>
       <div
-        className="space-y-4 print:space-y-0"
+        className="space-y-6 print:space-y-0"
         role="feed"
         aria-labelledby="work-experience"
       >

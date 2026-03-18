@@ -33,6 +33,7 @@
     --ring: 224 71.4% 4.1%;
 
     --radius: 0.5rem;
+    --accent-brand: 221 93% 53%;
   }
 
   .dark {
@@ -63,6 +64,7 @@
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
     --ring: 216 12.2% 83.9%;
+    --accent-brand: 221 93% 53%;
   }
 }
 
@@ -71,7 +73,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans leading-relaxed;
   }
 }
 

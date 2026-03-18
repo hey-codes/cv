@@ -16,8 +16,8 @@ export interface ResumeData {
   avatarUrl: string;
   personalWebsiteUrl: string;
   contact: {
-    email: string;
-    tel: string;
+    email?: string;
+    tel?: string;
     social: Array<{
       name: string;
       url: string;
@@ -26,6 +26,8 @@ export interface ResumeData {
   };
   education: Array<{
     school: string;
+    link?: string;
+    location?: string;
     degree: string;
     start: string;
     end: string;
@@ -33,6 +35,7 @@ export interface ResumeData {
   work: Array<{
     company: string;
     link: string;
+    location?: string;
     badges: string[];
     title: string;
     start: string;
@@ -40,11 +43,17 @@ export interface ResumeData {
     description: string;
     highlights?: readonly string[];
   }>;
-  skills: string[];
+  careerHighlights: string[];
+  skills: Array<{
+    category: string;
+    items: string[];
+  }>;
   projects: Array<{
     title: string;
     techStack: string[];
     description: string;
+    location: string;
+    status: "on-boarding" | "in-progress" | "complete";
     link?: {
       label: string;
       href: string;
