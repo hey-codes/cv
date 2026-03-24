@@ -3,10 +3,10 @@ import type { ResumeData } from "@/lib/types";
 export const RESUME_DATA: ResumeData = {
   name: "Cody Mitchell",
   initials: "CM",
-  location: "Chicagoland, IL, CST",
+  location: "Chicagoland, IL → Open to Relocation",
   locationLink: "https://www.google.com/maps/place/Chicago",
   about:
-    "Facilities & operations professional building FM programs from the ground up.",
+    "Facilities leader who builds multi-site operations programs from the ground up.",
   summary:
     "Facilities and operations professional with 12+ years across 350+ locations - luxury retail, EV/automotive, boutique fitness, and wellness facilities. Recently relocated to the Chicago area to be closer to family.",
   avatarUrl:
@@ -192,7 +192,7 @@ export const RESUME_DATA: ResumeData = {
         "Asana",
         "Notion",
         "Microsoft Office",
-        "Google Workspace",
+        "Google Workspace (Sheets, Drive)",
       ],
     },
     {
@@ -203,8 +203,8 @@ export const RESUME_DATA: ResumeData = {
         "Electrical",
         "Fire/Life Safety",
         "Building Automation/BMS",
-        "Aquatic/Pool Systems",
-        "EV Charging Infrastructure",
+        "Dehumidification",
+        "Heat Exchangers",
         "MEP Systems",
       ],
     },
@@ -218,6 +218,10 @@ export const RESUME_DATA: ResumeData = {
         "Process Standardization",
         "Cross-Functional Collaboration",
         "Landlord Relations",
+        "Work Order Management",
+        "Site Audits & Brand Standards",
+        "SOP Development",
+        "Tenant/Member Experience",
       ],
     },
     {
