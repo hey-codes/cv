@@ -43,7 +43,7 @@ function EducationItem({ education }: EducationItemProps) {
           <h3 className="text-[18px] font-semibold leading-none" id={schoolId}>
             {link ? (
               <a
-                className="hover:underline hover:text-accent-brand"
+                className="text-accent-brand font-bold italic no-underline hover:underline"
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"

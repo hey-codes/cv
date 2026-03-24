@@ -68,7 +68,7 @@ function ProjectTitle({ title, status, link }: ProjectTitleProps) {
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 hover:underline"
+        className="inline-flex items-center gap-1.5 text-accent-brand font-bold italic no-underline hover:underline"
         aria-label={`${title} project (opens in new tab)`}
       >
         {title}

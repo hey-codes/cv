@@ -4,6 +4,8 @@ Personal CV/resume site for Cody Mitchell - facilities & operations professional
 
 Live at [codymitch.works](https://codymitch.works)
 
+**Last Updated:** 2026-03-18
+
 ## Stack
 
 - Next.js, TypeScript, Tailwind CSS

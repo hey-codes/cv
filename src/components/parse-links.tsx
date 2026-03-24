@@ -20,7 +20,7 @@ export function parseLinks(text: string): React.ReactNode[] {
         href={match[2]}
         target="_blank"
         rel="noopener noreferrer"
-        className="underline text-accent-brand hover:text-accent-brand/70"
+        className="text-accent-brand font-bold italic no-underline hover:underline"
       >
         {match[1]}
       </a>,

@@ -136,7 +136,7 @@ export default function ResumePage() {
                 href="https://nextjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-accent-brand"
+                className="text-accent-brand font-bold italic no-underline hover:underline"
               >
                 Next.js
               </a>

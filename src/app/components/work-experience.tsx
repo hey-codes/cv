@@ -71,7 +71,7 @@ interface CompanyLinkProps {
 function CompanyLink({ company, link }: CompanyLinkProps) {
   return (
     <a
-      className="hover:underline hover:text-accent-brand"
+      className="text-accent-brand font-bold italic no-underline hover:underline"
       href={link}
       target="_blank"
       rel="noopener noreferrer"

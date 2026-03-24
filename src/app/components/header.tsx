@@ -1,6 +1,5 @@
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import type React from "react";
-import { Avatar } from "@/components/avatar";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { XIcon } from "@/components/icons/x-icon";
 import { Button } from "@/components/ui/button";
@@ -160,8 +159,8 @@ function PrintContact({ contact, personalWebsiteUrl }: PrintContactProps) {
  */
 export function Header() {
   return (
-    <header className="flex items-center justify-between">
-      <div className="flex-1 space-y-1.5">
+    <header>
+      <div className="space-y-1.5">
         <h1
           className="text-3xl font-bold uppercase tracking-tight"
           id="resume-name"
@@ -187,12 +186,6 @@ export function Header() {
           personalWebsiteUrl={RESUME_DATA.personalWebsiteUrl}
         />
       </div>
-
-      <Avatar
-        className="size-28"
-        alt={`${RESUME_DATA.name}'s profile picture`}
-        fallback={RESUME_DATA.initials}
-      />
     </header>
   );
 }
