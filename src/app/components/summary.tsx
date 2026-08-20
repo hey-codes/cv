@@ -13,10 +13,15 @@ interface AboutProps {
 export function Summary({ summary, className }: AboutProps) {
   return (
     <Section className={className}>
-      <SectionHeading index="01" kicker="Profile" id="about-section">
+      <SectionHeading
+        index="01"
+        kicker="Profile"
+        id="about-section"
+        note="the short version"
+      >
         About
       </SectionHeading>
-      <div className="text-pretty font-mono text-sm text-foreground/80 print:text-[10px]">
+      <div className="text-pretty text-sm text-foreground/80 print:text-[10px]">
         {summary}
       </div>
     </Section>

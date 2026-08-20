@@ -43,6 +43,9 @@ export interface ResumeData {
     highlights?: readonly string[];
     /** Short gutter marginalia shown beside the role on wide screens. */
     note?: string;
+    /** Render with highlights expanded on first load. Reserved for the roles a
+     * skimming recruiter must not miss. */
+    defaultOpen?: boolean;
   }>;
   careerHighlights: string[];
   skills: Array<{

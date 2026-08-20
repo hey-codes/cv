@@ -17,8 +17,14 @@ type Stat = {
 const STATS: readonly Stat[] = [
   { value: 13, label: "Years in FM" },
   { value: 400, suffix: "+", label: "Locations" },
-  { value: 9, label: "Brands" },
-  { value: 5.3, prefix: "$", suffix: "M", label: "Peak spend", decimals: 1 },
+  { value: 3, suffix: "M+", label: "Sq ft managed" },
+  {
+    value: 5.3,
+    prefix: "$",
+    suffix: "M",
+    label: "Managed spend",
+    decimals: 1,
+  },
 ];
 
 const DURATION = 900;
@@ -99,7 +105,9 @@ export function StatStrip() {
       aria-label="Portfolio at a glance"
       className="border-t-[3px] border-accent-red pt-3"
     >
-      <dl className="flex flex-wrap items-start gap-x-8 gap-y-4">
+      {/* 2x2 on phones so the fourth figure never wraps into a lonely second
+          row; a single flowing row from sm up. */}
+      <dl className="grid grid-cols-2 items-start gap-x-8 gap-y-4 sm:flex sm:flex-wrap">
         {STATS.map((stat) => (
           <div key={stat.label}>
             <dt className="sr-only">{stat.label}</dt>

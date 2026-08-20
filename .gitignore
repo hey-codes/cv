@@ -44,3 +44,4 @@ next-env.d.ts
 # archived build output and design explorations (kept locally, never committed)
 /.next-BROKEN-ARCHIVE-*/
 /design-explorations/
+.playwright-mcp/

@@ -21,10 +21,11 @@ export function CareerHighlights({
         index="02"
         kicker="Track record"
         id="career-highlights-section"
+        note="the receipts"
       >
         Career Highlights
       </SectionHeading>
-      <ul className="ml-4 list-outside list-disc space-y-2 text-pretty font-mono text-sm italic text-foreground/80 print:text-[10px]">
+      <ul className="ml-4 list-outside list-disc space-y-2 text-pretty text-sm text-foreground/80 print:text-[10px]">
         {highlights.map((highlight) => (
           <li key={highlight}>{parseLinks(highlight)}</li>
         ))}
