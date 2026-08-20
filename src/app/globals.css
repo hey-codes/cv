@@ -258,25 +258,22 @@ a:focus-visible {
 }
 
 /* ---------------------------------------------------------------------------
-   Gutter marginalia. Hangs left of the column on very wide screens only, where
-   the scroll rail is not competing for the same space; folds away below that.
+   Gutter marginalia: the red-pen annotations. Hang left of the column wherever
+   the gutter clears the scroll rail (1440px up); below that they fold inline
+   as red overlines instead of disappearing.
    --------------------------------------------------------------------------- */
 .role-note {
   display: none;
 }
-@media (min-width: 1536px) {
+@media (min-width: 1440px) {
   .role-note {
     display: block;
     position: absolute;
-    right: calc(100% + 1.25rem);
-    top: 0.6rem;
-    width: 8.5rem;
+    right: calc(100% + 1.5rem);
+    top: 0.35rem;
+    width: 9.5rem;
     text-align: right;
     text-wrap: balance;
-  }
-  .work-card:hover .role-note,
-  .work-card:focus-within .role-note {
-    color: hsl(var(--accent-red));
   }
 }
 @media print {

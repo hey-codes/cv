@@ -184,7 +184,7 @@ function WorkExperienceItem({
       {note && (
         <span
           aria-hidden="true"
-          className="role-note pointer-events-none select-none font-mono text-[9.5px] uppercase leading-tight tracking-[0.1em] text-muted-foreground/70"
+          className="role-note pointer-events-none select-none font-display text-[13.5px] italic leading-snug text-accent-red"
         >
           {note}
         </span>
@@ -195,6 +195,17 @@ function WorkExperienceItem({
           inside the highlights still open. */}
       <div className="relative">
         <CardHeader className="print:space-y-1">
+          {/* Below the gutter breakpoint the margin note folds inline as a red
+              overline, so every reader gets the annotation, not just wide
+              desktops. */}
+          {note && (
+            <p
+              aria-hidden="true"
+              className="pointer-events-none relative z-10 font-mono text-[9px] font-bold uppercase leading-none tracking-[0.16em] text-accent-red min-[1440px]:hidden print:hidden"
+            >
+              {note}
+            </p>
+          )}
           <div className="pointer-events-none relative z-10 flex flex-col items-start gap-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-x-2">
             <h3 className="flex items-center gap-x-1.5 text-[18px] font-semibold leading-none print:text-sm">
               {hasHighlights && (
@@ -221,7 +232,7 @@ function WorkExperienceItem({
           </h4>
         </CardHeader>
 
-        <p className="pointer-events-none relative z-10 mt-2 font-mono text-sm italic text-foreground/80 print:mt-1 print:text-[10px] text-pretty">
+        <p className="pointer-events-none relative z-10 mt-2 text-sm text-foreground/80 print:mt-1 print:text-[10px] text-pretty">
           {description}
         </p>
 
@@ -244,7 +255,9 @@ function WorkExperienceItem({
       </div>
 
       <CardContent>
-        <div className="text-sm text-foreground/80 print:text-[10px] text-pretty">
+        {/* font-sans overrides CardContent's mono: bullets are prose, and the
+            bolded figures only read as waypoints against an upright sans. */}
+        <div className="font-sans text-sm text-foreground/80 print:text-[10px] text-pretty">
           {hasHighlights && (
             <div
               id={panelId}
@@ -283,8 +296,10 @@ interface WorkExperienceProps {
  */
 export function WorkExperience({ work }: WorkExperienceProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  // The headline roles open on first load so a skimming reader meets the best
+  // bullets without clicking; everything else stays folded.
   const [openKeys, setOpenKeys] = useState<ReadonlySet<string>>(
-    () => new Set()
+    () => new Set(work.filter((item) => item.defaultOpen).map(roleKey))
   );
 
   const toggle = useCallback((tag: string) => {

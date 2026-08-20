@@ -36,10 +36,10 @@ export const RESUME_DATA: ResumeData = {
     },
   ],
   careerHighlights: [
-    "First FM hire at both FENDI and Balenciaga - created both Americas programs from scratch, growing to $5.3M in total managed spend and $1.2M OPEX respectively.",
-    "400+ locations and 13 years across luxury retail, EV/automotive, boutique fitness, and wellness - from J.Crew's sales floor to building programs for global luxury houses.",
-    "Standardized every portfolio on a FM CMMS. 3 net-new implementations (ServiceChannel at FENDI and Balenciaga, FEXA at Rivian), plus platforms inherited, finished, or expanded at 4 more brands; hands-on across 5 systems.",
-    'Coordinated Harvey Milk 40th anniversary "HOPE WILL NEVER BE SILENT" neon memorial at SoulCycle Castro - a streetscape installation in collaboration with [SF Illuminate](https://illuminate.org/). Now a permanent part of Harvey Milk Plaza and the Castro community.',
+    "**2× first FM hire** - built the Americas programs at FENDI and Balenciaga from scratch, growing to **$5.3M** total managed spend and **$1.2M** OPEX respectively.",
+    "**400+ locations, 9 brands, 13 years** - luxury retail, EV/automotive, boutique fitness, and wellness; from J.Crew's sales floor to programs for global luxury houses.",
+    "**3 net-new CMMS implementations** (ServiceChannel at FENDI and Balenciaga, FEXA at Rivian) - standardized every portfolio; platforms inherited, finished, or expanded at 4 more brands, hands-on across **5 systems**.",
+    '**A permanent piece of the Castro** - coordinated the Harvey Milk 40th anniversary "HOPE WILL NEVER BE SILENT" neon memorial at SoulCycle Castro with [SF Illuminate](https://illuminate.org/), now part of Harvey Milk Plaza.',
   ],
   work: [
     {
@@ -57,11 +57,12 @@ export const RESUME_DATA: ResumeData = {
       title: "Facilities Consultant, West Coast Portfolio",
       start: "Apr 2026",
       end: "Aug 2026",
+      defaultOpen: true,
       description:
         "Brought in to cover a parental leave across the West Coast portfolio: interviewed on a Tuesday afternoon, started the following morning, 10am.",
       highlights: [
-        "Held West Coast facilities operations steady through a period of internal change; 10 days to learn the ropes and brand standards.",
-        "Owned all repair and maintenance activities across 48 flex-office locations in 5 districts (CA, OR, WA, CO, AZ) on the FEXA CMMS: daily work-order intake and triage, preventive maintenance, and internal technician management. Lightly assisted with CapEx.",
+        "Held West Coast facilities operations steady through a period of internal change; **10 days** to learn the ropes and brand standards.",
+        "Owned all repair and maintenance activities across **48 flex-office locations** in 5 districts (CA, OR, WA, CO, AZ) on the FEXA CMMS: daily work-order intake and triage, preventive maintenance, and internal technician management. Lightly assisted with CapEx.",
       ],
     },
     {
@@ -83,9 +84,9 @@ export const RESUME_DATA: ResumeData = {
       description:
         "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility - three levels (two underground) within a 27-story residential tower, serving 150-350 daily guests. Built the facility's first preventive maintenance program across bitcoin mining heat recovery, BMS-controlled climate systems, and thermal pools.",
       highlights: [
-        "Structured a 6-person technical team (3 facilities, 3 pool) - defined roles, ownership areas, and shift accountability.",
-        "Reduced OPEX 18% ($36K) in the first three months by bringing outsourced work in-house and shifting to distributor relationships.",
-        "Built the facility's first PM program across interdependent thermal and aquatic systems - shifting operations from daily firefighting to scheduled maintenance.",
+        "Structured a **6-person technical team** (3 facilities, 3 pool) - defined roles, ownership areas, and shift accountability.",
+        "**Reduced OPEX 18%** ($36K) in the first three months by bringing outsourced work in-house and shifting to distributor relationships.",
+        "Built the facility's **first PM program** across interdependent thermal and aquatic systems - shifting operations from daily firefighting to scheduled maintenance.",
       ],
     },
     {
@@ -104,13 +105,14 @@ export const RESUME_DATA: ResumeData = {
       title: "Facilities Manager, Americas",
       start: "2022",
       end: "2023",
+      defaultOpen: true,
       description:
         "Inherited a fragmented FM operation and rebuilt it into a centralized, data-driven program across 54 locations in U.S. and Canada. First FM hire globally - grew from sole operator to leading the brand's first FM team.",
       highlights: [
-        "Deployed ServiceChannel across 54 locations, onboarded 65+ vendors, and processed 1,600+ maintenance tasks annually with standardized workflows.",
-        "Built a 3-person FM team - recruited from my SoulCycle network and 2 external consultants.",
+        "Deployed ServiceChannel across **54 locations**, onboarded **65+ vendors**, and processed **1,600+ maintenance tasks** annually with standardized workflows.",
+        "Built a **3-person FM team** - recruited from my SoulCycle network and 2 external consultants.",
         "Managed NYC headquarters operations for 80+ Balenciaga staff.",
-        "Grew OPEX budget from $450K to $1.2M. Managed $1M shared CapEx budget.",
+        "Grew OPEX budget from $450K to **$1.2M**. Managed **$1M shared CapEx** budget.",
       ],
     },
     {
@@ -131,9 +133,9 @@ export const RESUME_DATA: ResumeData = {
       description:
         "Hybrid site launcher and facilities manager during Rivian's rapid EV expansion - launched 6 East Coast service centers (~200,000 sq. ft. total), built steady-state playbooks, and served as ongoing FM point of contact post-launch. Traveled 50-60%.",
       highlights: [
-        "Owned full site lifecycle - construction coordination, punchlist, opening-day vendor mobilization, then steady-state R&M.",
-        "Ran biweekly NSO alignment calls with 50-80 cross-functional stakeholders.",
-        "Partnered with 2 Program Managers to standardize FM processes for 30 locations nationwide. Core team on the CMMS migration from Limble to FEXA.",
+        "Owned **full site lifecycle** - construction coordination, punchlist, opening-day vendor mobilization, then steady-state R&M.",
+        "Ran biweekly NSO alignment calls with **50-80 cross-functional stakeholders**.",
+        "Partnered with 2 Program Managers to standardize FM processes for **30 locations nationwide**. Core team on the CMMS migration from Limble to FEXA.",
       ],
     },
     {
@@ -152,11 +154,12 @@ export const RESUME_DATA: ResumeData = {
       title: "Facilities Manager, Americas",
       start: "2018",
       end: "2021",
+      defaultOpen: true,
       description:
         "First FM hire in the Americas - built FENDI Americas' FM function from scratch across 67 locations in 4 countries. Grew R&M budget from $600K to $1M; total managed spend reached $5.3M as scope doubled within two years.",
       highlights: [
-        "Absorbed security ($3.2M), cleaning ($800K), and COVID-19 response ($230K) into the FM function in 2020. Managed it all as sole FM - leveraging ServiceChannel automation to process ~1,100 work orders that year.",
-        "Managed NYC headquarters at 555 Madison (12,000 sq. ft., 90 staff) alongside the 100,000+ sq. ft. retail portfolio.",
+        "Absorbed **security ($3.2M)**, **cleaning ($800K)**, and **COVID-19 response ($230K)** into the FM function in 2020. Managed it all as sole FM - leveraging ServiceChannel automation to process **~1,100 work orders** that year.",
+        "Managed NYC headquarters at 555 Madison (12,000 sq. ft., 90 staff) alongside the **100,000+ sq. ft.** retail portfolio.",
         'Peer-voted the inaugural "Above & Beyond" Award, recognized by the President of FENDI Americas, [Joanna M. Dubin](https://www.linkedin.com/in/joannadubin/), for crisis response during 2020.',
       ],
     },
@@ -201,8 +204,8 @@ export const RESUME_DATA: ResumeData = {
       description:
         "Started overseeing NYC Metro studios; asked to relocate to San Francisco to stabilize West Coast operations and lead expansion into NorCal, Seattle, Vancouver, Chicago, and Texas. 33-studio portfolio across 6 markets. Traveled 60-70%.",
       highlights: [
-        "Led FM handoff for 16 studio launches and supervised 2 technicians directly. $450K annual OPEX portfolio.",
-        "Delivered CapEx projects across the portfolio - 2-4 per location annually, $5K-$50K per project.",
+        "Led FM handoff for **16 studio launches** and supervised 2 technicians directly. **$450K annual OPEX** portfolio.",
+        "Delivered CapEx projects across the portfolio - **2-4 per location annually**, $5K-$50K per project.",
         'Coordinated Harvey Milk 40th anniversary "HOPE WILL NEVER BE SILENT" neon memorial at the Castro studio in collaboration with [SF Illuminate](https://illuminate.org/).',
       ],
     },
@@ -224,8 +227,8 @@ export const RESUME_DATA: ResumeData = {
       description:
         "Five years with the brand - from the sales floor in Broomfield, Colorado (2010) through Men's merchandising at NYC Flagship (2012) into facilities management, ultimately overseeing all repairs, maintenance and CapEx projects for the entire Madewell fleet and J.Crew's NYC Metro region.",
       highlights: [
-        "Started with J.Crew West; expanded to the full Madewell fleet, then earned NYC Metro - flagship locations with up to $180K monthly repair spend vs. ~$30K at standard stores.",
-        "Managed ServiceChannel workflows, in-store safety audits, and after-hours emergency response across ~142 stores. Assisted with training 3 new Facilities Coordinators.",
+        "Started with J.Crew West; expanded to the full Madewell fleet, then earned NYC Metro - flagship locations with up to **$180K monthly repair spend** vs. ~$30K at standard stores.",
+        "Managed ServiceChannel workflows, in-store safety audits, and after-hours emergency response across **~142 stores**. Assisted with training 3 new Facilities Coordinators.",
       ],
     },
   ],
