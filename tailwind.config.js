@@ -19,7 +19,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
+        display: ["var(--font-fraunces)", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -56,6 +57,11 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         "accent-brand": "hsl(var(--accent-brand))",
+        // FMWorks editorial pressmark - structure only, never interaction
+        "accent-red": "hsl(var(--accent-red))",
+        "bg-soft": "hsl(var(--bg-soft))",
+        "accent-strong": "hsl(var(--accent-strong))",
+        "accent-ink": "hsl(var(--accent-ink))",
       },
       borderRadius: {
         lg: "var(--radius)",

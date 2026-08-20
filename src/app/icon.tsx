@@ -31,6 +31,6 @@ export default function Icon() {
         CM
       </span>
     </div>,
-    { ...size },
+    { ...size }
   );
 }

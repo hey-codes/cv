@@ -4,67 +4,79 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    /* FMWorks light - white ground, warm-neutral ink, vibrant blue accent.
+       Ported from ~/Projects/design-refs/FMWorks-Design-System/colors_and_type.css */
+    --background: 0 0% 100%; /* #ffffff */
+    --foreground: 45 7.8% 20%; /* #37352f */
 
     --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    --card-foreground: 45 7.8% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
+    --popover-foreground: 45 7.8% 20%;
 
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 45 7.8% 20%; /* #37352f */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    --secondary: 60 6.7% 94.1%; /* #f1f1ef  bg-inset */
+    --secondary-foreground: 45 7.8% 20%;
 
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
+    --muted: 60 6.7% 94.1%;
+    --muted-foreground: 53.3 4.1% 43.3%; /* #73726a */
 
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --accent: 60 6.7% 94.1%; /* hover surface, not the brand hue */
+    --accent-foreground: 45 7.8% 20%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 357.3 71% 51.4%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    --border: 60 4.3% 91%; /* #e9e9e7 */
+    --input: 60 4.3% 91%;
+    --ring: 208.5 100% 45.9%; /* focus ring rides the brand blue */
 
     --radius: 0.5rem;
-    --accent-brand: 221 83% 40%;
+    --accent-brand: 208.5 100% 45.9%; /* #007BEA  interactive only */
+    --accent-red: 2.9 100% 44.1%; /* #e10b00  editorial pressmark */
+    --accent-strong: 212.7 100% 41.4%; /* #0060D3  AA-safe fill behind white */
+    --accent-ink: 0 0% 100%; /* text on --accent-strong */
+    --bg-soft: 30 20% 98%; /* #fbfaf9  hover surface */
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
+    /* FMWorks dark - Notion charcoal, brighter blue, warmer pressmark red. */
+    --background: 0 0% 9.8%; /* #191919 */
+    --foreground: 45 7.7% 89.8%; /* #e7e6e3 */
 
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
+    --card: 0 0% 12.5%; /* #202020 */
+    --card-foreground: 45 7.7% 89.8%;
 
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 0 0% 12.5%;
+    --popover-foreground: 45 7.7% 89.8%;
 
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
+    --primary: 45 7.7% 89.8%;
+    --primary-foreground: 0 0% 9.8%;
 
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 0 0% 16.5%; /* #2a2a2a */
+    --secondary-foreground: 45 7.7% 89.8%;
 
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
+    --muted: 0 0% 16.5%;
+    --muted-foreground: 52.5 3.8% 59.2%; /* #9b9a93 */
 
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 0 0% 16.5%;
+    --accent-foreground: 45 7.7% 89.8%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 2.5 100% 71.8%;
+    --destructive-foreground: 0 0% 9.8%;
 
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-    --accent-brand: 221 83% 40%;
+    --border: 0 0% 21.2%; /* #363636 */
+    --input: 0 0% 21.2%;
+    --ring: 205.5 100% 60.4%;
+
+    --accent-brand: 205.5 100% 60.4%; /* #35A9FF */
+    --accent-red: 3.4 100% 61.4%; /* #ff453a */
+    --accent-strong: 205.5 100% 60.4%; /* #35A9FF, carries dark ink on top */
+    --accent-ink: 0 0% 4%;
+    --bg-soft: 0 0% 12.5%; /* #202020 */
   }
 }
 
@@ -101,5 +113,261 @@
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* ============================================================================
+   FMWorks interaction layer.
+   Blue carries interaction, red carries structure. Everything here is a
+   response to input - nothing animates on its own - and all of it is disabled
+   under prefers-reduced-motion and in print.
+   ============================================================================ */
+
+/* Links: underline wipes in left-to-right instead of snapping on. */
+.link-wipe {
+  position: relative;
+  text-decoration: none;
+}
+.link-wipe::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 110ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-wipe:hover::after,
+.link-wipe:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Work records: lift a hair, warm the ground, and strike a red edge rule. */
+.work-card {
+  position: relative;
+  margin-inline: -0.75rem;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius);
+  transition:
+    transform 110ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 110ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-card::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  border-radius: 1px;
+  background: hsl(var(--accent-red));
+  opacity: 0;
+  transform: scaleY(0.4);
+  transform-origin: top center;
+  transition:
+    opacity 110ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-card:hover,
+.work-card:focus-within {
+  transform: translateY(-1px);
+  background-color: hsl(var(--bg-soft));
+}
+.work-card:hover::before,
+.work-card:focus-within::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* Focus is always the brand blue, never the pressmark. */
+a:focus-visible {
+  outline: 2px solid hsl(var(--accent-brand));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .link-wipe::after,
+  .work-card,
+  .work-card::before {
+    transition: none;
+  }
+  .work-card:hover,
+  .work-card:focus-within {
+    transform: none;
+  }
+}
+
+@media print {
+  .work-card {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+  .work-card::before {
+    display: none;
+  }
+  .link-wipe::after {
+    display: none;
+  }
+}
+
+/* Filtered-out roles recede rather than disappear, so the page keeps its shape
+   and nothing is hidden from a reader (or from print). */
+.work-card--dimmed {
+  opacity: 0.45;
+  transition: opacity 170ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-card--dimmed:hover,
+.work-card--dimmed:focus-within {
+  opacity: 1;
+}
+
+/* Chips are tap targets: give touch users a comfortable hit area without
+   changing how they look. */
+.chip {
+  cursor: pointer;
+  transition:
+    background-color 110ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 110ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (pointer: coarse) {
+  .chip {
+    padding-block: 0.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card--dimmed,
+  .chip {
+    transition: none;
+  }
+}
+
+@media print {
+  .work-card--dimmed {
+    opacity: 1 !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Gutter marginalia. Hangs left of the column on very wide screens only, where
+   the scroll rail is not competing for the same space; folds away below that.
+   --------------------------------------------------------------------------- */
+.role-note {
+  display: none;
+}
+@media (min-width: 1536px) {
+  .role-note {
+    display: block;
+    position: absolute;
+    right: calc(100% + 1.25rem);
+    top: 0.6rem;
+    width: 8.5rem;
+    text-align: right;
+    text-wrap: balance;
+  }
+  .work-card:hover .role-note,
+  .work-card:focus-within .role-note {
+    color: hsl(var(--accent-red));
+  }
+}
+@media print {
+  .role-note {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll rail.
+   --------------------------------------------------------------------------- */
+.scroll-spine {
+  /* Scaled, not resized: this updates on every scroll frame, so animating
+     height/width here would force layout on the hottest path in the page. */
+  transition: transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.scroll-tick {
+  transition: color 170ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.scroll-tick__label {
+  transition: opacity 170ms cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+.scroll-tick__num {
+  display: inline-block;
+  transition: transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.scroll-tick__num--on {
+  transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-spine,
+  .scroll-tick,
+  .scroll-tick__label,
+  .scroll-tick__num {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Collapsible role highlights. The 0fr -> 1fr grid trick animates to the
+   content's real height, which max-height guesswork cannot do. Print and
+   reduced-motion both get the fully expanded panel with no transition.
+   --------------------------------------------------------------------------- */
+.role-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.role-panel--open {
+  grid-template-rows: 1fr;
+}
+.role-panel__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.role-caret {
+  display: inline-block;
+  transition:
+    transform 170ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 110ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.role-caret.is-open {
+  transform: rotate(90deg);
+}
+.work-card:hover .role-caret,
+.work-card:focus-within .role-caret {
+  color: hsl(var(--accent-brand));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-panel,
+  .role-caret {
+    transition: none;
+  }
+}
+
+@media print {
+  /* A printed resume shows everything. Drop the grid outright rather than
+     forcing the row to 1fr: an fr row resolved to 0px here, which left the
+     bullets painting outside a zero-height box and over the chips below. */
+  .role-panel {
+    display: block !important;
+    grid-template-rows: none !important;
+  }
+  .role-panel__inner {
+    overflow: visible !important;
   }
 }

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { CommandMenu } from "@/components/command-menu";
+import { ScrollNav } from "@/components/ui/scroll-nav";
 import { RESUME_DATA } from "@/data/resume-data";
 import { generateResumeStructuredData } from "@/lib/structured-data";
 import { CareerHighlights } from "./components/career-highlights";
 import { Education } from "./components/education";
 import { Header } from "./components/header";
-import { Projects } from "./components/projects";
 import { Skills } from "./components/skills";
+import { StatStrip } from "./components/stat-strip";
 import { Summary } from "./components/summary";
 import { WorkExperience } from "./components/work-experience";
 
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://cv.jarocki.me/opengraph-image",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${RESUME_DATA.name}'s profile picture`,
+        alt: `${RESUME_DATA.name} - ${RESUME_DATA.about}`,
       },
     ],
   },
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${RESUME_DATA.name} - Resume`,
     description: RESUME_DATA.about,
-    images: ["https://cv.jarocki.me/opengraph-image"],
+    images: ["/opengraph-image"],
   },
 };
 
@@ -57,6 +58,14 @@ function getCommandMenuLinks() {
   ];
 }
 
+/**
+ * Stamped when the page is built, so every deploy carries its own date. Uses
+ * en-CA purely because it yields ISO YYYY-MM-DD without manual padding.
+ */
+const LAST_UPDATED = new Date().toLocaleDateString("en-CA", {
+  timeZone: "America/Chicago",
+});
+
 export default function ResumePage() {
   const structuredData = generateResumeStructuredData();
 
@@ -70,7 +79,7 @@ export default function ResumePage() {
         }}
       />
       <main
-        className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-11 md:p-16"
+        className="container relative mx-auto scroll-my-12 overflow-auto p-4 pb-[20vh] pt-14 print:p-11 print:pb-11 md:p-16 md:pb-[20vh]"
         id="main-content"
       >
         <div className="sr-only">
@@ -78,11 +87,15 @@ export default function ResumePage() {
         </div>
 
         <section
-          className="mx-auto w-full max-w-2xl space-y-8 bg-background print:space-y-4"
+          className="mx-auto w-full max-w-3xl space-y-8 bg-background print:space-y-4"
           aria-label="Resume Content"
         >
           <div className="animate-fade-in" style={{ animationDelay: "0ms" }}>
             <Header />
+          </div>
+
+          <div className="animate-fade-in" style={{ animationDelay: "40ms" }}>
+            <StatStrip />
           </div>
 
           <div className="space-y-8 print:space-y-4">
@@ -117,32 +130,35 @@ export default function ResumePage() {
             >
               <Skills skills={RESUME_DATA.skills} />
             </div>
-            <hr className="border-border" />
-            <div
-              className="animate-fade-in"
-              style={{ animationDelay: "450ms" }}
-            >
-              <Projects projects={RESUME_DATA.projects} />
-            </div>
           </div>
 
-          <hr className="mt-12 border-t-2 border-accent-brand/30" />
+          <hr className="mt-12 border-t-[3px] border-accent-red" />
 
           <footer className="pb-8 pt-4 text-center font-mono text-xs text-foreground/50 print:hidden">
-            <p>Last updated March 2026</p>
+            <p>
+              Last updated:{" "}
+              <time
+                dateTime={LAST_UPDATED}
+                className="font-semibold text-accent-red"
+              >
+                {LAST_UPDATED}
+              </time>
+            </p>
             <p className="mt-1">
               Built with{" "}
               <a
                 href="https://nextjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-brand font-bold italic no-underline hover:underline"
+                className="link-wipe text-accent-brand font-bold italic"
               >
                 Next.js
               </a>
             </p>
           </footer>
         </section>
+
+        <ScrollNav />
 
         <nav className="print:hidden" aria-label="Quick navigation">
           <CommandMenu links={getCommandMenuLinks()} />

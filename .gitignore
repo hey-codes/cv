@@ -37,3 +37,10 @@ next-env.d.ts
 
 # ide
 .idea
+
+# tool caches
+/.impeccable/
+
+# archived build output and design explorations (kept locally, never committed)
+/.next-BROKEN-ARCHIVE-*/
+/design-explorations/

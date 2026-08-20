@@ -1,6 +1,6 @@
 "use client";
 
-import { CommandIcon, MoonIcon, SunIcon, MonitorIcon } from "lucide-react";
+import { CommandIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 import {
@@ -26,10 +26,15 @@ export const CommandMenu = ({ links }: Props) => {
   React.useEffect(() => {
     setIsMac(window.navigator.userAgent.includes("Mac"));
 
+    // Cmd/Ctrl+K is the palette convention and, unlike J, is not claimed by the
+    // browser (Chrome and Firefox bind Cmd+J to Downloads and win that race
+    // inconsistently). J stays bound for muscle memory.
     const down = (e: KeyboardEvent) => {
-      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+      const key = e.key.toLowerCase();
+      if ((key === "k" || key === "j") && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        e.stopPropagation();
+        setOpen((isOpen) => !isOpen);
       }
     };
 
@@ -42,7 +47,7 @@ export const CommandMenu = ({ links }: Props) => {
       <p className="fixed bottom-0 left-0 right-0 hidden bg-gradient-to-t from-[hsl(var(--background))] to-transparent p-1 pt-6 text-center text-sm text-muted-foreground xl:block print:hidden">
         Press{" "}
         <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">{isMac ? "⌘" : "Ctrl"}</span>+J
+          <span className="text-xs">{isMac ? "⌘" : "Ctrl"}</span>+K
         </kbd>{" "}
         to open the command menu
       </p>
@@ -54,7 +59,12 @@ export const CommandMenu = ({ links }: Props) => {
       >
         <CommandIcon className="my-6 size-6" />
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        title="Command menu"
+        description="Search actions, themes, and links"
+      >
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>

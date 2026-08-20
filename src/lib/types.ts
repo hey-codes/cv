@@ -13,7 +13,6 @@ export interface ResumeData {
   locationLink: string;
   about: string;
   summary: string;
-  avatarUrl: string;
   personalWebsiteUrl: string;
   contact: {
     email?: string;
@@ -42,6 +41,8 @@ export interface ResumeData {
     end: string | null;
     description: string;
     highlights?: readonly string[];
+    /** Short gutter marginalia shown beside the role on wide screens. */
+    note?: string;
   }>;
   careerHighlights: string[];
   skills: Array<{
