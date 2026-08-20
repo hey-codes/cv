@@ -27,10 +27,9 @@ interface LocationLinkProps {
 function LocationLink({ location }: LocationLinkProps) {
   return (
     <p className="max-w-md items-center text-pretty font-mono text-xs text-foreground ml-1">
-      <span
-        className="inline-flex gap-x-1.5 align-baseline leading-none"
-        aria-label={`Location: ${location}`}
-      >
+      {/* The visible text already reads as the location, so the icon is purely
+          decorative and the span needs no accessible name of its own. */}
+      <span className="inline-flex gap-x-1.5 align-baseline leading-none">
         <GlobeIcon className="size-3" aria-hidden="true" />
         {location}
       </span>
@@ -162,7 +161,7 @@ export function Header() {
     <header>
       <div className="space-y-1.5">
         <h1
-          className="text-3xl font-bold uppercase tracking-tight"
+          className="font-display text-3xl font-bold tracking-tight"
           id="resume-name"
         >
           {RESUME_DATA.name}

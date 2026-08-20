@@ -1,4 +1,5 @@
 import { Section } from "../../components/ui/section";
+import { SectionHeading } from "../../components/ui/section-heading";
 
 interface AboutProps {
   summary: string;
@@ -12,9 +13,9 @@ interface AboutProps {
 export function Summary({ summary, className }: AboutProps) {
   return (
     <Section className={className}>
-      <h2 className="text-[22px] font-bold uppercase" id="about-section">
+      <SectionHeading index="01" kicker="Profile" id="about-section">
         About
-      </h2>
+      </SectionHeading>
       <div className="text-pretty font-mono text-sm text-foreground/80 print:text-[10px]">
         {summary}
       </div>

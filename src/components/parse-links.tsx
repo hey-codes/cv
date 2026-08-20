@@ -8,9 +8,9 @@ export function parseLinks(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
   let lastIndex = 0;
-  let match: RegExpExecArray | null;
+  let match = regex.exec(text);
 
-  while ((match = regex.exec(text)) !== null) {
+  while (match !== null) {
     if (match.index > lastIndex) {
       parts.push(text.slice(lastIndex, match.index));
     }
@@ -20,12 +20,13 @@ export function parseLinks(text: string): React.ReactNode[] {
         href={match[2]}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-accent-brand font-bold italic no-underline hover:underline"
+        className="link-wipe text-accent-brand font-bold italic"
       >
         {match[1]}
-      </a>,
+      </a>
     );
     lastIndex = regex.lastIndex;
+    match = regex.exec(text);
   }
 
   if (lastIndex < text.length) {

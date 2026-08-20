@@ -35,6 +35,7 @@ function StatusIndicator({ status }: StatusIndicatorProps) {
   return (
     <span
       className={`size-1.5 rounded-full ${STATUS_COLORS[status]}`}
+      role="img"
       title={STATUS_LABELS[status]}
       aria-label={`Status: ${STATUS_LABELS[status]}`}
     />
@@ -168,7 +169,7 @@ interface ProjectsProps {
 export function Projects({ projects }: ProjectsProps) {
   return (
     <Section className="scroll-mb-16 print:space-y-4">
-      <h2 className="text-[22px] font-bold uppercase" id="side-projects">
+      <h2 className="font-display text-[22px] font-bold" id="side-projects">
         Independent Consulting
       </h2>
       <div

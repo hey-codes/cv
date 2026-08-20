@@ -11,7 +11,7 @@ export function Avatar({ alt, fallback, className }: AvatarProps) {
     <div
       className={cn(
         "relative flex shrink-0 overflow-hidden rounded-xl bg-accent-brand",
-        className,
+        className
       )}
       role="img"
       aria-label={alt}

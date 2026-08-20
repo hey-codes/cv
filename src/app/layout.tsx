@@ -1,16 +1,62 @@
 import { Analytics } from "@vercel/analytics/react";
-import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 
 import "./globals.css";
+
+// FMWorks type system: Fraunces (display serif) + Geist (UI sans) + JetBrains
+// Mono (meta/labels). Faces are the exact woff2 subsets shipped in
+// ~/Projects/design-refs/FMWorks-Design-System/fonts, self-hosted here so the
+// site renders identically to the design system with no build-time fetch.
+const fraunces = localFont({
+  src: [
+    {
+      path: "./fonts/fraunces-latin-wght-normal.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "./fonts/fraunces-latin-wght-italic.woff2",
+      weight: "100 900",
+      style: "italic",
+    },
+  ],
+  variable: "--font-fraunces",
+  display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
+
+const jetbrainsMono = localFont({
+  src: [
+    {
+      path: "./fonts/jetbrains-mono-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/jetbrains-mono-latin-500-normal.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/jetbrains-mono-latin-700-normal.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+  fallback: ["ui-monospace", "Menlo", "Consolas", "monospace"],
+});
+
 import type React from "react";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { ThemeProvider } from "@/components/theme-provider";
 import { RESUME_DATA } from "@/data/resume-data";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cv.jarocki.me"),
+  metadataBase: new URL("https://codymitch.works"),
   title: {
     default: `${RESUME_DATA.name} - ${RESUME_DATA.about}`,
     template: `%s | ${RESUME_DATA.name}`,
@@ -21,11 +67,12 @@ export const metadata: Metadata = {
     "cv",
     "portfolio",
     RESUME_DATA.name,
-    "software engineer",
-    "full stack developer",
-    "react",
-    "next.js",
-    "typescript",
+    "facilities management",
+    "facilities manager",
+    "multi-site operations",
+    "workplace operations",
+    "preventive maintenance",
+    "CMMS",
   ],
   authors: [{ name: RESUME_DATA.name }],
   creator: RESUME_DATA.name,
@@ -58,7 +105,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${RESUME_DATA.name} - ${RESUME_DATA.about}`,
     description: RESUME_DATA.about,
-    creator: "@BartoszJarocki",
   },
   alternates: {
     canonical: RESUME_DATA.personalWebsiteUrl,
@@ -83,8 +129,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning={true}
+      className={`${GeistSans.variable} ${jetbrainsMono.variable} ${fraunces.variable}`}
     >
       <body>
         <ThemeProvider>

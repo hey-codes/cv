@@ -8,22 +8,18 @@ export const RESUME_DATA: ResumeData = {
   about:
     "Facilities leader who builds multi-site operations programs from the ground up.",
   summary:
-    "Facilities and operations professional with 12+ years across 350+ locations - luxury retail, EV/automotive, boutique fitness, and wellness facilities. Recently relocated to the Chicago area to be closer to family.",
-  avatarUrl:
-    "https://ui-avatars.com/api/?name=CM&size=256&background=0D8ABC&color=fff",
+    "Facilities and operations professional with 13 years across 400+ locations - luxury retail, EV/automotive, boutique fitness, and wellness facilities. Recently relocated to the Chicago area to be closer to family.",
   personalWebsiteUrl: "https://codymitch.works",
   contact: {
-    // email: "cody.mitchell@gmail.com",
-    // tel: "+720-384-3964",
     social: [
       {
         name: "GitHub",
-        url: "https://github.com/heycodes",
+        url: "https://github.com/hey-codes",
         icon: "github",
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/hey-cody/",
+        url: "https://www.linkedin.com/in/heycody/",
         icon: "linkedin",
       },
     ],
@@ -40,14 +36,37 @@ export const RESUME_DATA: ResumeData = {
     },
   ],
   careerHighlights: [
-    "First FM hire at both FENDI and Balenciaga - created both Americas programs from scratch, growing to $5.3M and $1.2M in total managed spend respectively.",
-    "350+ locations and 12+ years across luxury retail, EV/automotive, boutique fitness, and wellness - from J.Crew's sales floor to building programs for global luxury houses.",
+    "First FM hire at both FENDI and Balenciaga - created both Americas programs from scratch, growing to $5.3M in total managed spend and $1.2M OPEX respectively.",
+    "400+ locations and 13 years across luxury retail, EV/automotive, boutique fitness, and wellness - from J.Crew's sales floor to building programs for global luxury houses.",
     "6 CMMS implementations across every employer - ServiceChannel, FEXA, and MaintainX. Each time converting unstructured maintenance into data-driven FM operations.",
     'Coordinated Harvey Milk 40th anniversary "HOPE WILL NEVER BE SILENT" neon memorial at SoulCycle Castro - a streetscape installation in collaboration with [SF Illuminate](https://illuminate.org/). Now a permanent part of Harvey Milk Plaza and the Castro community.',
   ],
   work: [
     {
+      company: "INDUSTRIOUS",
+      note: "10 days to ramp",
+      link: "https://www.industriousoffice.com/",
+      location: "Remote (Chicago)",
+      badges: [
+        "Flex Office",
+        "48 Locations",
+        "5 Districts",
+        "FEXA",
+        "Parental Leave Cover",
+      ],
+      title: "Facilities Consultant, West Coast Portfolio",
+      start: "Apr 2026",
+      end: "Aug 2026",
+      description:
+        "Brought in to cover a parental leave across the West Coast portfolio: interviewed on a Tuesday afternoon, started the following morning, 10am.",
+      highlights: [
+        "Held West Coast facilities operations steady through a period of internal change; 10 days to learn the ropes and brand standards.",
+        "Owned all repair and maintenance activities across 48 flex-office locations in 5 districts (CA, OR, WA, CO, AZ) on the FEXA CMMS: daily work-order intake and triage, preventive maintenance, and internal technician management. Lightly assisted with CapEx.",
+      ],
+    },
+    {
       company: "BATHHOUSE",
+      note: "first PM program",
       link: "https://www.abathhouse.com/",
       location: "Denver, CO",
       badges: [
@@ -56,6 +75,7 @@ export const RESUME_DATA: ResumeData = {
         "On-Site",
         "6 Direct Reports",
         "MaintainX",
+        "-18% OPEX",
       ],
       title: "Facilities Operations Manager",
       start: "2024",
@@ -70,6 +90,7 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "BALENCIAGA",
+      note: "first FM hire, globally",
       link: "https://www.balenciaga.com/en-us",
       location: "New York, NY",
       badges: [
@@ -77,6 +98,8 @@ export const RESUME_DATA: ResumeData = {
         "54 Boutiques",
         "3 Direct Reports",
         "ServiceChannel",
+        "$1.2M OPEX",
+        "First FM Hire",
       ],
       title: "Facilities Manager, Americas",
       start: "2022",
@@ -92,6 +115,7 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "RIVIAN AUTOMOTIVE",
+      note: "6 sites, 270K sq ft",
       link: "https://www.rivian.com",
       location: "New York, NY",
       badges: [
@@ -99,6 +123,7 @@ export const RESUME_DATA: ResumeData = {
         "6 Service Centers",
         "Hybrid (Travel 60%)",
         "Limble -> FEXA",
+        "270K sq. ft.",
       ],
       title: "Commercial Facilities Operations, Specialist",
       start: "2021",
@@ -113,9 +138,17 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "FENDI",
+      note: "built from zero",
       link: "https://www.fendi.com/us-en/",
       location: "New York, NY",
-      badges: ["Hybrid", "Luxury Retail", "67 Boutiques", "ServiceChannel"],
+      badges: [
+        "Hybrid",
+        "Luxury Retail",
+        "67 Boutiques",
+        "ServiceChannel",
+        "$5.3M Managed Spend",
+        "4 Countries",
+      ],
       title: "Facilities Manager, Americas",
       start: "2018",
       end: "2021",
@@ -129,9 +162,16 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "DOLCE & GABBANA",
+      note: "sole FM, Americas",
       link: "https://www.dolcegabbana.com/en-us/",
       location: "New York, NY",
-      badges: ["On-Site", "Luxury Retail", "48 Boutiques", "ServiceChannel"],
+      badges: [
+        "On-Site",
+        "Luxury Retail",
+        "48 Boutiques",
+        "ServiceChannel",
+        "Sole FM, Americas",
+      ],
       title: "Facilities Manager, Americas",
       start: "2018",
       end: "2018",
@@ -143,14 +183,17 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "SOULCYCLE",
+      note: "16 studio launches",
       link: "https://www.soul-cycle.com",
       location: "San Francisco, CA",
       badges: [
         "Hybrid (Travel 60%)",
         "Boutique Fitness",
         "33 Studios",
-        "1 Direct Reports",
+        "1 Direct Report",
         "ServiceChannel",
+        "16 Studio Launches",
+        "$450K OPEX",
       ],
       title: "Area Facilities Manager",
       start: "2015",
@@ -165,9 +208,16 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "J.CREW / MADEWELL",
+      note: "sales floor to FM",
       link: "https://www.jcrew.com",
       location: "New York, NY",
-      badges: ["High-End Retail", "148 Stores", "ServiceChannel", "Travel 60%"],
+      badges: [
+        "High-End Retail",
+        "150+ Stores",
+        "ServiceChannel",
+        "Travel 60%",
+        "$180K/mo Peak Spend",
+      ],
       title: "Facilities Coordinator",
       start: "2010",
       end: "2015",
@@ -180,6 +230,20 @@ export const RESUME_DATA: ResumeData = {
     },
   ],
   skills: [
+    {
+      category: "Operations & Program Management",
+      items: [
+        "Multi-Site Portfolio Management",
+        "Preventive Maintenance Programs",
+        "New Site Openings (NSO)",
+        "Work Order Management",
+        "Process Standardization",
+        "Site Audits & Brand Standards",
+        "SOP Development",
+        "Landlord Relations",
+        "Tenant/Member Experience",
+      ],
+    },
     {
       category: "Systems & Platforms",
       items: [
@@ -206,22 +270,6 @@ export const RESUME_DATA: ResumeData = {
         "Dehumidification",
         "Heat Exchangers",
         "MEP Systems",
-      ],
-    },
-    {
-      category: "Operations & Program Management",
-      items: [
-        "Multi-Site Portfolio Management",
-        "Preventive Maintenance Programs",
-        "New Site Openings (NSO)",
-        "End-to-End Project Delivery",
-        "Process Standardization",
-        "Cross-Functional Collaboration",
-        "Landlord Relations",
-        "Work Order Management",
-        "Site Audits & Brand Standards",
-        "SOP Development",
-        "Tenant/Member Experience",
       ],
     },
     {

@@ -31,6 +31,6 @@ export default function AppleIcon() {
         CM
       </span>
     </div>,
-    { ...size },
+    { ...size }
   );
 }

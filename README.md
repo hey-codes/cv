@@ -1,16 +1,15 @@
 # codymitch.works
 
-Personal CV/resume site for Cody Mitchell - facilities & operations professional.
+Where my facilities work lives: 13 years, 9 brands, 400+ locations, on one page you can read in a couple of minutes. Tags are clickable, so a system like ServiceChannel or FEXA can be traced across every role that used it. Built to print cleanly too, in case someone needs the PDF.
 
 Live at [codymitch.works](https://codymitch.works)
-
-**Last Updated:** 2026-03-18
 
 ## Stack
 
 - Next.js, TypeScript, Tailwind CSS
+- Self-hosted Fraunces / Geist / JetBrains Mono
+- Dark and light mode with system detection
 - Deployed on Vercel
-- Dark/light mode with system detection
 
 ## Development
 
@@ -19,7 +18,7 @@ pnpm install
 pnpm dev
 ```
 
-Resume content lives in `src/data/resume-data.ts`.
+Content lives in `src/data/resume-data.ts`. Updating the site is a text edit and a deploy.
 
 ## Based on
 

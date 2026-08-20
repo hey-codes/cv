@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 
 type SkillCategory = {
@@ -19,13 +20,13 @@ interface SkillsProps {
 export function Skills({ skills, className }: SkillsProps) {
   return (
     <Section className={className}>
-      <h2 className="text-[22px] font-bold uppercase" id="skills-section">
+      <SectionHeading index="05" kicker="Capabilities" id="skills-section">
         Skills
-      </h2>
-      <div className="space-y-3">
+      </SectionHeading>
+      <div className="space-y-4">
         {skills.map((group) => (
           <div key={group.category}>
-            <h3 className="mb-1 text-sm font-semibold text-accent-brand">
+            <h3 className="mb-1.5 font-mono text-[10.5px] font-semibold uppercase tracking-[0.12em] text-muted-foreground print:text-[9px]">
               {group.category}
             </h3>
             <ul
@@ -35,6 +36,7 @@ export function Skills({ skills, className }: SkillsProps) {
               {group.items.map((skill) => (
                 <li key={skill}>
                   <Badge
+                    variant="secondary"
                     className="print:text-[10px]"
                     aria-label={`Skill: ${skill}`}
                   >

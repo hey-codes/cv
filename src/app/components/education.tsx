@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/ui/section-heading";
 import type { RESUME_DATA } from "@/data/resume-data";
 
 type Education = (typeof RESUME_DATA)["education"][number];
@@ -43,7 +44,7 @@ function EducationItem({ education }: EducationItemProps) {
           <h3 className="text-[18px] font-semibold leading-none" id={schoolId}>
             {link ? (
               <a
-                className="text-accent-brand font-bold italic no-underline hover:underline"
+                className="link-wipe text-accent-brand font-bold italic"
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -78,9 +79,9 @@ interface EducationListProps {
 export function Education({ education }: EducationListProps) {
   return (
     <Section>
-      <h2 className="text-[22px] font-bold uppercase" id="education-section">
+      <SectionHeading index="04" kicker="Credentials" id="education-section">
         Education
-      </h2>
+      </SectionHeading>
       <div
         className="space-y-4"
         role="feed"
