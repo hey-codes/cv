@@ -8,7 +8,7 @@ export const RESUME_DATA: ResumeData = {
   about:
     "Facilities leader who builds multi-site operations programs from the ground up.",
   summary:
-    "Facilities and operations professional with 13 years across 400+ locations - luxury retail, EV/automotive, boutique fitness, and wellness facilities. Recently relocated to the Chicago area to be closer to family.",
+    "Doing facilities management since 2013: started on the J.Crew fleet and worked my way up to running national portfolios solo. 13 years, 9 brands, 400+ locations, 3M+ sq ft. managed, and I wouldn't trade it. The problems get my gears turning; the people I solve them with are why I've stayed in FM.",
   personalWebsiteUrl: "https://codymitch.works",
   contact: {
     social: [
@@ -38,7 +38,7 @@ export const RESUME_DATA: ResumeData = {
   careerHighlights: [
     "First FM hire at both FENDI and Balenciaga - created both Americas programs from scratch, growing to $5.3M in total managed spend and $1.2M OPEX respectively.",
     "400+ locations and 13 years across luxury retail, EV/automotive, boutique fitness, and wellness - from J.Crew's sales floor to building programs for global luxury houses.",
-    "6 CMMS implementations across every employer - ServiceChannel, FEXA, and MaintainX. Each time converting unstructured maintenance into data-driven FM operations.",
+    "Standardized every portfolio on a FM CMMS. 3 net-new implementations (ServiceChannel at FENDI and Balenciaga, FEXA at Rivian), plus platforms inherited, finished, or expanded at 4 more brands; hands-on across 5 systems.",
     'Coordinated Harvey Milk 40th anniversary "HOPE WILL NEVER BE SILENT" neon memorial at SoulCycle Castro - a streetscape installation in collaboration with [SF Illuminate](https://illuminate.org/). Now a permanent part of Harvey Milk Plaza and the Castro community.',
   ],
   work: [
@@ -81,10 +81,10 @@ export const RESUME_DATA: ResumeData = {
       start: "2024",
       end: "2024",
       description:
-        "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility - three levels (two underground) within a 27-story residential tower, serving 200+ daily guests. Built the facility's first preventive maintenance program across bitcoin mining heat recovery, BMS-controlled climate systems, and thermal pools.",
+        "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility - three levels (two underground) within a 27-story residential tower, serving 150-350 daily guests. Built the facility's first preventive maintenance program across bitcoin mining heat recovery, BMS-controlled climate systems, and thermal pools.",
       highlights: [
         "Structured a 6-person technical team (3 facilities, 3 pool) - defined roles, ownership areas, and shift accountability.",
-        "Reduced OPEX 18% ($36K annualized) by renegotiating vendor contracts, bringing outsourced work in-house, and shifting to distributor relationships.",
+        "Reduced OPEX 18% ($36K) in the first three months by bringing outsourced work in-house and shifting to distributor relationships.",
         "Built the facility's first PM program across interdependent thermal and aquatic systems - shifting operations from daily firefighting to scheduled maintenance.",
       ],
     },
@@ -109,13 +109,13 @@ export const RESUME_DATA: ResumeData = {
       highlights: [
         "Deployed ServiceChannel across 54 locations, onboarded 65+ vendors, and processed 1,600+ maintenance tasks annually with standardized workflows.",
         "Built a 3-person FM team - recruited from my SoulCycle network and 2 external consultants.",
-        "Managed NYC headquarters operations for 120+ Balenciaga and Kering staff.",
+        "Managed NYC headquarters operations for 80+ Balenciaga staff.",
         "Grew OPEX budget from $450K to $1.2M. Managed $1M shared CapEx budget.",
       ],
     },
     {
       company: "RIVIAN AUTOMOTIVE",
-      note: "6 sites, 270K sq ft",
+      note: "6 sites, 200K sq ft",
       link: "https://www.rivian.com",
       location: "New York, NY",
       badges: [
@@ -123,17 +123,17 @@ export const RESUME_DATA: ResumeData = {
         "6 Service Centers",
         "Hybrid (Travel 60%)",
         "Limble -> FEXA",
-        "270K sq. ft.",
+        "200K sq. ft.",
       ],
       title: "Commercial Facilities Operations, Specialist",
       start: "2021",
       end: "2022",
       description:
-        "Hybrid site launcher and facilities manager during Rivian's rapid EV expansion - launched 6 East Coast service centers (~270,000 sq. ft. total), built steady-state playbooks, and served as ongoing FM point of contact post-launch. Traveled 50-60%.",
+        "Hybrid site launcher and facilities manager during Rivian's rapid EV expansion - launched 6 East Coast service centers (~200,000 sq. ft. total), built steady-state playbooks, and served as ongoing FM point of contact post-launch. Traveled 50-60%.",
       highlights: [
         "Owned full site lifecycle - construction coordination, punchlist, opening-day vendor mobilization, then steady-state R&M.",
         "Ran biweekly NSO alignment calls with 50-80 cross-functional stakeholders.",
-        "Partnered with 2 Program Managers to standardize FM processes for 30 locations nationwide. Led CMMS migration from Limble to FEXA.",
+        "Partnered with 2 Program Managers to standardize FM processes for 30 locations nationwide. Core team on the CMMS migration from Limble to FEXA.",
       ],
     },
     {
@@ -153,11 +153,11 @@ export const RESUME_DATA: ResumeData = {
       start: "2018",
       end: "2021",
       description:
-        "First global FM Hire - built FENDI Americas' FM function from scratch across 67 locations in 4 countries. Grew R&M budget from $600K to $1M; total managed spend reached $5.3M as scope doubled within two years.",
+        "First FM hire in the Americas - built FENDI Americas' FM function from scratch across 67 locations in 4 countries. Grew R&M budget from $600K to $1M; total managed spend reached $5.3M as scope doubled within two years.",
       highlights: [
-        "Absorbed security ($3.2M), cleaning ($800K), and COVID-19 response ($230K) into the FM function in 2020. Managed it all as sole FM - leveraging ServiceChannel automation to scale from ~650 to ~1,100 work orders year-over-year.",
+        "Absorbed security ($3.2M), cleaning ($800K), and COVID-19 response ($230K) into the FM function in 2020. Managed it all as sole FM - leveraging ServiceChannel automation to process ~1,100 work orders that year.",
         "Managed NYC headquarters at 555 Madison (12,000 sq. ft., 90 staff) alongside the 100,000+ sq. ft. retail portfolio.",
-        'Peer-nominated for the "Above & Beyond" Award by the President of FENDI Americas, [Joanna M. Dubin](https://www.linkedin.com/in/joannadubin/), for crisis response during 2020.',
+        'Peer-voted the inaugural "Above & Beyond" Award, recognized by the President of FENDI Americas, [Joanna M. Dubin](https://www.linkedin.com/in/joannadubin/), for crisis response during 2020.',
       ],
     },
     {
@@ -199,7 +199,7 @@ export const RESUME_DATA: ResumeData = {
       start: "2015",
       end: "2018",
       description:
-        "Started overseeing NYC Metro studios; asked to relocate to San Francisco to stabilize West Coast operations and lead expansion into NorCal, Seattle, Vancouver, Chicago, and Texas. 33-studio portfolio across 6 markets. Traveled 50-60%.",
+        "Started overseeing NYC Metro studios; asked to relocate to San Francisco to stabilize West Coast operations and lead expansion into NorCal, Seattle, Vancouver, Chicago, and Texas. 33-studio portfolio across 6 markets. Traveled 60-70%.",
       highlights: [
         "Led FM handoff for 16 studio launches and supervised 2 technicians directly. $450K annual OPEX portfolio.",
         "Delivered CapEx projects across the portfolio - 2-4 per location annually, $5K-$50K per project.",
@@ -213,7 +213,7 @@ export const RESUME_DATA: ResumeData = {
       location: "New York, NY",
       badges: [
         "High-End Retail",
-        "150+ Stores",
+        "~142 Stores",
         "ServiceChannel",
         "Travel 60%",
         "$180K/mo Peak Spend",
@@ -225,7 +225,7 @@ export const RESUME_DATA: ResumeData = {
         "Five years with the brand - from the sales floor in Broomfield, Colorado (2010) through Men's merchandising at NYC Flagship (2012) into facilities management, ultimately overseeing all repairs, maintenance and CapEx projects for the entire Madewell fleet and J.Crew's NYC Metro region.",
       highlights: [
         "Started with J.Crew West; expanded to the full Madewell fleet, then earned NYC Metro - flagship locations with up to $180K monthly repair spend vs. ~$30K at standard stores.",
-        "Managed ServiceChannel workflows, in-store safety audits, and after-hours emergency response across 150+ stores. Trained 3 new coordinators.",
+        "Managed ServiceChannel workflows, in-store safety audits, and after-hours emergency response across ~142 stores. Assisted with training 3 new Facilities Coordinators.",
       ],
     },
   ],
