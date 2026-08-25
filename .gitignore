@@ -45,3 +45,9 @@ next-env.d.ts
 /.next-BROKEN-ARCHIVE-*/
 /design-explorations/
 .playwright-mcp/
+
+# Design reference captures (kept locally, never committed).
+# 14MB of PNGs regenerated from a dev server; Claude Design reads them off disk.
+# Spec for reproducing them is in design-system/shots/README.md, which IS tracked.
+/design-system/shots/*.png
+/design-system/shots/*.pdf

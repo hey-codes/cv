@@ -1,0 +1,143 @@
+/* ============================================================================
+   codymitch.works design tokens
+   ----------------------------------------------------------------------------
+   Lifted verbatim from src/app/globals.css so this file can be read, pasted, or
+   rendered without Tailwind. If the two ever disagree, globals.css is the
+   source of truth and this file is stale.
+
+   Values are HSL triplets because shadcn/ui consumes them that way
+   (hsl(var(--token))). The hex in each comment is the real color.
+
+   Ancestry: ported from the FMWorks design system (BRAND.md normative), which
+   lives outside this folder at ~/Projects/design-refs/FMWorks-Design-System/.
+   Nothing here needs that folder to be understood, and the port is not exact.
+   Deliberate departures are listed at the bottom.
+   ============================================================================ */
+
+:root {
+  /* Ground and ink. White page, warm-neutral ink, not black. */
+  --background: 0 0% 100%;            /* #ffffff */
+  --foreground: 45 7.8% 20%;          /* #37352f  warm ink */
+
+  --card: 0 0% 100%;                  /* #ffffff */
+  --card-foreground: 45 7.8% 20%;     /* #37352f */
+  --popover: 0 0% 100%;               /* #ffffff */
+  --popover-foreground: 45 7.8% 20%;  /* #37352f */
+
+  --primary: 45 7.8% 20%;             /* #37352f */
+  --primary-foreground: 0 0% 100%;    /* #ffffff */
+
+  /* Inset surfaces: chips, hover grounds, muted panels. */
+  --secondary: 60 6.7% 94.1%;         /* #f1f1ef  bg-inset */
+  --secondary-foreground: 45 7.8% 20%;/* #37352f */
+  --muted: 60 6.7% 94.1%;             /* #f1f1ef */
+  --muted-foreground: 53.3 4.1% 43.3%;/* #73726a  metadata ink */
+
+  /* NOTE: --accent is a hover surface, NOT the brand hue. The brand hue is
+     --accent-brand below. This naming is inherited from shadcn/ui and is the
+     single most common thing to get wrong in this file. */
+  --accent: 60 6.7% 94.1%;            /* #f1f1ef  hover surface */
+  --accent-foreground: 45 7.8% 20%;   /* #37352f */
+
+  --destructive: 357.3 71% 51.4%;     /* #dc2626-ish */
+  --destructive-foreground: 0 0% 100%;/* #ffffff */
+
+  --border: 60 4.3% 91%;              /* #e9e9e7  hairline */
+  --input: 60 4.3% 91%;               /* #e9e9e7 */
+  --ring: 208.5 100% 45.9%;           /* #007bea  focus rides the brand blue */
+
+  --radius: 0.5rem;                   /* 8px; md = 6px, sm = 4px */
+
+  /* --- The two-hue system. This is the rule the whole design runs on. ------ */
+  --accent-brand: 208.5 100% 45.9%;   /* #007bea  INTERACTION ONLY */
+  --accent-red: 2.9 100% 44.1%;       /* #e10b00  STRUCTURE ONLY (pressmark) */
+
+  --accent-strong: 212.7 100% 41.4%;  /* #0060d3  AA-safe fill behind white */
+  --accent-ink: 0 0% 100%;            /* #ffffff  text on --accent-strong */
+  --bg-soft: 30 20% 98%;              /* #fbfaf9  warm hover ground */
+}
+
+.dark {
+  /* Notion charcoal, brighter blue, warmer pressmark red. Not an inversion:
+     the reds and blues are re-picked for the dark ground, not flipped. */
+  --background: 0 0% 9.8%;            /* #191919 */
+  --foreground: 45 7.7% 89.8%;        /* #e7e6e3 */
+
+  --card: 0 0% 12.5%;                 /* #202020 */
+  --card-foreground: 45 7.7% 89.8%;   /* #e7e6e3 */
+  --popover: 0 0% 12.5%;              /* #202020 */
+  --popover-foreground: 45 7.7% 89.8%;/* #e7e6e3 */
+
+  --primary: 45 7.7% 89.8%;           /* #e7e6e3 */
+  --primary-foreground: 0 0% 9.8%;    /* #191919 */
+
+  --secondary: 0 0% 16.5%;            /* #2a2a2a */
+  --secondary-foreground: 45 7.7% 89.8%;
+  --muted: 0 0% 16.5%;                /* #2a2a2a */
+  --muted-foreground: 52.5 3.8% 59.2%;/* #9b9a93 */
+
+  --accent: 0 0% 16.5%;               /* #2a2a2a  hover surface */
+  --accent-foreground: 45 7.7% 89.8%;
+
+  --destructive: 2.5 100% 71.8%;      /* #ff6f6a */
+  --destructive-foreground: 0 0% 9.8%;
+
+  --border: 0 0% 21.2%;               /* #363636 */
+  --input: 0 0% 21.2%;                /* #363636 */
+  --ring: 205.5 100% 60.4%;           /* #35a9ff */
+
+  --accent-brand: 205.5 100% 60.4%;   /* #35a9ff  INTERACTION ONLY */
+  --accent-red: 3.4 100% 61.4%;       /* #ff453a  STRUCTURE ONLY */
+
+  --accent-strong: 205.5 100% 60.4%;  /* #35a9ff, carries dark ink on top */
+  --accent-ink: 0 0% 4%;              /* #0a0a0a */
+  --bg-soft: 0 0% 12.5%;              /* #202020 */
+}
+
+/* ============================================================================
+   Type
+   ----------------------------------------------------------------------------
+   Three families, each with one job. Mixing the jobs is the fastest way to make
+   this page look like a generic template again.
+
+     Fraunces          display only  - name, section titles, marginalia (italic)
+     Geist Sans        prose only    - summary, descriptions, bullets
+     JetBrains Mono    metadata only - dates, locations, chips, kickers, labels
+
+   Self-hosted woff2 at src/app/fonts/. Fraunces is a variable weight axis.
+   ============================================================================ */
+
+:root {
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+/* Sizes as actually used in the shipped page, not an idealized scale. */
+:root {
+  --t-name: 30px;        /* Fraunces bold, tracking-tight (text-3xl) */
+  --t-section: 22px;     /* Fraunces bold, section titles */
+  --t-stat: 28px;        /* Fraunces bold, stat strip figures, tabular-nums */
+  --t-body: 14px;        /* Geist, prose (text-sm) */
+  --t-meta: 14px;        /* JetBrains Mono, dates and locations (text-sm) */
+  --t-note: 13.5px;      /* Fraunces italic, gutter marginalia */
+  --t-chip: 12px;        /* JetBrains Mono semibold, chips (text-xs) */
+  --t-kicker: 10.5px;    /* JetBrains Mono bold, 0.14em tracking, section eyebrow */
+  --t-stat-label: 9.5px; /* JetBrains Mono semibold, 0.14em tracking, stat label */
+  --t-location: 12px;    /* JetBrains Mono, header location line (text-xs) */
+}
+
+/* ============================================================================
+   Deliberate departures from FMWorks
+   ----------------------------------------------------------------------------
+   1. This is a document, not an app shell. No navigation rail, no cards with
+      shadow, no --bg-card / --shadow-card.
+   2. Icon-free in the body. FMWorks leans on Phosphor line icons; structure
+      here is carried by rules, type, and whitespace. Icons appear only in the
+      header social buttons.
+   3. Red is promoted. FMWorks confines the pressmark to the masthead rule;
+      here it marks every section head, the marginalia, the work-card hover
+      edge, the scroll spine, and the footer rule.
+   4. Radius is squared down. 0.5rem here vs the system's pill --r-full on
+      chips.
+   ============================================================================ */
