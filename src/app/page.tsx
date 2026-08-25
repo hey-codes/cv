@@ -90,43 +90,46 @@ export default function ResumePage() {
           className="mx-auto w-full max-w-3xl space-y-8 bg-background print:space-y-4"
           aria-label="Resume Content"
         >
-          <div className="animate-fade-in" style={{ animationDelay: "0ms" }}>
+          <div className="animate-fade-in" style={{ transitionDelay: "0ms" }}>
             <Header />
           </div>
 
-          <div className="animate-fade-in" style={{ animationDelay: "40ms" }}>
+          <div className="animate-fade-in" style={{ transitionDelay: "40ms" }}>
             <StatStrip />
           </div>
 
           <div className="space-y-8 print:space-y-4">
-            <div className="animate-fade-in" style={{ animationDelay: "75ms" }}>
+            <div
+              className="animate-fade-in"
+              style={{ transitionDelay: "75ms" }}
+            >
               <Summary summary={RESUME_DATA.summary} />
             </div>
             <hr className="border-border" />
             <div
               className="animate-fade-in"
-              style={{ animationDelay: "150ms" }}
+              style={{ transitionDelay: "150ms" }}
             >
               <CareerHighlights highlights={RESUME_DATA.careerHighlights} />
             </div>
             <hr className="border-border" />
             <div
               className="animate-fade-in"
-              style={{ animationDelay: "225ms" }}
+              style={{ transitionDelay: "225ms" }}
             >
               <WorkExperience work={RESUME_DATA.work} />
             </div>
             <hr className="border-border" />
             <div
               className="animate-fade-in"
-              style={{ animationDelay: "300ms" }}
+              style={{ transitionDelay: "300ms" }}
             >
               <Education education={RESUME_DATA.education} />
             </div>
             <hr className="border-border" />
             <div
               className="animate-fade-in"
-              style={{ animationDelay: "375ms" }}
+              style={{ transitionDelay: "375ms" }}
             >
               <Skills skills={RESUME_DATA.skills} />
             </div>
