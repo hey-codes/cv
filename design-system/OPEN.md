@@ -110,3 +110,68 @@ The wanted direction is **simple and refined, not louder**.
 `--accent-brand`. This comes from shadcn/ui and it is the single easiest thing
 in this codebase to get wrong. Using `--accent` expecting blue produces a
 near-invisible grey.
+
+---
+
+## Update 2026-08-25: defect 2 root cause found
+
+**Mechanism confirmed. The leading suspect in the note above was correct, and the trigger is now known.**
+
+`.animate-fade-in` uses `animation: fadeIn 400ms ease-out both`. Chrome does not
+advance the document animation timeline for a tab that has never been rendered.
+Measured on the live site in Chrome 151.0.7922.174:
+
+| | Observed |
+|---|---|
+| Layout | Correct. `document.scrollHeight` 3734, `main` 3734. Nothing is clipped. |
+| Content | Present. 164 KB of real DOM, every section, every fact. |
+| Console | Silent. No errors, no warnings, no exceptions. |
+| fadeIn animations | All 7 report `playState: "running"` with `currentTime: 84ms`, **frozen**. Still 84ms after waiting 2500ms. |
+| Resulting opacity | `0.32, 0.18, 0.04, 0, 0, 0, 0` against delays `0, 40, 75, 150, 225, 300, 375ms`. |
+
+With `animation-fill-mode: both`, an element is pinned to the animation's value at
+the current timeline position. Frozen at 84ms, the four blocks whose delay exceeds
+84ms are pinned to the `from` keyframe, which is `opacity: 0`. The first three are
+pinned mid-fade, which is why the header and stat strip render ghost-grey rather
+than black.
+
+**This is exactly the reported symptom: the page stops about halfway down.** It is
+not a layout bug, not a clipping bug, and not a hydration bug. The content is
+present, laid out, and permanently invisible.
+
+### Screenshot evidence
+
+Captured with `visibilityState: "hidden"`: header, stat strip, and scroll rail all
+render at ghost-grey partial opacity; sections 02 through 05 are entirely blank
+white. Matches Cody's description precisely.
+
+### What is NOT yet proven
+
+The repro above was in a tab that stayed `visibilityState: "hidden"` throughout.
+**It has not been proven that the frozen state persists once a tab actually becomes
+visible.** Normally the timeline resumes on visibility and the fade completes.
+
+The open question is which real-world path reaches a permanently frozen timeline.
+Candidates worth testing, in order of likelihood:
+
+1. Cmd-click or middle-click a link so the page loads in a background tab, then
+   switch to it. This is a common way to open a portfolio link.
+2. Chrome session restore on browser launch.
+3. Chrome omnibox prerender, where the page loads in a prerendered hidden state.
+4. Chrome Memory Saver discarding and reloading the tab.
+
+Cody should run test 1 in his own Chrome, since it needs a real foreground switch.
+
+### Why this is worth fixing regardless of which path triggers it
+
+Content visibility is currently gated on an animation clock advancing. Any cause of
+a stalled or non-advancing timeline, in any browser, now or later, renders the page
+blank with no error. That is a fragile pattern independent of this specific Chrome
+behavior.
+
+### Correction to the record
+
+An earlier pass in this session measured `main` at height 0 and concluded the layout
+had collapsed. **That measurement was an artifact of the tab never having been
+painted, and is wrong.** Once the tab was forced to render, `main` measured 3734px.
+Recorded so nobody re-chases a layout collapse that does not exist.
