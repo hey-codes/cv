@@ -240,3 +240,15 @@ the production render.
    in the same pass that removes the dead keyframe.
 4. Print and reduced-motion were verified by reading the shipped CSS
    (`opacity:1!important` in both), not by rendering. Worth a real print check.
+
+### Cleanup applied 2026-08-25 (same branch, separate commit)
+
+`@keyframes fadeIn` deleted; it was dead after the fix and contained the exact
+opacity animation that caused the defect. `.animate-fade-in` renamed to
+`.animate-rise` across `globals.css` (4 refs) and `page.tsx` (7 refs), since
+nothing fades any more. `PATTERNS.md` updated to describe the new behaviour and
+to carry the do-not-reintroduce-opacity warning.
+
+Items 2 and 3 in "Still open after this fix" above are now closed. Item 1 (real-
+world trigger never confirmed in a foreground tab) and item 4 (print and reduced
+motion verified by reading CSS, not by rendering) remain open.
