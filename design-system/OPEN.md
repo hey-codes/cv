@@ -175,3 +175,80 @@ An earlier pass in this session measured `main` at height 0 and concluded the la
 had collapsed. **That measurement was an artifact of the tab never having been
 painted, and is wrong.** Once the tab was forced to render, `main` measured 3734px.
 Recorded so nobody re-chases a layout collapse that does not exist.
+
+### Fix applied 2026-08-25 (branch `fix/fade-in-frozen-timeline`, not merged, not pushed)
+
+**Attempt 1 failed and is recorded so nobody retries it.** Moving from
+`animation` to `transition` with `@starting-style` did **not** work. CSS
+transitions run on the same frozen document timeline as animations. Measured
+`opacity:running@133`, stuck, with opacities `0.489, 0.355, 0.23, 0, 0, 0, 0`.
+Four blocks still invisible. Better than before, still broken.
+
+**Attempt 2 works.** The rule is now:
+
+    .animate-fade-in {
+      opacity: 1;
+      translate: 0 0;
+      transition: translate 400ms ease-out;
+    }
+    @starting-style {
+      .animate-fade-in { translate: 0 6px; }
+    }
+
+`opacity` is never driven by the timeline. Only `translate` moves. A frozen
+timeline now means text sits 6px from its final position at full opacity, which
+is imperceptible and completely readable.
+
+`page.tsx` changed 7 inline `animationDelay` values to `transitionDelay`
+(0, 40, 75, 150, 225, 300, 375ms). The stagger is unchanged.
+
+**Do not reintroduce opacity into this rule.** That is the entire defect.
+
+### Verification
+
+Test harness: a Chrome tab that never becomes visible reproduces the frozen
+timeline deterministically, which makes this testable without waiting on a
+real-world trigger.
+
+| | Before | After |
+|---|---|---|
+| Opacities | `0.199, 0.042, 0, 0, 0, 0, 0` | `1, 1, 1, 1, 1, 1, 1` |
+| Fully invisible blocks | 5 of 7 | 0 of 7 |
+| Timeline frozen | yes | **yes, still** |
+| Page renders | ghost top, blank below | full page |
+
+The timeline is still frozen after the fix. That is the point: the failure
+condition is unchanged and the symptom is gone, which is what distinguishes a
+root-cause fix from one that merely avoids the trigger.
+
+Also checked: production build succeeds; `@starting-style` survives
+minification and ships as `@starting-style{.animate-fade-in{translate:0 6px}}`;
+Biome clean across 37 files; `tsc --noEmit` clean; all five sections present in
+the production render.
+
+### Still open after this fix
+
+1. **Never confirmed in a foreground tab.** Every repro ran in a permanently
+   hidden tab. It is still unproven which real-world path (background tab,
+   session restore, prerender, Memory Saver) reaches a frozen timeline that
+   survives becoming visible. The fix is correct regardless, but the original
+   trigger remains unidentified.
+2. **`@keyframes fadeIn` at globals.css:96 is now dead.** Left in place
+   deliberately: one change at a time. Remove in a separate pass. It is a trap,
+   since reusing it reintroduces the bug.
+3. **The class name `.animate-fade-in` is now a misnomer.** Nothing fades. Rename
+   in the same pass that removes the dead keyframe.
+4. Print and reduced-motion were verified by reading the shipped CSS
+   (`opacity:1!important` in both), not by rendering. Worth a real print check.
+
+### Cleanup applied 2026-08-25 (same branch, separate commit)
+
+`@keyframes fadeIn` deleted; it was dead after the fix and contained the exact
+opacity animation that caused the defect. `.animate-fade-in` renamed to
+`.animate-rise` across `globals.css` (4 refs) and `page.tsx` (7 refs), since
+nothing fades any more. `PATTERNS.md` updated to describe the new behaviour and
+to carry the do-not-reintroduce-opacity warning.
+
+Items 2 and 3 in "Still open after this fix" above are now closed. Item 1 (real-
+world trigger never confirmed in a foreground tab) and item 4 (print and reduced
+motion verified by reading CSS, not by rendering) remain open.

@@ -93,26 +93,29 @@
   page-break-before: always;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Opacity is NEVER driven by the animation timeline. Chrome freezes that
+   timeline for a tab that has never been painted, and a frozen opacity means
+   permanently invisible content. Only `translate` moves, so the worst case is
+   text sitting 6px from its final spot, fully readable. Do not reintroduce
+   opacity here. See design-system/OPEN.md. */
+.animate-rise {
+  opacity: 1;
+  translate: 0 0;
+  transition: translate 400ms ease-out;
 }
 
-.animate-fade-in {
-  animation: fadeIn 400ms ease-out both;
+@starting-style {
+  .animate-rise {
+    translate: 0 6px;
+  }
 }
 
 @media print {
-  .animate-fade-in {
-    animation: none !important;
+  .animate-rise {
+    transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+    translate: none !important;
   }
 }
 
@@ -190,10 +193,11 @@ a:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-in {
-    animation: none !important;
+  .animate-rise {
+    transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+    translate: none !important;
   }
   .link-wipe::after,
   .work-card,

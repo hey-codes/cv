@@ -195,7 +195,7 @@ except the one-time entry fade and the stat count-up.
 
 | Motion | Duration | Curve |
 |---|---|---|
-| Entry fade (`.animate-fade-in`) | 400ms, `both` | `ease-out` |
+| Entry rise (`.animate-rise`) | 400ms translate only | `ease-out` |
 | Stat count-up | 900ms | ease-out cubic |
 | Hover ground, lift, chips, links | 110ms | `cubic-bezier(0.22, 1, 0.36, 1)` |
 | Edge rule, dim, caret, rail | 170ms | `cubic-bezier(0.22, 1, 0.36, 1)` |
@@ -204,6 +204,8 @@ except the one-time entry fade and the stat count-up.
 All of it is disabled under `prefers-reduced-motion` and in print. That is
 enforced in `globals.css` with explicit blocks, not left to chance.
 
-Note: `.animate-fade-in` uses `animation-fill-mode: both`, which holds sections
-at `opacity: 0` until the animation runs. See `OPEN.md` — this is the leading
-suspect in the Chrome rendering bug.
+Note: `.animate-rise` transitions `translate` only. `opacity` is deliberately
+never driven by the animation timeline, because Chrome freezes that timeline for
+a tab that has never been painted, and a frozen opacity means permanently
+invisible content. That was the Chrome half-render bug, fixed 2026-08-25. Do not
+reintroduce opacity into this rule. See `OPEN.md`.
