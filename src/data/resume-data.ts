@@ -8,7 +8,7 @@ export const RESUME_DATA: ResumeData = {
   about:
     "Facilities leader who builds multi-site operations programs from the ground up.",
   summary:
-    "Doing facilities management since 2013: started on the J.Crew fleet and worked my way up to running national portfolios solo. 13 years, 9 brands, 400+ locations, 3M+ sq ft. managed, and I wouldn't trade it. The problems get my gears turning; the people I solve them with are why I've stayed in FM.",
+    "9 brands, 400+ locations, 3M+ sq. ft. managed, from luxury maisons and flexible coworking to launching Rivian's East Coast service centers. Solo and with incredible teams.",
   personalWebsiteUrl: "https://codymitch.works",
   contact: {
     social: [
