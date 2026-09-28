@@ -43,7 +43,6 @@ export const RESUME_DATA: ResumeData = {
   work: [
     {
       company: "Industrious",
-      note: "2 weeks to ramp",
       link: "https://www.industriousoffice.com/",
       location: "Remote (Chicago)",
       badges: ["Flex Office", "1.3M+ sq. ft.", "FEXA", "Parental Leave Cover"],
@@ -60,7 +59,6 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "Bathhouse",
-      note: "first PM program",
       link: "https://www.abathhouse.com/",
       location: "New York, NY",
       badges: ["Thermal Wellness", "35K sq. ft.", "MaintainX", "-18% OPEX"],
@@ -77,7 +75,6 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "Balenciaga",
-      note: "first FM hire, globally",
       link: "https://www.balenciaga.com/en-us",
       location: "New York, NY",
       badges: [
@@ -101,7 +98,6 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "Rivian Automotive",
-      note: "6 sites launched",
       link: "https://www.rivian.com",
       location: "New York, NY",
       badges: [
@@ -124,7 +120,6 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "FENDI",
-      note: "built from zero",
       link: "https://www.fendi.com/us-en/",
       location: "New York, NY",
       badges: [
@@ -147,7 +142,6 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "Dolce & Gabbana",
-      note: "sole FM, Americas",
       link: "https://www.dolcegabbana.com/en-us/",
       location: "New York, NY",
       badges: ["Luxury Retail", "190K+ sq. ft.", "ServiceChannel"],
@@ -163,7 +157,6 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "SoulCycle",
-      note: "16 studio launches",
       link: "https://www.soul-cycle.com",
       location: "San Francisco, CA",
       badges: [
@@ -185,7 +178,6 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       company: "J.Crew / Madewell",
-      note: "sales floor to FM",
       link: "https://www.jcrew.com",
       location: "New York, NY",
       badges: ["High-End Retail", "700K+ sq. ft.", "ServiceChannel"],

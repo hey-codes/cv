@@ -21,7 +21,6 @@ export function CareerHighlights({
         index="02"
         kicker="Track record"
         id="career-highlights-section"
-        note="the receipts"
       >
         Track Record
       </SectionHeading>
