@@ -28,7 +28,7 @@ export function parseLinks(text: string): React.ReactNode[] {
           href={match[2]}
           target="_blank"
           rel="noopener noreferrer"
-          className="link-wipe text-accent-brand font-bold italic"
+          className="link-wipe text-accent-brand font-bold"
         >
           {match[1]}
         </a>

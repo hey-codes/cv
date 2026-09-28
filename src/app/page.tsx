@@ -118,7 +118,7 @@ export default function ResumePage() {
               Last updated:{" "}
               <time
                 dateTime={LAST_UPDATED}
-                className="font-semibold text-muted-foreground"
+                className="font-bold text-muted-foreground"
               >
                 {LAST_UPDATED}
               </time>
@@ -129,7 +129,7 @@ export default function ResumePage() {
                 href="https://nextjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-wipe text-accent-brand font-bold italic"
+                className="link-wipe text-accent-brand font-bold"
               >
                 Next.js
               </a>

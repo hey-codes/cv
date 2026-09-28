@@ -24,7 +24,7 @@ export function CareerHighlights({
       >
         Track Record
       </SectionHeading>
-      <ul className="ml-4 list-outside list-disc space-y-2 text-pretty text-[15px] text-foreground/80 print:text-[10px]">
+      <ul className="ml-4 max-w-[68ch] list-outside list-disc space-y-2 text-pretty text-[15px] print:max-w-none text-foreground/80 print:text-[10px]">
         {highlights.map((highlight) => (
           <li key={highlight}>{parseLinks(highlight)}</li>
         ))}

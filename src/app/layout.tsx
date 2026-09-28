@@ -132,7 +132,7 @@ export default function RootLayout({
       suppressHydrationWarning={true}
       className={`${GeistSans.variable} ${jetbrainsMono.variable} ${fraunces.variable}`}
     >
-      <body>
+      <body className="antialiased">
         <ThemeProvider>
           <ErrorBoundary>{children}</ErrorBoundary>
         </ThemeProvider>

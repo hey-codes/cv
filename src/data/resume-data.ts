@@ -7,7 +7,7 @@ export const RESUME_DATA: ResumeData = {
   locationLink: "https://www.google.com/maps/place/Chicago",
   about: "Facilities, Operations & New Site Launches",
   summary:
-    "9 brands, 400+ locations, 3M+ sq. ft. managed, from luxury maisons and flexible coworking to launching Rivian's East Coast service centers. Solo and with incredible teams.",
+    "9 brands, 400+ locations, 3M+ sq. ft. managed, from luxury maisons and flexible coworking to launching Rivian’s East Coast service centers. Solo and with incredible teams.",
   personalWebsiteUrl: "https://codymitch.works",
   contact: {
     social: [
@@ -29,16 +29,16 @@ export const RESUME_DATA: ResumeData = {
       link: "https://colorado.edu/envd",
       location: "Boulder, CO",
       degree:
-        "Bachelor's Degree in Environmental Design (ENVD); School of Architecture and Planning",
+        "Bachelor’s Degree in Environmental Design (ENVD); School of Architecture and Planning",
       start: "2008",
       end: "2012",
     },
   ],
   careerHighlights: [
     "**2× first FM hire**: built the Americas programs at FENDI and Balenciaga from scratch, growing to **$5.3M** total managed spend and **$1.2M** OPEX respectively.",
-    "**400+ locations, 9 brands, 13 years**: luxury retail, EV/automotive, boutique fitness, and wellness; from J.Crew's sales floor to programs for global luxury houses.",
+    "**400+ locations, 9 brands, 13 years**: luxury retail, EV/automotive, boutique fitness, and wellness; from J.Crew’s sales floor to programs for global luxury houses.",
     "**3 net-new CMMS implementations** (ServiceChannel at FENDI and Balenciaga, FEXA at Rivian): standardized every portfolio; platforms inherited, finished, or expanded at 4 more brands, hands-on across **4 systems**.",
-    '**A permanent piece of the Castro**: coordinated the Harvey Milk 40th anniversary "HOPE WILL NEVER BE SILENT" neon memorial at SoulCycle Castro with [SF Illuminate](https://illuminate.org/), now part of Harvey Milk Plaza.',
+    "**A permanent piece of the Castro**: coordinated the Harvey Milk 40th anniversary “HOPE WILL NEVER BE SILENT” neon memorial at SoulCycle Castro with [SF Illuminate](https://illuminate.org/), now part of Harvey Milk Plaza.",
   ],
   work: [
     {
@@ -51,7 +51,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Aug 2026",
       defaultOpen: true,
       description:
-        "Owned repair and maintenance for 48 flex-office locations across 5 West Coast districts (AZ, CA, CO, OR, WA). Brought in to cover a parental leave: interviewed on a Tuesday afternoon, started the following morning at 10am, and learned the brand's people, processes, and standards in 2 weeks.",
+        "Owned repair and maintenance for 48 flex-office locations across 5 West Coast districts (AZ, CA, CO, OR, WA). Brought in to cover a parental leave: interviewed on a Tuesday afternoon, started the following morning at 10am, and learned the brand’s people, processes, and standards in 2 weeks.",
       highlights: [
         "Oversaw **1,500+ work orders** on FEXA (repairs, member bill-backs, and preventive maintenance), with **120-190** repair and bill-back tickets open at any given time.",
         "Held West Coast facilities operations steady through a period of internal change: daily work-order intake and triage, preventive maintenance, and management of the in-house technician. Lightly assisted with CapEx where needed.",
@@ -67,7 +67,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Nov 2024",
       defaultOpen: true,
       description:
-        "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150-350 guests a day. Built the facility's first preventive maintenance program across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
+        "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150-350 guests a day. Built the facility’s first preventive maintenance program across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
       highlights: [
         "Led a **6-person technical team** (3 facilities, 3 pool): defined roles, ownership areas, and shift accountability.",
         "**Reduced OPEX 18%** ($36K) in the first three months by shifting outsourced work to in-house technicians and sourcing materials, tools, and hardware competitively (bulk buys, sales, trusted online suppliers).",
@@ -88,7 +88,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Dec 2023",
       defaultOpen: true,
       description:
-        "Balenciaga's first FM hire globally, brought on to build a centralized, data-driven FM program across 54 locations in the U.S. and Canada. Grew the function from a solo role to a team.",
+        "Balenciaga’s first FM hire globally, brought on to build a centralized, data-driven FM program across 54 locations in the U.S. and Canada. Grew the function from a solo role to a team.",
       highlights: [
         "Deployed ServiceChannel across **54 locations**, onboarded **65+ vendors**, and processed **1,600+ maintenance tasks** annually with standardized workflows.",
         "Built a **3-person FM team**: hired a Facilities Coordinator and selected 2 external consultants.",
@@ -111,7 +111,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Jul 2022",
       defaultOpen: true,
       description:
-        "Hybrid site launcher and facilities manager during Rivian's rapid EV expansion: launched 6 East Coast service centers, built steady-state playbooks, and stayed on as the FM point of contact after launch.",
+        "Hybrid site launcher and facilities manager during Rivian’s rapid EV expansion: launched 6 East Coast service centers, built steady-state playbooks, and stayed on as the FM point of contact after launch.",
       highlights: [
         "Owned the **full site lifecycle**: construction coordination, punchlist, opening-day vendor mobilization, then steady-state R&M, with the punchlist-to-steady-state handoff improving over time.",
         "Directed biweekly NSO calls with **40 to 80 people** per call across 8 cross-functional teams.",
@@ -133,11 +133,11 @@ export const RESUME_DATA: ResumeData = {
       end: "Apr 2021",
       defaultOpen: true,
       description:
-        "First FM hire in the Americas: built FENDI Americas' FM function from scratch across 67 locations in 4 countries. Grew the R&M budget from $600K to $1M as scope doubled within two years.",
+        "First FM hire in the Americas: built FENDI Americas’ FM function from scratch across 67 locations in 4 countries. Grew the R&M budget from $600K to $1M as scope doubled within two years.",
       highlights: [
         "Absorbed security and loss prevention, cleaning, and COVID-19 response into the FM function in 2020, growing total managed spend to **$5.3M**. Managed it all as sole FM, using ServiceChannel automation to process **1,100+ work orders** that year.",
         "Managed NYC headquarters at 555 Madison (12,000 sq. ft., 90 staff) alongside the retail portfolio.",
-        'Peer-voted the inaugural "Above & Beyond" Award, recognized by the President of FENDI Americas, [Joanna M. Dubin](https://www.linkedin.com/in/joannadubin/), for crisis response during 2020.',
+        "Peer-voted the inaugural “Above & Beyond” Award, recognized by the President of FENDI Americas, [Joanna M. Dubin](https://www.linkedin.com/in/joannadubin/), for crisis response during 2020.",
       ],
     },
     {
@@ -186,7 +186,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Apr 2015",
       defaultOpen: true,
       description:
-        "Five years with the brand: from the sales floor in Broomfield, Colorado (2010) through Men's merchandising at the NYC Flagship (2012) into facilities management in 2013, ultimately overseeing all repairs, maintenance and CapEx projects for the entire Madewell fleet and J.Crew's NYC Metro region.",
+        "Five years with the brand: from the sales floor in Broomfield, Colorado (2010) through Men’s merchandising at the NYC Flagship (2012) into facilities management in 2013, ultimately overseeing all repairs, maintenance and CapEx projects for the entire Madewell fleet and J.Crew’s NYC Metro region.",
       highlights: [
         "Started with J.Crew West; expanded to the full Madewell fleet, then earned NYC Metro and its flagship locations.",
         "Managed ServiceChannel workflows, in-store safety audits, and after-hours emergency response across **140+ stores**. Trained 3 new Facilities Coordinators.",

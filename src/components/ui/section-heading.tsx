@@ -44,14 +44,17 @@ export function SectionHeading({
         </span>
       )}
       <p
-        className="inline-flex items-center gap-x-2.5 font-mono text-[10.5px] font-bold uppercase tracking-[0.14em] text-accent-brand print:text-[9px]"
+        className="inline-flex items-center gap-x-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-accent-brand print:text-[9px]"
         aria-hidden="true"
       >
         <span className="h-1 w-5 shrink-0 rounded-[1px] bg-accent-red" />
         {index} &middot; {kicker}
       </p>
       <div className="flex items-baseline justify-between gap-x-4">
-        <h2 className="font-display text-[22px] font-bold" id={id}>
+        <h2
+          className="font-display text-[22px] font-bold leading-tight"
+          id={id}
+        >
           {children}
         </h2>
         {action}

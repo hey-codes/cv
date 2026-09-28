@@ -16,7 +16,7 @@ export function Summary({ summary, className }: AboutProps) {
       <SectionHeading index="01" kicker="Profile" id="about-section">
         Profile
       </SectionHeading>
-      <div className="text-pretty text-[15px] text-foreground/80 print:text-[10px]">
+      <div className="max-w-[68ch] text-pretty text-[15px] text-foreground/80 print:max-w-none print:text-[10px]">
         {summary}
       </div>
     </Section>

@@ -64,7 +64,7 @@ function StatValue({ stat, run }: { stat: Stat; run: boolean }) {
         {value.toFixed(decimals)}
         {stat.suffix}
       </span>
-      <span className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
         {stat.label}
       </span>
     </div>
