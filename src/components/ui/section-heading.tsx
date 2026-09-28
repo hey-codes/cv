@@ -52,7 +52,7 @@ export function SectionHeading({
       </p>
       <div className="flex items-baseline justify-between gap-x-4">
         <h2
-          className="font-display text-[22px] font-bold leading-tight"
+          className="scroll-mt-20 text-balance font-display text-[22px] font-bold leading-tight xl:scroll-mt-8"
           id={id}
         >
           {children}

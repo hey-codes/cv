@@ -154,9 +154,7 @@
   margin-inline: -0.75rem;
   padding-inline: 0.75rem;
   border-radius: var(--radius);
-  transition:
-    transform 110ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 110ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background-color 110ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .work-card::before {
   content: "";
@@ -168,21 +166,15 @@
   border-radius: 1px;
   background: hsl(var(--accent-red));
   opacity: 0;
-  transform: scaleY(0.4);
-  transform-origin: top center;
-  transition:
-    opacity 110ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 110ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .work-card:hover,
 .work-card:focus-within {
-  transform: translateY(-1px);
   background-color: hsl(var(--bg-soft));
 }
 .work-card:hover::before,
 .work-card:focus-within::before {
   opacity: 1;
-  transform: scaleY(1);
 }
 
 /* Focus is always the brand blue, never the pressmark. */
@@ -203,10 +195,6 @@ a:focus-visible {
   .work-card,
   .work-card::before {
     transition: none;
-  }
-  .work-card:hover,
-  .work-card:focus-within {
-    transform: none;
   }
 }
 
@@ -234,6 +222,21 @@ a:focus-visible {
 @media (pointer: coarse) {
   .chip {
     padding-block: 0.3rem;
+  }
+  /* 44px tap zones on touch: each tag reaches 22px above and below its center,
+     and rows sit 16px apart so neighboring zones never overlap. */
+  .tag-list {
+    row-gap: 16px;
+  }
+  .tag-hit {
+    position: relative;
+  }
+  .tag-hit::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: calc(50% - 22px);
+    bottom: calc(50% - 22px);
   }
 }
 

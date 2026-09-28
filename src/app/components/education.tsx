@@ -41,7 +41,10 @@ function EducationItem({ education }: EducationItemProps) {
     <Card className="border-none">
       <CardHeader>
         <div className="flex items-center justify-between gap-x-2">
-          <h3 className="text-[18px] font-semibold leading-tight" id={schoolId}>
+          <h3
+            className="text-balance text-[18px] font-semibold leading-tight"
+            id={schoolId}
+          >
             {link ? (
               <a
                 className="link-wipe font-bold text-foreground"

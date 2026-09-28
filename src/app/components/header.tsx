@@ -47,7 +47,12 @@ function SocialButton({ href, iconType, label }: SocialButtonProps) {
   const IconComponent = ICON_MAP[iconType];
 
   return (
-    <Button className="size-8" variant="outline" size="icon" asChild={true}>
+    <Button
+      className="size-8 relative before:absolute before:-inset-1.5 before:content-['']"
+      variant="outline"
+      size="icon"
+      asChild={true}
+    >
       <a
         href={href}
         aria-label={label}
@@ -66,7 +71,7 @@ function LabeledSocialButton({ href, iconType, label }: SocialButtonProps) {
 
   return (
     <Button
-      className="h-8 gap-x-1.5 px-3 font-mono text-xs"
+      className="h-8 gap-x-1.5 px-3 font-mono text-xs relative before:absolute before:-inset-1.5 before:content-['']"
       variant="outline"
       asChild={true}
     >
@@ -86,7 +91,7 @@ interface ContactButtonsProps {
 function ContactButtons({ contact }: ContactButtonsProps) {
   return (
     <ul
-      className="flex list-none items-center gap-x-1 pt-1 font-mono text-sm text-foreground/80 print:hidden"
+      className="flex list-none items-center gap-x-3 pt-1 font-mono text-sm text-foreground/80 print:hidden"
       aria-label="Contact links"
     >
       {contact.email && (
@@ -178,7 +183,7 @@ export function Header() {
     <header>
       <div className="space-y-1.5">
         <h1
-          className="font-display text-[34px] font-bold leading-tight tracking-tight md:text-[44px] print:text-3xl"
+          className="text-balance font-display text-[34px] font-bold leading-tight tracking-tight md:text-[44px] print:text-3xl"
           id="resume-name"
         >
           {RESUME_DATA.name}

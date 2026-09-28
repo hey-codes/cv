@@ -156,7 +156,7 @@ export function ScrollNav() {
         // actually scrolls - the bar would simply scroll away.
         className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background xl:hidden print:hidden"
       >
-        <div className="flex items-center gap-x-1 px-4 py-2">
+        <div className="flex items-center gap-x-1 px-4">
           {SECTIONS.map((section) => {
             const isActive = section.id === activeId;
             return (
@@ -167,7 +167,7 @@ export function ScrollNav() {
                 aria-current={isActive ? "true" : undefined}
                 aria-label={`Jump to ${section.label}`}
                 className={cn(
-                  "scroll-tick flex-1 rounded-sm py-1 text-center font-mono text-[11px] font-bold tracking-[0.1em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "scroll-tick min-h-11 flex-1 rounded-sm text-center font-mono text-[11px] font-bold tracking-[0.1em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive ? "text-accent-brand" : "text-muted-foreground"
                 )}
               >
