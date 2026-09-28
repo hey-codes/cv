@@ -21,7 +21,7 @@ export function Skills({ skills, className }: SkillsProps) {
   return (
     <Section className={className}>
       <SectionHeading index="05" kicker="Capabilities" id="skills-section">
-        Skills
+        Capabilities
       </SectionHeading>
       <div className="space-y-4">
         {skills.map((group) => (
@@ -37,7 +37,7 @@ export function Skills({ skills, className }: SkillsProps) {
                 <li key={skill}>
                   <Badge
                     variant="secondary"
-                    className="print:text-[10px]"
+                    className="min-h-6 print:text-[10px]"
                     aria-label={`Skill: ${skill}`}
                   >
                     {skill}

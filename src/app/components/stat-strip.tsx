@@ -83,7 +83,9 @@ export function StatStrip() {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    setRun(!reduced);
+    // A tab opened in the background never paints its frames, which froze the
+    // count partway ("0 / 8+"). Count only when someone can see it.
+    setRun(!reduced && document.visibilityState === "visible");
 
     // Printing mid-animation would bake a half-counted figure ("7" instead of
     // "13") into the PDF, so snap to the finals before the print dialog paints.
@@ -94,7 +96,12 @@ export function StatStrip() {
       if (e.matches) snap();
     };
     printQuery.addEventListener("change", onPrintChange);
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") snap();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
     return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("beforeprint", snap);
       printQuery.removeEventListener("change", onPrintChange);
     };

@@ -55,6 +55,8 @@ export const CommandMenu = ({ links }: Props) => {
         onClick={() => setOpen((open) => !open)}
         variant="outline"
         size="icon"
+        aria-label="Open command menu"
+        title="Command menu"
         className="fixed bottom-4 right-4 flex rounded-full shadow-2xl xl:hidden print:hidden"
       >
         <CommandIcon className="my-6 size-6" />

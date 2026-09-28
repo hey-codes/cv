@@ -5,8 +5,7 @@ export const RESUME_DATA: ResumeData = {
   initials: "CM",
   location: "Chicagoland, IL → Open to Relocation",
   locationLink: "https://www.google.com/maps/place/Chicago",
-  about:
-    "Facilities leader who builds multi-site operations programs from the ground up.",
+  about: "Facilities, Operations & New Site Launches",
   summary:
     "9 brands, 400+ locations, 3M+ sq. ft. managed, from luxury maisons and flexible coworking to launching Rivian's East Coast service centers. Solo and with incredible teams.",
   personalWebsiteUrl: "https://codymitch.works",
@@ -26,7 +25,7 @@ export const RESUME_DATA: ResumeData = {
   },
   education: [
     {
-      school: "UNIVERSITY OF COLORADO BOULDER",
+      school: "University of Colorado Boulder",
       link: "https://colorado.edu/envd",
       location: "Boulder, CO",
       degree:
@@ -43,18 +42,11 @@ export const RESUME_DATA: ResumeData = {
   ],
   work: [
     {
-      company: "INDUSTRIOUS",
+      company: "Industrious",
       note: "2 weeks to ramp",
       link: "https://www.industriousoffice.com/",
       location: "Remote (Chicago)",
-      badges: [
-        "Flex Office",
-        "48 Locations",
-        "5 Districts",
-        "1.3M+ sq. ft.",
-        "FEXA",
-        "Parental Leave Cover",
-      ],
+      badges: ["Flex Office", "1.3M+ sq. ft.", "FEXA", "Parental Leave Cover"],
       title: "Facilities Consultant, West Coast Portfolio",
       start: "Apr 2026",
       end: "Aug 2026",
@@ -67,21 +59,15 @@ export const RESUME_DATA: ResumeData = {
       ],
     },
     {
-      company: "BATHHOUSE",
+      company: "Bathhouse",
       note: "first PM program",
       link: "https://www.abathhouse.com/",
       location: "New York, NY",
-      badges: [
-        "Thermal Wellness",
-        "35K sq. ft.",
-        "On-Site",
-        "6 Direct Reports",
-        "MaintainX",
-        "-18% OPEX",
-      ],
+      badges: ["Thermal Wellness", "35K sq. ft.", "MaintainX", "-18% OPEX"],
       title: "Facilities & Operations Manager",
       start: "Jul 2024",
       end: "Nov 2024",
+      defaultOpen: true,
       description:
         "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150-350 guests a day. Built the facility's **first preventive maintenance program** across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
       highlights: [
@@ -90,18 +76,15 @@ export const RESUME_DATA: ResumeData = {
       ],
     },
     {
-      company: "BALENCIAGA",
+      company: "Balenciaga",
       note: "first FM hire, globally",
       link: "https://www.balenciaga.com/en-us",
       location: "New York, NY",
       badges: [
         "Luxury Retail",
-        "54 Boutiques",
-        "3 Direct Reports",
+        "200K+ sq. ft.",
         "ServiceChannel",
         "$1.2M OPEX",
-        "200K+ sq. ft.",
-        "First FM Hire",
       ],
       title: "Facilities Manager, Americas",
       start: "Aug 2022",
@@ -117,20 +100,20 @@ export const RESUME_DATA: ResumeData = {
       ],
     },
     {
-      company: "RIVIAN AUTOMOTIVE",
+      company: "Rivian Automotive",
       note: "6 sites launched",
       link: "https://www.rivian.com",
       location: "New York, NY",
       badges: [
         "EV / Automotive",
-        "6 Service Centers",
-        "Hybrid (Travel 60%)",
-        "Limble -> FEXA",
         "260K+ sq. ft.",
+        "Limble -> FEXA",
+        "Hybrid (Travel 60%)",
       ],
       title: "Commercial Facilities Operations Specialist",
       start: "Apr 2021",
       end: "Jul 2022",
+      defaultOpen: true,
       description:
         "Hybrid site launcher and facilities manager during Rivian's rapid EV expansion: launched 6 East Coast service centers, built steady-state playbooks, and stayed on as the FM point of contact after launch.",
       highlights: [
@@ -145,13 +128,10 @@ export const RESUME_DATA: ResumeData = {
       link: "https://www.fendi.com/us-en/",
       location: "New York, NY",
       badges: [
-        "Hybrid",
         "Luxury Retail",
-        "67 Boutiques",
+        "220K+ sq. ft.",
         "ServiceChannel",
         "$5.3M Managed Spend",
-        "220K+ sq. ft.",
-        "4 Countries",
       ],
       title: "Facilities Manager, Americas",
       start: "Dec 2018",
@@ -166,21 +146,15 @@ export const RESUME_DATA: ResumeData = {
       ],
     },
     {
-      company: "DOLCE & GABBANA",
+      company: "Dolce & Gabbana",
       note: "sole FM, Americas",
       link: "https://www.dolcegabbana.com/en-us/",
       location: "New York, NY",
-      badges: [
-        "On-Site",
-        "Luxury Retail",
-        "48+ Boutiques",
-        "190K+ sq. ft.",
-        "ServiceChannel",
-        "Sole FM, Americas",
-      ],
+      badges: ["Luxury Retail", "190K+ sq. ft.", "ServiceChannel"],
       title: "Facilities Manager, Americas",
       start: "Jul 2018",
       end: "Dec 2018",
+      defaultOpen: true,
       description:
         "First luxury retail FM role: finalized the ServiceChannel rollout across 48+ boutiques in the U.S. and Canada and established a centralized regional maintenance model.",
       highlights: [
@@ -188,23 +162,20 @@ export const RESUME_DATA: ResumeData = {
       ],
     },
     {
-      company: "SOULCYCLE",
+      company: "SoulCycle",
       note: "16 studio launches",
       link: "https://www.soul-cycle.com",
       location: "San Francisco, CA",
       badges: [
-        "Hybrid (Travel 60%)",
         "Boutique Fitness",
-        "33 Studios",
-        "1 Direct Report",
-        "ServiceChannel",
-        "16 Studio Launches",
-        "$450K OPEX",
         "130K+ sq. ft.",
+        "ServiceChannel",
+        "Hybrid (Travel 60%)",
       ],
       title: "Area Facilities Manager",
       start: "Apr 2015",
       end: "Jun 2018",
+      defaultOpen: true,
       description:
         "Started overseeing NYC Metro studios; asked to relocate to San Francisco to stabilize West Coast operations and lead expansion into NorCal, Seattle, Vancouver, Chicago, and Texas. 33-studio portfolio across 6 markets. Traveled 60-70%.",
       highlights: [
@@ -213,19 +184,15 @@ export const RESUME_DATA: ResumeData = {
       ],
     },
     {
-      company: "J.CREW / MADEWELL",
+      company: "J.Crew / Madewell",
       note: "sales floor to FM",
       link: "https://www.jcrew.com",
       location: "New York, NY",
-      badges: [
-        "High-End Retail",
-        "140+ Stores",
-        "ServiceChannel",
-        "700K+ sq. ft.",
-      ],
+      badges: ["High-End Retail", "700K+ sq. ft.", "ServiceChannel"],
       title: "Facilities Coordinator",
       start: "May 2010",
       end: "Apr 2015",
+      defaultOpen: true,
       description:
         "Five years with the brand: from the sales floor in Broomfield, Colorado (2010) through Men's merchandising at the NYC Flagship (2012) into facilities management in 2013, ultimately overseeing all repairs, maintenance and CapEx projects for the entire Madewell fleet and J.Crew's NYC Metro region.",
       highlights: [

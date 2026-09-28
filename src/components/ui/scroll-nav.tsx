@@ -154,7 +154,7 @@ export function ScrollNav() {
         // Fixed, not sticky: the page's <main> sets overflow-auto, which would
         // make it the sticky scroll container even though the body is what
         // actually scrolls - the bar would simply scroll away.
-        className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm xl:hidden print:hidden"
+        className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background xl:hidden print:hidden"
       >
         <div className="flex items-center gap-x-1 px-4 py-2">
           {SECTIONS.map((section) => {

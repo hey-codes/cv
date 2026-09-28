@@ -1,4 +1,4 @@
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import type React from "react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { XIcon } from "@/components/icons/x-icon";
@@ -30,7 +30,7 @@ function LocationLink({ location }: LocationLinkProps) {
       {/* The visible text already reads as the location, so the icon is purely
           decorative and the span needs no accessible name of its own. */}
       <span className="inline-flex gap-x-1.5 align-baseline leading-none">
-        <GlobeIcon className="size-3" aria-hidden="true" />
+        <MapPinIcon className="size-3" aria-hidden="true" />
         {location}
       </span>
     </p>
@@ -60,26 +60,35 @@ function SocialButton({ href, iconType, label }: SocialButtonProps) {
   );
 }
 
+/** Same outline button, with its name spelled out so it reads as a next step. */
+function LabeledSocialButton({ href, iconType, label }: SocialButtonProps) {
+  const IconComponent = ICON_MAP[iconType];
+
+  return (
+    <Button
+      className="h-8 gap-x-1.5 px-3 font-mono text-xs"
+      variant="outline"
+      asChild={true}
+    >
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        <IconComponent className="size-4" aria-hidden="true" />
+        {label}
+      </a>
+    </Button>
+  );
+}
+
 interface ContactButtonsProps {
   contact: typeof RESUME_DATA.contact;
   personalWebsiteUrl?: string;
 }
 
-function ContactButtons({ contact, personalWebsiteUrl }: ContactButtonsProps) {
+function ContactButtons({ contact }: ContactButtonsProps) {
   return (
     <ul
-      className="flex list-none gap-x-1 pt-1 font-mono text-sm text-foreground/80 print:hidden"
+      className="flex list-none items-center gap-x-1 pt-1 font-mono text-sm text-foreground/80 print:hidden"
       aria-label="Contact links"
     >
-      {personalWebsiteUrl && (
-        <li>
-          <SocialButton
-            href={personalWebsiteUrl}
-            iconType="globe"
-            label="Personal website"
-          />
-        </li>
-      )}
       {contact.email && (
         <li>
           <SocialButton
@@ -100,11 +109,19 @@ function ContactButtons({ contact, personalWebsiteUrl }: ContactButtonsProps) {
       )}
       {contact.social.map((social) => (
         <li key={social.name}>
-          <SocialButton
-            href={social.url}
-            iconType={social.icon}
-            label={social.name}
-          />
+          {social.icon === "linkedin" ? (
+            <LabeledSocialButton
+              href={social.url}
+              iconType={social.icon}
+              label={social.name}
+            />
+          ) : (
+            <SocialButton
+              href={social.url}
+              iconType={social.icon}
+              label={social.name}
+            />
+          )}
         </li>
       ))}
     </ul>
@@ -161,7 +178,7 @@ export function Header() {
     <header>
       <div className="space-y-1.5">
         <h1
-          className="font-display text-3xl font-bold tracking-tight"
+          className="font-display text-[34px] font-bold leading-tight tracking-tight md:text-[44px] print:text-3xl"
           id="resume-name"
         >
           {RESUME_DATA.name}

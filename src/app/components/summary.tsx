@@ -19,9 +19,9 @@ export function Summary({ summary, className }: AboutProps) {
         id="about-section"
         note="the short version"
       >
-        About
+        Profile
       </SectionHeading>
-      <div className="text-pretty text-sm text-foreground/80 print:text-[10px]">
+      <div className="text-pretty text-[15px] text-foreground/80 print:text-[10px]">
         {summary}
       </div>
     </Section>

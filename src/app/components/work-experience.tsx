@@ -77,7 +77,7 @@ function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
               <Badge
                 variant="secondary"
                 className={cn(
-                  "chip align-middle text-xs print:px-1 print:py-0.5 print:text-[8px] print:leading-tight",
+                  "chip min-h-6 align-middle text-xs print:px-1 print:py-0.5 print:text-[8px] print:leading-tight",
                   isActive &&
                     "bg-accent-strong text-accent-ink hover:bg-accent-strong"
                 )}
@@ -124,13 +124,17 @@ interface CompanyLinkProps {
 function CompanyLink({ company, link }: CompanyLinkProps) {
   return (
     <a
-      className="link-wipe text-accent-brand font-bold italic"
+      className="link-wipe font-bold text-foreground"
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`${company} company website`}
+      aria-label={`${company} website (opens in new tab)`}
     >
       {company}
+      {/* Blue marks the clickable part, per the site's color rule. */}
+      <span aria-hidden="true" className="ml-1 text-[14px] text-accent-brand">
+        &#8599;
+      </span>
     </a>
   );
 }
@@ -201,7 +205,7 @@ function WorkExperienceItem({
           {note && (
             <p
               aria-hidden="true"
-              className="pointer-events-none relative z-10 font-mono text-[9px] font-bold uppercase leading-none tracking-[0.16em] text-accent-red min-[1440px]:hidden print:hidden"
+              className="pointer-events-none relative z-10 font-mono text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-accent-red min-[1440px]:hidden print:hidden"
             >
               {note}
             </p>
@@ -227,12 +231,12 @@ function WorkExperienceItem({
             <WorkPeriod location={location} start={start} end={end} />
           </div>
 
-          <h4 className="pointer-events-none relative z-10 font-mono text-sm font-semibold leading-none print:text-[12px]">
+          <h4 className="pointer-events-none relative z-10 font-mono text-[15px] font-semibold leading-none print:text-[12px]">
             {title}
           </h4>
         </CardHeader>
 
-        <p className="pointer-events-none relative z-10 mt-2 text-sm text-foreground/80 print:mt-1 print:text-[10px] text-pretty">
+        <p className="pointer-events-none relative z-10 mt-2 text-[15px] text-foreground/80 print:mt-1 print:text-[10px] text-pretty">
           {description}
         </p>
 
@@ -257,7 +261,7 @@ function WorkExperienceItem({
       <CardContent>
         {/* font-sans overrides CardContent's mono: bullets are prose, and the
             bolded figures only read as waypoints against an upright sans. */}
-        <div className="font-sans text-sm text-foreground/80 print:text-[10px] text-pretty">
+        <div className="font-sans text-[15px] text-foreground/80 print:text-[10px] text-pretty">
           {hasHighlights && (
             <div
               id={panelId}
@@ -296,8 +300,8 @@ interface WorkExperienceProps {
  */
 export function WorkExperience({ work }: WorkExperienceProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
-  // The headline roles open on first load so a skimming reader meets the best
-  // bullets without clicking; everything else stays folded.
+  // Every role opens on first load so a skimming reader meets every bullet
+  // without clicking; "Compact view" folds them.
   const [openKeys, setOpenKeys] = useState<ReadonlySet<string>>(
     () => new Set(work.filter((item) => item.defaultOpen).map(roleKey))
   );
@@ -371,16 +375,16 @@ export function WorkExperience({ work }: WorkExperienceProps) {
               >
                 &#9656;
               </span>
-              {allOpen ? "Collapse all" : "Expand all"}
+              {allOpen ? "Compact view" : "Expand all"}
             </button>
           ) : undefined
         }
       >
-        Work Experience
+        Experience
       </SectionHeading>
 
       <p className="-mt-1 font-mono text-[10.5px] text-muted-foreground print:hidden">
-        Tap a tag to trace it across every role.
+        Select a tag to see every role that shares it.
       </p>
 
       {/* Always mounted, so a screen reader is already watching the region when

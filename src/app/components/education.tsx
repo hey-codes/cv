@@ -44,12 +44,19 @@ function EducationItem({ education }: EducationItemProps) {
           <h3 className="text-[18px] font-semibold leading-none" id={schoolId}>
             {link ? (
               <a
-                className="link-wipe text-accent-brand font-bold italic"
+                className="link-wipe font-bold text-foreground"
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`${school} website (opens in new tab)`}
               >
                 {school}
+                <span
+                  aria-hidden="true"
+                  className="ml-1 text-[14px] text-accent-brand"
+                >
+                  &#8599;
+                </span>
               </a>
             ) : (
               school
@@ -80,7 +87,7 @@ export function Education({ education }: EducationListProps) {
   return (
     <Section>
       <SectionHeading index="04" kicker="Credentials" id="education-section">
-        Education
+        Credentials
       </SectionHeading>
       <div
         className="space-y-4"

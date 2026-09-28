@@ -40,22 +40,10 @@ export const metadata: Metadata = {
  * Transform social links for command menu
  */
 function getCommandMenuLinks() {
-  const links = [];
-
-  if (RESUME_DATA.personalWebsiteUrl) {
-    links.push({
-      url: RESUME_DATA.personalWebsiteUrl,
-      title: "Personal Website",
-    });
-  }
-
-  return [
-    ...links,
-    ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-      url: socialMediaLink.url,
-      title: socialMediaLink.name,
-    })),
-  ];
+  return RESUME_DATA.contact.social.map((socialMediaLink) => ({
+    url: socialMediaLink.url,
+    title: socialMediaLink.name,
+  }));
 }
 
 /**
@@ -79,12 +67,15 @@ export default function ResumePage() {
         }}
       />
       <main
-        className="container relative mx-auto scroll-my-12 overflow-auto p-4 pb-[20vh] pt-14 print:p-11 print:pb-11 md:p-16 md:pb-[20vh]"
+        className="container relative mx-auto scroll-my-12 overflow-auto p-4 pb-20 pt-14 print:p-11 print:pb-11 md:p-16 md:pb-20"
         id="main-content"
       >
-        <div className="sr-only">
-          <h1>{RESUME_DATA.name}&apos;s Resume</h1>
-        </div>
+        <a
+          href="#work-experience"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-background focus:px-3 focus:py-2 focus:font-mono focus:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+        >
+          Skip to experience
+        </a>
 
         <section
           className="mx-auto w-full max-w-3xl space-y-8 bg-background print:space-y-4"
@@ -127,7 +118,7 @@ export default function ResumePage() {
               Last updated:{" "}
               <time
                 dateTime={LAST_UPDATED}
-                className="font-semibold text-accent-red"
+                className="font-semibold text-muted-foreground"
               >
                 {LAST_UPDATED}
               </time>
