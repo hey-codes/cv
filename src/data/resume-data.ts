@@ -69,7 +69,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Nov 2024",
       defaultOpen: true,
       description:
-        "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150-350 guests a day. Built the facility's **first preventive maintenance program** across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
+        "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150-350 guests a day. Built the facility's first preventive maintenance program across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
       highlights: [
         "Led a **6-person technical team** (3 facilities, 3 pool): defined roles, ownership areas, and shift accountability.",
         "**Reduced OPEX 18%** ($36K) in the first three months by shifting outsourced work to in-house technicians and sourcing materials, tools, and hardware competitively (bulk buys, sales, trusted online suppliers).",
