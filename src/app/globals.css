@@ -223,17 +223,6 @@ a:focus-visible {
   }
 }
 
-/* Filtered-out roles recede rather than disappear, so the page keeps its shape
-   and nothing is hidden from a reader (or from print). */
-.work-card--dimmed {
-  opacity: 0.45;
-  transition: opacity 170ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.work-card--dimmed:hover,
-.work-card--dimmed:focus-within {
-  opacity: 1;
-}
-
 /* Chips are tap targets: give touch users a comfortable hit area without
    changing how they look. */
 .chip {
@@ -249,15 +238,8 @@ a:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .work-card--dimmed,
   .chip {
     transition: none;
-  }
-}
-
-@media print {
-  .work-card--dimmed {
-    opacity: 1 !important;
   }
 }
 
@@ -296,10 +278,10 @@ a:focus-visible {
   will-change: transform;
 }
 .scroll-tick {
-  transition: color 170ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color 150ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .scroll-tick__label {
-  transition: opacity 170ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
 }
 .scroll-tick__num {
@@ -370,5 +352,25 @@ a:focus-visible {
   }
   .role-panel__inner {
     overflow: visible !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Command dialog exit: quieter than its entrance. A fixed 12px lift, a fade
+   and a 4px blur over 150ms, ease-out. The entrance keeps its zoom.
+   --------------------------------------------------------------------------- */
+@keyframes dialog-exit {
+  to {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 12px));
+    filter: blur(4px);
+  }
+}
+.dialog-content[data-state="closed"] {
+  animation: dialog-exit 150ms ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dialog-content[data-state="closed"] {
+    animation: none;
   }
 }

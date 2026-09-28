@@ -85,20 +85,20 @@ export default function ResumePage() {
             <Header />
           </div>
 
-          <div className="animate-rise" style={{ transitionDelay: "40ms" }}>
+          <div className="animate-rise" style={{ transitionDelay: "100ms" }}>
             <StatStrip />
           </div>
 
           <div className="space-y-8 print:space-y-4">
-            <div className="animate-rise" style={{ transitionDelay: "75ms" }}>
+            <div className="animate-rise" style={{ transitionDelay: "200ms" }}>
               <Summary summary={RESUME_DATA.summary} />
             </div>
             <hr className="border-border" />
-            <div className="animate-rise" style={{ transitionDelay: "150ms" }}>
+            <div className="animate-rise" style={{ transitionDelay: "300ms" }}>
               <CareerHighlights highlights={RESUME_DATA.careerHighlights} />
             </div>
             <hr className="border-border" />
-            <div className="animate-rise" style={{ transitionDelay: "225ms" }}>
+            <div className="animate-rise" style={{ transitionDelay: "300ms" }}>
               <WorkExperience work={RESUME_DATA.work} />
             </div>
             <hr className="border-border" />
@@ -106,7 +106,7 @@ export default function ResumePage() {
               <Education education={RESUME_DATA.education} />
             </div>
             <hr className="border-border" />
-            <div className="animate-rise" style={{ transitionDelay: "375ms" }}>
+            <div className="animate-rise" style={{ transitionDelay: "300ms" }}>
               <Skills skills={RESUME_DATA.skills} />
             </div>
           </div>

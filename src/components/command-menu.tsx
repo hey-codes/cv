@@ -87,7 +87,7 @@ export const CommandMenu = ({ links }: Props) => {
                 setOpen(false);
               }}
             >
-              <SunIcon className="mr-2 size-4" />
+              <SunIcon className="mr-2 size-4" strokeWidth={1.5} />
               <span>Light</span>
             </CommandItem>
             <CommandItem
@@ -96,7 +96,7 @@ export const CommandMenu = ({ links }: Props) => {
                 setOpen(false);
               }}
             >
-              <MoonIcon className="mr-2 size-4" />
+              <MoonIcon className="mr-2 size-4" strokeWidth={1.5} />
               <span>Dark</span>
             </CommandItem>
             <CommandItem
@@ -105,7 +105,7 @@ export const CommandMenu = ({ links }: Props) => {
                 setOpen(false);
               }}
             >
-              <MonitorIcon className="mr-2 size-4" />
+              <MonitorIcon className="mr-2 size-4" strokeWidth={1.5} />
               <span>System</span>
             </CommandItem>
           </CommandGroup>

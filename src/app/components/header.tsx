@@ -30,7 +30,7 @@ function LocationLink({ location }: LocationLinkProps) {
       {/* The visible text already reads as the location, so the icon is purely
           decorative and the span needs no accessible name of its own. */}
       <span className="inline-flex gap-x-1.5 align-baseline leading-none">
-        <MapPinIcon className="size-3" aria-hidden="true" />
+        <MapPinIcon className="size-3" strokeWidth={1.5} aria-hidden="true" />
         {location}
       </span>
     </p>
