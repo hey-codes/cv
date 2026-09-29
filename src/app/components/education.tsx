@@ -17,7 +17,7 @@ interface EducationPeriodProps {
 function EducationPeriod({ location, start, end }: EducationPeriodProps) {
   return (
     <div
-      className="shrink-0 whitespace-nowrap font-mono text-sm tabular-nums text-gray-500"
+      className="shrink-0 whitespace-nowrap font-mono text-sm tabular-nums text-muted-foreground"
       title={`Period: ${start} to ${end}`}
     >
       {location && <>{location} · </>}
@@ -42,7 +42,7 @@ function EducationItem({ education }: EducationItemProps) {
       <CardHeader>
         <div className="flex items-center justify-between gap-x-2">
           <h3
-            className="text-balance text-[18px] font-semibold leading-tight"
+            className="text-balance text-base font-bold"
             id={schoolId}
           >
             {link ? (
@@ -56,7 +56,7 @@ function EducationItem({ education }: EducationItemProps) {
                 {school}
                 <span
                   aria-hidden="true"
-                  className="ml-1 text-[14px] text-accent-brand"
+                  className="ml-1 text-sm text-accent-brand"
                 >
                   &#8599;
                 </span>
@@ -69,7 +69,7 @@ function EducationItem({ education }: EducationItemProps) {
         </div>
       </CardHeader>
       <CardContent
-        className="mt-2 font-mono text-sm text-foreground/80 print:text-[10px]"
+        className="mt-1 text-base text-foreground/80 print:text-[10px]"
         aria-labelledby={schoolId}
       >
         {degree}

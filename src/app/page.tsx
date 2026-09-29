@@ -72,7 +72,7 @@ export default function ResumePage() {
       >
         <a
           href="#work-experience"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-background focus:px-3 focus:py-2 focus:font-mono focus:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         >
           Skip to experience
         </a>
@@ -116,7 +116,7 @@ export default function ResumePage() {
             >
               <h2
                 id="contact-heading"
-                className="text-balance font-display text-[22px] font-bold leading-tight"
+                className="text-balance font-display text-title font-bold"
               >
                 The best way to reach me is LinkedIn.
               </h2>
@@ -126,12 +126,12 @@ export default function ResumePage() {
 
           <hr className="mt-12 border-t-[3px] border-accent-red" />
 
-          <footer className="pb-8 pt-4 text-center font-mono text-xs text-foreground/50 print:hidden">
+          <footer className="pb-8 pt-4 text-center text-xs text-muted-foreground print:hidden">
             <p>
               Last updated:{" "}
               <time
                 dateTime={LAST_UPDATED}
-                className="font-bold text-muted-foreground"
+                className="font-mono font-bold"
               >
                 {LAST_UPDATED}
               </time>

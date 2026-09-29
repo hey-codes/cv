@@ -12,9 +12,6 @@ interface SectionHeadingProps {
   className?: string;
   /** Optional control rendered flush right on the title row. */
   action?: React.ReactNode;
-  /** Optional red-pen gutter annotation, hung beside the title on wide
-   * screens. Written in Cody's voice; decorative, so hidden from AT. */
-  note?: string;
 }
 
 /**
@@ -31,20 +28,11 @@ export function SectionHeading({
   id,
   className,
   action,
-  note,
 }: SectionHeadingProps) {
   return (
     <div className={cn("relative space-y-1", className)}>
-      {note && (
-        <span
-          aria-hidden="true"
-          className="role-note pointer-events-none select-none font-display text-[13.5px] italic leading-snug text-accent-red"
-        >
-          {note}
-        </span>
-      )}
       <p
-        className="inline-flex items-center gap-x-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-accent-brand print:text-[9px]"
+        className="inline-flex items-center gap-x-2.5 text-xs font-semibold uppercase tracking-[0.06em] text-accent-brand print:text-[9px]"
         aria-hidden="true"
       >
         <span className="h-1 w-5 shrink-0 rounded-[1px] bg-accent-red" />
@@ -52,7 +40,7 @@ export function SectionHeading({
       </p>
       <div className="flex items-baseline justify-between gap-x-4">
         <h2
-          className="scroll-mt-20 text-balance font-display text-[22px] font-bold leading-tight xl:scroll-mt-8"
+          className="scroll-mt-20 text-balance font-display text-title font-bold xl:scroll-mt-8"
           id={id}
         >
           {children}

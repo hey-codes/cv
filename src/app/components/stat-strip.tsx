@@ -29,10 +29,10 @@ export function StatStrip() {
       <dl className="grid grid-cols-2 items-start gap-x-8 gap-y-4 sm:flex sm:flex-wrap">
         {STATS.map((stat) => (
           <div key={stat.label} className="flex flex-col-reverse gap-y-0.5">
-            <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+            <dt className="text-xs font-semibold text-muted-foreground">
               {stat.label}
             </dt>
-            <dd className="m-0 font-display text-[28px] font-bold leading-none tabular-nums lining-nums text-foreground">
+            <dd className="m-0 font-display text-title font-bold tabular-nums lining-nums text-foreground">
               {stat.value}
             </dd>
           </div>

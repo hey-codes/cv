@@ -32,7 +32,7 @@ function LocationLink({ location }: LocationLinkProps) {
     <p className="max-w-md items-center text-pretty font-mono text-xs text-foreground ml-1">
       {/* The visible text already reads as the location, so the icon is purely
           decorative and the span needs no accessible name of its own. */}
-      <span className="inline-flex gap-x-1.5 align-baseline leading-none">
+      <span className="inline-flex items-center gap-x-1.5">
         <MapPinIcon className="size-3" strokeWidth={1.5} aria-hidden="true" />
         {location}
       </span>
@@ -143,12 +143,12 @@ export function Header() {
     <header>
       <div className="space-y-1.5">
         <h1
-          className="text-balance font-display text-[34px] font-bold leading-tight tracking-tight md:text-[44px] print:text-3xl"
+          className="text-balance font-display text-hero font-bold tracking-tight print:text-3xl"
           id="resume-name"
         >
           {RESUME_DATA.name}
         </h1>
-        <p className="max-w-md text-pretty font-mono text-sm text-foreground/80 print:text-[12px]">
+        <p className="max-w-md text-pretty text-sm text-foreground/80 print:text-[12px]">
           {RESUME_DATA.about}
         </p>
 

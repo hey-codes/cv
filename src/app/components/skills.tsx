@@ -26,7 +26,7 @@ export function Skills({ skills, className }: SkillsProps) {
       <div className="space-y-4">
         {skills.map((group) => (
           <div key={group.category}>
-            <h3 className="mb-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground print:text-[9px]">
+            <h3 className="mb-1.5 text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground print:text-[9px]">
               {group.category}
             </h3>
             <ul

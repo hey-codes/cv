@@ -115,7 +115,7 @@ export function ScrollNav() {
                   onClick={() => jumpTo(section.id)}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "scroll-tick group flex items-baseline gap-x-2 rounded-sm text-left font-mono text-[11px] uppercase tracking-[0.14em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    "scroll-tick group flex items-baseline gap-x-2 rounded-sm text-left text-xs uppercase tracking-[0.06em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     isActive
                       ? "text-accent-brand"
                       : isPast
@@ -167,7 +167,7 @@ export function ScrollNav() {
                 aria-current={isActive ? "true" : undefined}
                 aria-label={`Jump to ${section.label}`}
                 className={cn(
-                  "scroll-tick min-h-11 flex-1 rounded-sm text-center font-mono text-[11px] font-bold tracking-[0.1em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "scroll-tick min-h-11 flex-1 rounded-sm text-center text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive ? "text-accent-brand" : "text-muted-foreground"
                 )}
               >
