@@ -44,7 +44,8 @@ Trap: `--accent` is a hover surface, not the brand hue. The brand hue is
   sources outside this repo during resume work, and the site is read side by
   side with the PDF resume. Never rewrite a fact for visual reasons.
 - **The four stat-strip figures** (13 / 400+ / 3M+ / $5.3M) and the five section
-  names and their order. The scroll rail depends on the numbering.
+  names and their order. The scroll rail and phone bar list them by short label
+  (Profile, Record, Experience, Credentials, Skills); the "01" numbering is gone.
 - **The live app, when exploring.** Explorations ship as a self-contained HTML
   specimen under `design-explorations/YYYY-MM-DD-<name>/` with the app reverted.
   A route left wired in is ambiguous about whether it shipped.
