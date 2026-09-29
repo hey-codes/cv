@@ -1,6 +1,6 @@
 import { GlobeIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import type React from "react";
-import { GitHubIcon, LinkedInIcon } from "@/components/icons";
+import { GitHubIcon, InstagramIcon, LinkedInIcon } from "@/components/icons";
 import { XIcon } from "@/components/icons/x-icon";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
@@ -13,11 +13,14 @@ const ICON_MAP: Record<
 > = {
   github: GitHubIcon,
   linkedin: LinkedInIcon,
+  instagram: InstagramIcon,
   x: XIcon,
   globe: GlobeIcon,
   mail: MailIcon,
   phone: PhoneIcon,
 } as const;
+
+type Social = (typeof RESUME_DATA)["contact"]["social"][number];
 
 interface LocationLinkProps {
   location: typeof RESUME_DATA.location;
@@ -65,112 +68,69 @@ function SocialButton({ href, iconType, label }: SocialButtonProps) {
   );
 }
 
-/** Same outline button, with its name spelled out so it reads as a next step. */
-function LabeledSocialButton({ href, iconType, label }: SocialButtonProps) {
-  const IconComponent = ICON_MAP[iconType];
-
+/** The page's one call to action. LinkedIn is the contact path by design:
+ * the site carries no email, phone, or downloadable resume. */
+function ConnectButton({ href }: { href: string }) {
   return (
     <Button
-      className="h-8 gap-x-1.5 px-3 font-mono text-xs relative before:absolute before:-inset-1.5 before:content-['']"
-      variant="outline"
+      className="h-8 gap-x-1.5 bg-accent-strong px-3 text-accent-ink hover:bg-accent-strong/90 relative before:absolute before:-inset-1.5 before:content-['']"
       asChild={true}
     >
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <IconComponent className="size-4" aria-hidden="true" />
-        {label}
+        <LinkedInIcon className="size-4" aria-hidden="true" />
+        Connect on LinkedIn
       </a>
     </Button>
   );
 }
 
-interface ContactButtonsProps {
-  contact: typeof RESUME_DATA.contact;
-  personalWebsiteUrl?: string;
+function socialLabel(social: Social): string {
+  return social.handle ? `${social.name} (${social.handle})` : social.name;
 }
 
-function ContactButtons({ contact }: ContactButtonsProps) {
+interface ContactButtonsProps {
+  contact: typeof RESUME_DATA.contact;
+  className?: string;
+}
+
+/** LinkedIn as a labeled button first, every other social as an icon beside it.
+ * Shared by the header and the closing block so both read the same. */
+export function ContactButtons({ contact, className }: ContactButtonsProps) {
+  const linkedin = contact.social.find((social) => social.icon === "linkedin");
+  const others = contact.social.filter((social) => social.icon !== "linkedin");
+
   return (
     <ul
-      className="flex list-none items-center gap-x-3 pt-1 font-mono text-sm text-foreground/80 print:hidden"
+      className={`flex list-none flex-wrap items-center gap-3 print:hidden ${className ?? ""}`}
       aria-label="Contact links"
     >
-      {contact.email && (
+      {linkedin && (
         <li>
-          <SocialButton
-            href={`mailto:${contact.email}`}
-            iconType="mail"
-            label="Email"
-          />
+          <ConnectButton href={linkedin.url} />
         </li>
       )}
-      {contact.tel && (
-        <li>
-          <SocialButton
-            href={`tel:${contact.tel}`}
-            iconType="phone"
-            label="Phone"
-          />
-        </li>
-      )}
-      {contact.social.map((social) => (
+      {others.map((social) => (
         <li key={social.name}>
-          {social.icon === "linkedin" ? (
-            <LabeledSocialButton
-              href={social.url}
-              iconType={social.icon}
-              label={social.name}
-            />
-          ) : (
-            <SocialButton
-              href={social.url}
-              iconType={social.icon}
-              label={social.name}
-            />
-          )}
+          <SocialButton
+            href={social.url}
+            iconType={social.icon}
+            label={socialLabel(social)}
+          />
         </li>
       ))}
     </ul>
   );
 }
 
-interface PrintContactProps {
-  contact: typeof RESUME_DATA.contact;
-  personalWebsiteUrl?: string;
-}
-
-function PrintContact({ contact, personalWebsiteUrl }: PrintContactProps) {
+function PrintContact({ personalWebsiteUrl }: { personalWebsiteUrl: string }) {
   return (
     <div className="hidden gap-x-2 font-mono text-sm text-foreground/80 print:flex print:text-[12px]">
-      {personalWebsiteUrl && (
-        <>
-          <a
-            className="underline hover:text-foreground/70"
-            href={personalWebsiteUrl}
-          >
-            {new URL(personalWebsiteUrl).hostname}
-          </a>
-          <span aria-hidden="true">/</span>
-        </>
-      )}
-      {contact.email && (
-        <>
-          <a
-            className="underline hover:text-foreground/70"
-            href={`mailto:${contact.email}`}
-          >
-            {contact.email}
-          </a>
-          <span aria-hidden="true">/</span>
-        </>
-      )}
-      {contact.tel && (
-        <a
-          className="underline hover:text-foreground/70"
-          href={`tel:${contact.tel}`}
-        >
-          {contact.tel}
-        </a>
-      )}
+      <a
+        className="underline hover:text-foreground/70"
+        href={personalWebsiteUrl}
+      >
+        {new URL(personalWebsiteUrl).hostname}
+      </a>
     </div>
   );
 }
@@ -197,15 +157,9 @@ export function Header() {
           locationLink={RESUME_DATA.locationLink}
         />
 
-        <ContactButtons
-          contact={RESUME_DATA.contact}
-          personalWebsiteUrl={RESUME_DATA.personalWebsiteUrl}
-        />
+        <ContactButtons contact={RESUME_DATA.contact} className="pt-1" />
 
-        <PrintContact
-          contact={RESUME_DATA.contact}
-          personalWebsiteUrl={RESUME_DATA.personalWebsiteUrl}
-        />
+        <PrintContact personalWebsiteUrl={RESUME_DATA.personalWebsiteUrl} />
       </div>
     </header>
   );

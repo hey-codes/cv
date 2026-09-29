@@ -5,7 +5,7 @@ import { RESUME_DATA } from "@/data/resume-data";
 import { generateResumeStructuredData } from "@/lib/structured-data";
 import { CareerHighlights } from "./components/career-highlights";
 import { Education } from "./components/education";
-import { Header } from "./components/header";
+import { ContactButtons, Header } from "./components/header";
 import { Skills } from "./components/skills";
 import { StatStrip } from "./components/stat-strip";
 import { Summary } from "./components/summary";
@@ -109,6 +109,19 @@ export default function ResumePage() {
             <div className="animate-rise" style={{ transitionDelay: "300ms" }}>
               <Skills skills={RESUME_DATA.skills} />
             </div>
+            <hr className="border-border print:hidden" />
+            <section
+              aria-labelledby="contact-heading"
+              className="space-y-3 print:hidden"
+            >
+              <h2
+                id="contact-heading"
+                className="text-balance font-display text-[22px] font-bold leading-tight"
+              >
+                The best way to reach me is LinkedIn.
+              </h2>
+              <ContactButtons contact={RESUME_DATA.contact} />
+            </section>
           </div>
 
           <hr className="mt-12 border-t-[3px] border-accent-red" />
@@ -122,17 +135,6 @@ export default function ResumePage() {
               >
                 {LAST_UPDATED}
               </time>
-            </p>
-            <p className="mt-1">
-              Built with{" "}
-              <a
-                href="https://nextjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-wipe text-accent-brand font-bold"
-              >
-                Next.js
-              </a>
             </p>
           </footer>
         </section>

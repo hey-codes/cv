@@ -21,6 +21,12 @@ export const RESUME_DATA: ResumeData = {
         url: "https://www.linkedin.com/in/heycody/",
         icon: "linkedin",
       },
+      {
+        name: "Instagram",
+        url: "https://www.instagram.com/codestergram/",
+        icon: "instagram",
+        handle: "@codestergram",
+      },
     ],
   },
   education: [
