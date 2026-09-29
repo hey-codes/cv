@@ -5,8 +5,8 @@ import localFont from "next/font/local";
 
 import "./globals.css";
 
-// FMWorks type system: Fraunces (display serif) + Geist (UI sans and labels) +
-// JetBrains Mono (dates, locations, and tags only, so 400 and 700 only). Faces are the exact woff2 subsets shipped in
+// FMWorks type system: Fraunces (display serif) + Geist (UI sans) + JetBrains
+// Mono (meta/labels). Faces are the exact woff2 subsets shipped in
 // ~/Projects/design-refs/FMWorks-Design-System/fonts, self-hosted here so the
 // site renders identically to the design system with no build-time fetch.
 const fraunces = localFont({
@@ -15,6 +15,11 @@ const fraunces = localFont({
       path: "./fonts/fraunces-latin-wght-normal.woff2",
       weight: "100 900",
       style: "normal",
+    },
+    {
+      path: "./fonts/fraunces-latin-wght-italic.woff2",
+      weight: "100 900",
+      style: "italic",
     },
   ],
   variable: "--font-fraunces",
@@ -27,6 +32,11 @@ const jetbrainsMono = localFont({
     {
       path: "./fonts/jetbrains-mono-latin-400-normal.woff2",
       weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/jetbrains-mono-latin-500-normal.woff2",
+      weight: "500",
       style: "normal",
     },
     {

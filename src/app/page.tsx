@@ -5,7 +5,7 @@ import { RESUME_DATA } from "@/data/resume-data";
 import { generateResumeStructuredData } from "@/lib/structured-data";
 import { CareerHighlights } from "./components/career-highlights";
 import { Education } from "./components/education";
-import { ContactButtons, Header } from "./components/header";
+import { Header } from "./components/header";
 import { Skills } from "./components/skills";
 import { StatStrip } from "./components/stat-strip";
 import { Summary } from "./components/summary";
@@ -72,7 +72,7 @@ export default function ResumePage() {
       >
         <a
           href="#work-experience"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-background focus:px-3 focus:py-2 focus:font-mono focus:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         >
           Skip to experience
         </a>
@@ -109,29 +109,16 @@ export default function ResumePage() {
             <div className="animate-rise" style={{ transitionDelay: "300ms" }}>
               <Skills skills={RESUME_DATA.skills} />
             </div>
-            <hr className="border-border print:hidden" />
-            <section
-              aria-labelledby="contact-heading"
-              className="space-y-3 print:hidden"
-            >
-              <h2
-                id="contact-heading"
-                className="text-balance font-display text-title font-bold"
-              >
-                The best way to reach me is LinkedIn.
-              </h2>
-              <ContactButtons contact={RESUME_DATA.contact} />
-            </section>
           </div>
 
           <hr className="mt-12 border-t-[3px] border-accent-red" />
 
-          <footer className="pb-8 pt-4 text-center text-xs text-muted-foreground print:hidden">
+          <footer className="pb-8 pt-4 text-center font-mono text-xs text-foreground/50 print:hidden">
             <p>
               Last updated:{" "}
               <time
                 dateTime={LAST_UPDATED}
-                className="font-mono font-bold"
+                className="font-bold text-muted-foreground"
               >
                 {LAST_UPDATED}
               </time>

@@ -38,14 +38,32 @@ Three rules the whole page runs on. Do not quietly relax them.
 Trap: `--accent` is a hover surface, not the brand hue. The brand hue is
 `--accent-brand`. This is the easiest thing here to get wrong.
 
+## Identity lock (Cody, 2026-09-28)
+
+"Never change these, in this task or later." They are deliberate design choices,
+not defects. If a fix seems to need one changed, stop and ask Cody.
+
+- **Dual accent:** bright blue (interactive, active, data) plus red (structure:
+  rules, section dashes, progress, card hover bar). No steel blue anywhere.
+  Contrast fixes darken the shade within the hue (#0070E0 light, #4DA3FF dark).
+- **JetBrains Mono is the voice:** nav, numbered section labels, stat labels, job
+  titles, meta lines, tags. Geist for reading paragraphs. Fraunces for display.
+- **The 01 to 05 numbering** in the nav, the side rail, and the section labels.
+- **The LinkedIn chip and GitHub icon style** from the original header.
+- **Capabilities as chips.**
+- **No shadcn/ui default styling** on controls; every control is styled from the
+  site's own tokens.
+
+The roast-fixes pass (2026-09-28) broke all of these and was reverted on branch
+`restore-identity`.
+
 ## Do not touch
 
 - **`src/data/resume-data.ts` career facts.** Every number was vetted against
   sources outside this repo during resume work, and the site is read side by
   side with the PDF resume. Never rewrite a fact for visual reasons.
 - **The four stat-strip figures** (13 / 400+ / 3M+ / $5.3M) and the five section
-  names and their order. The scroll rail and phone bar list them by short label
-  (Profile, Record, Experience, Credentials, Skills); the "01" numbering is gone.
+  names and their order. The scroll rail depends on the numbering.
 - **The live app, when exploring.** Explorations ship as a self-contained HTML
   specimen under `design-explorations/YYYY-MM-DD-<name>/` with the app reverted.
   A route left wired in is ambiguous about whether it shipped.

@@ -17,15 +17,6 @@ module.exports = {
       },
     },
     extend: {
-      // The whole type scale: five steps, one line-height each. Nothing on
-      // screen sits outside it (print keeps its own smaller sizes).
-      fontSize: {
-        xs: ["12px", "16px"],
-        sm: ["14px", "20px"],
-        base: ["16px", "26px"],
-        title: ["22px", "30px"],
-        hero: ["44px", "52px"],
-      },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
@@ -65,11 +56,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "accent-brand": "hsl(var(--accent-brand) / <alpha-value>)",
+        "accent-brand": "hsl(var(--accent-brand))",
         // FMWorks editorial pressmark - structure only, never interaction
         "accent-red": "hsl(var(--accent-red))",
         "bg-soft": "hsl(var(--bg-soft))",
-        "accent-strong": "hsl(var(--accent-strong) / <alpha-value>)",
+        "accent-strong": "hsl(var(--accent-strong))",
         "accent-ink": "hsl(var(--accent-ink))",
       },
       borderRadius: {

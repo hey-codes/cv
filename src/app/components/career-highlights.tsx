@@ -18,12 +18,13 @@ export function CareerHighlights({
   return (
     <Section className={className}>
       <SectionHeading
+        index="02"
         kicker="Track record"
         id="career-highlights-section"
       >
         Track Record
       </SectionHeading>
-      <ul className="ml-4 max-w-[68ch] list-outside list-disc space-y-2 text-pretty text-base print:max-w-none text-foreground/80 print:text-[10px]">
+      <ul className="ml-4 max-w-[68ch] list-outside list-disc space-y-2 text-pretty text-[15px] print:max-w-none text-foreground/80 print:text-[10px]">
         {highlights.map((highlight) => (
           <li key={highlight}>{parseLinks(highlight)}</li>
         ))}

@@ -15,48 +15,25 @@ type WorkBadges = readonly string[];
 
 /**
  * Chips are written for humans, so the same system shows up in more than one
- * shape: "FEXA" on one role and "Limble → FEXA" on another. Split on arrows
- * and parentheses only - never on commas, which would tear "35,000 sq ft" in
- * half - and treat any resulting segment as a match.
+ * shape: "FEXA" on one role and "Limble -> FEXA" on another, "Hybrid" here and
+ * "Hybrid (Travel 60%)" there. Split on arrows and parentheses only - never on
+ * commas, which would tear "35,000 sq. ft." in half - and treat any resulting
+ * segment as a match.
  */
 function badgeSegments(badge: string): string[] {
   return badge
-    .split(/->|→|[()]/)
+    .split(/->|[()]/)
     .map((part) => part.trim())
     .filter(Boolean);
 }
 
 function badgeMatches(badge: string, tag: string): boolean {
   if (badge === tag) return true;
-  // Symmetric on purpose: tapping "FEXA" must reach "Limble → FEXA", and
-  // tapping "Limble → FEXA" must reach "FEXA". Comparing whole segments (not
+  // Symmetric on purpose: tapping "FEXA" must reach "Limble -> FEXA", and
+  // tapping "Limble -> FEXA" must reach "FEXA". Comparing whole segments (not
   // words) keeps "Luxury Retail" and "High-End Retail" apart.
   const tagParts = badgeSegments(tag);
   return badgeSegments(badge).some((part) => tagParts.includes(part));
-}
-
-/**
- * Only industry and platform tags trace across roles. Sq ft, spend, OPEX, and
- * one-off notes ("Parental Leave Cover", "Hybrid (Travel 60%)") stay static:
- * a tag that only ever matches its own role is noise as a control.
- */
-const TRACEABLE_SEGMENTS: ReadonlySet<string> = new Set([
-  // industries
-  "Flex Office",
-  "Thermal Wellness",
-  "Luxury Retail",
-  "EV / Automotive",
-  "Boutique Fitness",
-  "High-End Retail",
-  // platforms
-  "ServiceChannel",
-  "FEXA",
-  "Limble",
-  "MaintainX",
-]);
-
-function isTraceable(badge: string): boolean {
-  return badgeSegments(badge).every((part) => TRACEABLE_SEGMENTS.has(part));
 }
 
 function roleKey(item: WorkExperience): string {
@@ -75,9 +52,9 @@ interface BadgeListProps {
 }
 
 /**
- * Renders work-experience badges. Industry and platform tags are toggles that
- * light up every matching tag across roles (outlined in steel blue, so they
- * read as controls); everything else is a flat gray static chip.
+ * Renders work-experience badges as toggle buttons. Tapping one filters the
+ * whole section by that tag; tapping it again clears. Pointer- and
+ * touch-equivalent, so phones get the same affordance desktop does.
  */
 function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
   if (badges.length === 0) return null;
@@ -85,21 +62,9 @@ function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
   return (
     <ul
       className={cn("inline-flex list-none gap-x-1 p-0", className)}
-      aria-label="Tags"
+      aria-label="Highlight roles by tag"
     >
       {badges.map((badge) => {
-        if (!isTraceable(badge)) {
-          return (
-            <li key={badge}>
-              <Badge
-                variant="secondary"
-                className="min-h-6 align-middle text-xs hover:bg-secondary print:px-1 print:py-0.5 print:text-[8px] print:leading-tight"
-              >
-                {badge}
-              </Badge>
-            </li>
-          );
-        }
         const isActive = activeTag !== null && badgeMatches(badge, activeTag);
         return (
           <li key={badge}>
@@ -111,11 +76,11 @@ function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
               className="tag-hit rounded-md transition-transform duration-150 ease-out motion-safe:active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Badge
-                variant="outline"
+                variant="secondary"
                 className={cn(
-                  "chip min-h-6 align-middle border-accent-brand/30 bg-background text-xs hover:bg-accent-brand/10 print:border-transparent print:bg-secondary print:px-1 print:py-0.5 print:text-[8px] print:leading-tight",
+                  "chip min-h-6 align-middle text-xs print:px-1 print:py-0.5 print:text-[8px] print:leading-tight",
                   isActive &&
-                    "border-accent-strong bg-accent-strong text-accent-ink hover:bg-accent-strong"
+                    "bg-accent-strong text-accent-ink hover:bg-accent-strong"
                 )}
               >
                 {badge}
@@ -144,8 +109,34 @@ function WorkPeriod({ location, start, end }: WorkPeriodProps) {
       title={`Employment period: ${start} to ${end ?? "Present"}`}
     >
       {location && <>{location} · </>}
-      {start} to {end ?? "Present"}
+      {start} - {end ?? "Present"}
     </div>
+  );
+}
+
+interface CompanyLinkProps {
+  company: WorkExperience["company"];
+  link: WorkExperience["link"];
+}
+
+/**
+ * Renders company name with optional link
+ */
+function CompanyLink({ company, link }: CompanyLinkProps) {
+  return (
+    <a
+      className="link-wipe font-bold text-foreground"
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${company} website (opens in new tab)`}
+    >
+      {company}
+      {/* Blue marks the clickable part, per the site's color rule. */}
+      <span aria-hidden="true" className="ml-1 text-[14px] text-accent-brand">
+        &#8599;
+      </span>
+    </a>
   );
 }
 
@@ -170,6 +161,7 @@ function WorkExperienceItem({
 }: WorkExperienceItemProps) {
   const {
     company,
+    link,
     location,
     badges,
     title,
@@ -177,6 +169,7 @@ function WorkExperienceItem({
     end,
     description,
     highlights,
+    note,
   } = work;
 
   // Open state lives in the parent so "expand all" can drive every role at once.
@@ -185,21 +178,34 @@ function WorkExperienceItem({
 
   return (
     <Card className="work-card border-none py-1 print:py-0">
-      <CardHeader className="print:space-y-1">
-        <div className="flex flex-col items-start gap-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-x-2">
-          <h3 className="text-balance text-base font-bold print:text-sm">
-            {/* The toggle is the caret and the company name only. Bullets and
-                the summary line are plain text, so selecting them never
-                collapses anything. Padding (offset by negative margin) makes
-                the hit area 44px tall without moving the layout. */}
-            {hasHighlights ? (
-              <button
-                type="button"
-                onClick={onToggleOpen}
-                aria-expanded={open}
-                aria-controls={panelId}
-                className="-my-[9px] inline-flex items-center gap-x-1.5 rounded-sm py-[9px] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring print:pointer-events-none"
-              >
+      {note && (
+        <span
+          aria-hidden="true"
+          className="role-note pointer-events-none select-none font-display text-[13.5px] italic leading-snug text-accent-red"
+        >
+          {note}
+        </span>
+      )}
+
+      {/* Toggle region: the header and the summary line. Chips and the expanded
+          bullets sit outside it, so tapping a chip still filters and links
+          inside the highlights still open. */}
+      <div className="relative">
+        <CardHeader className="print:space-y-1">
+          {/* Below the gutter breakpoint the margin note folds inline as a red
+              overline, so every reader gets the annotation, not just wide
+              desktops. */}
+          {note && (
+            <p
+              aria-hidden="true"
+              className="pointer-events-none relative z-10 font-mono text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-accent-red min-[1440px]:hidden print:hidden"
+            >
+              {note}
+            </p>
+          )}
+          <div className="pointer-events-none relative z-10 flex flex-col items-start gap-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-x-2">
+            <h3 className="flex items-center gap-x-1.5 text-balance text-[18px] font-semibold leading-tight print:text-sm">
+              {hasHighlights && (
                 <span
                   aria-hidden="true"
                   className={cn(
@@ -207,34 +213,54 @@ function WorkExperienceItem({
                     open && "is-open"
                   )}
                 >
-                  <ChevronRightIcon className="block size-3.5" strokeWidth={2} />
+                  <ChevronRightIcon
+                    className="block size-3.5"
+                    strokeWidth={2}
+                  />
                 </span>
-                {company}
-              </button>
-            ) : (
-              company
-            )}
-          </h3>
-          <WorkPeriod location={location} start={start} end={end} />
-        </div>
+              )}
+              {/* the only interactive island in an otherwise click-through row */}
+              <span className="pointer-events-auto">
+                <CompanyLink company={company} link={link} />
+              </span>
+            </h3>
+            <WorkPeriod location={location} start={start} end={end} />
+          </div>
 
-        <h4 className="text-base font-semibold text-balance text-foreground/80 print:text-[12px]">
-          {title}
-        </h4>
-      </CardHeader>
+          <h4 className="pointer-events-none relative z-10 font-mono text-[15px] font-bold leading-tight text-balance print:text-[12px]">
+            {title}
+          </h4>
+        </CardHeader>
 
-      <p className="mt-2 max-w-[68ch] text-base text-foreground/80 print:mt-1 print:max-w-none print:text-[10px] text-pretty">
-        {description}
-      </p>
+        <p className="pointer-events-none relative z-10 mt-2 max-w-[68ch] text-[15px] text-foreground/80 print:mt-1 print:max-w-none print:text-[10px] text-pretty">
+          {description}
+        </p>
+
+        {/* An overlay button rather than a wrapping div: the company name is a
+            link and cannot nest inside a button, and a div with onClick would
+            not be keyboard-operable. */}
+        {hasHighlights && (
+          <button
+            type="button"
+            onClick={onToggleOpen}
+            aria-expanded={open}
+            aria-controls={panelId}
+            className="absolute -inset-x-2 -inset-y-1 z-0 cursor-pointer rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden"
+          >
+            <span className="sr-only">
+              {open ? "Hide" : "Show"} highlights for {company}
+            </span>
+          </button>
+        )}
+      </div>
 
       <CardContent>
         {/* font-sans overrides CardContent's mono: bullets are prose, and the
             bolded figures only read as waypoints against an upright sans. */}
-        <div className="max-w-[68ch] font-sans text-base text-foreground/80 print:max-w-none print:text-[10px] text-pretty">
+        <div className="max-w-[68ch] font-sans text-[15px] leading-relaxed text-foreground/80 print:max-w-none print:text-[10px] text-pretty">
           {hasHighlights && (
             <div
               id={panelId}
-              inert={!open}
               className={cn("role-panel", open && "role-panel--open")}
             >
               <div className="role-panel__inner">
@@ -328,6 +354,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
   return (
     <Section>
       <SectionHeading
+        index="03"
         kicker="Experience"
         id="work-experience"
         action={
@@ -336,7 +363,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
               type="button"
               onClick={toggleAll}
               aria-expanded={allOpen}
-              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground transition-[color,transform] duration-150 ease-out motion-safe:active:scale-[0.96] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
+              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[13px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground transition-[color,transform] duration-150 ease-out motion-safe:active:scale-[0.96] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
             >
               <span
                 aria-hidden="true"
@@ -352,7 +379,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
         Experience
       </SectionHeading>
 
-      <p className="-mt-1 text-xs text-muted-foreground print:hidden">
+      <p className="-mt-1 font-mono text-xs text-muted-foreground print:hidden">
         Select a tag to see every role that shares it.
       </p>
 
@@ -367,7 +394,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
 
       {activeTag !== null && (
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 print:hidden">
-          <span className="inline-flex items-center gap-x-2.5 text-xs font-semibold uppercase tracking-[0.06em] text-accent-brand">
+          <span className="inline-flex items-center gap-x-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-accent-brand">
             <span className="h-1 w-5 shrink-0 rounded-[1px] bg-accent-red" />
             {matchCount} {matchCount === 1 ? "role" : "roles"} &middot;{" "}
             {activeTag}
@@ -375,7 +402,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
           <button
             type="button"
             onClick={clear}
-            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.96]"
+            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[13px] before:content-[''] font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.96]"
           >
             Clear
           </button>
