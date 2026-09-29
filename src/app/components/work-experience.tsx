@@ -144,7 +144,7 @@ function WorkPeriod({ location, start, end }: WorkPeriodProps) {
       title={`Employment period: ${start} to ${end ?? "Present"}`}
     >
       {location && <>{location} · </>}
-      {start} - {end ?? "Present"}
+      {start} to {end ?? "Present"}
     </div>
   );
 }

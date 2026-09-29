@@ -7,7 +7,7 @@ export const RESUME_DATA: ResumeData = {
   locationLink: "https://www.google.com/maps/place/Chicago",
   about: "Facilities, Operations & New Site Launches",
   summary:
-    "9 brands, 400+ locations, 3M+ sq. ft. managed, from luxury maisons and flexible coworking to launching Rivian’s East Coast service centers. Solo and with incredible teams.",
+    "9 brands, 400+ locations, 3M+ sq ft managed, from luxury maisons and flexible coworking to launching Rivian’s East Coast service centers. Solo and with incredible teams.",
   personalWebsiteUrl: "https://codymitch.works",
   contact: {
     social: [
@@ -51,7 +51,7 @@ export const RESUME_DATA: ResumeData = {
       company: "Industrious",
       link: "https://www.industriousoffice.com/",
       location: "Remote (Chicago)",
-      badges: ["Flex Office", "1.3M+ sq. ft.", "FEXA", "Parental Leave Cover"],
+      badges: ["Flex Office", "1.3M+ sq ft", "FEXA", "Parental Leave Cover"],
       title: "Facilities Consultant, West Coast Portfolio",
       start: "Apr 2026",
       end: "Aug 2026",
@@ -59,7 +59,7 @@ export const RESUME_DATA: ResumeData = {
       description:
         "Owned repair and maintenance for 48 flex-office locations across 5 West Coast districts (AZ, CA, CO, OR, WA). Brought in to cover a parental leave: interviewed on a Tuesday afternoon, started the following morning at 10am, and learned the brand’s people, processes, and standards in 2 weeks.",
       highlights: [
-        "Oversaw **1,500+ work orders** on FEXA (repairs, member bill-backs, and preventive maintenance), with **120-190** repair and bill-back tickets open at any given time.",
+        "Oversaw **1,500+ work orders** on FEXA (repairs, member bill-backs, and preventive maintenance), with **120 to 190** repair and bill-back tickets open at any given time.",
         "Held West Coast facilities operations steady through a period of internal change: daily work-order intake and triage, preventive maintenance, and management of the in-house technician. Lightly assisted with CapEx where needed.",
       ],
     },
@@ -67,13 +67,13 @@ export const RESUME_DATA: ResumeData = {
       company: "Bathhouse",
       link: "https://www.abathhouse.com/",
       location: "New York, NY",
-      badges: ["Thermal Wellness", "35K sq. ft.", "MaintainX", "-18% OPEX"],
+      badges: ["Thermal Wellness", "35K sq ft", "MaintainX", "-18% OPEX"],
       title: "Facilities & Operations Manager",
       start: "Jul 2024",
       end: "Nov 2024",
       defaultOpen: true,
       description:
-        "Brought on to formalize FM operations at a 35,000 sq. ft. luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150-350 guests a day. Built the facility’s first preventive maintenance program across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
+        "Brought on to formalize FM operations at a 35,000 sq ft luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150 to 350 guests a day. Built the facility’s first preventive maintenance program across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
       highlights: [
         "Led a **6-person technical team** (3 facilities, 3 pool): defined roles, ownership areas, and shift accountability.",
         "**Reduced OPEX 18%** ($36K) in the first three months by shifting outsourced work to in-house technicians and sourcing materials, tools, and hardware competitively (bulk buys, sales, trusted online suppliers).",
@@ -85,7 +85,7 @@ export const RESUME_DATA: ResumeData = {
       location: "New York, NY",
       badges: [
         "Luxury Retail",
-        "200K+ sq. ft.",
+        "200K+ sq ft",
         "ServiceChannel",
         "$1.2M OPEX",
       ],
@@ -108,8 +108,8 @@ export const RESUME_DATA: ResumeData = {
       location: "New York, NY",
       badges: [
         "EV / Automotive",
-        "260K+ sq. ft.",
-        "Limble -> FEXA",
+        "260K+ sq ft",
+        "Limble → FEXA",
         "Hybrid (Travel 60%)",
       ],
       title: "Commercial Facilities Operations Specialist",
@@ -130,7 +130,7 @@ export const RESUME_DATA: ResumeData = {
       location: "New York, NY",
       badges: [
         "Luxury Retail",
-        "220K+ sq. ft.",
+        "220K+ sq ft",
         "ServiceChannel",
         "$5.3M Managed Spend",
       ],
@@ -142,7 +142,7 @@ export const RESUME_DATA: ResumeData = {
         "First FM hire in the Americas: built FENDI Americas’ FM function from scratch across 67 locations in 4 countries. Grew the R&M budget from $600K to $1M as scope doubled within two years.",
       highlights: [
         "Absorbed security and loss prevention, cleaning, and COVID-19 response into the FM function in 2020, growing total managed spend to **$5.3M**. Managed it all as sole FM, using ServiceChannel automation to process **1,100+ work orders** that year.",
-        "Managed NYC headquarters at 555 Madison (12,000 sq. ft., 90 staff) alongside the retail portfolio.",
+        "Managed NYC headquarters at 555 Madison (12,000 sq ft, 90 staff) alongside the retail portfolio.",
         "Peer-voted the inaugural “Above & Beyond” Award, recognized by the President of FENDI Americas, [Joanna M. Dubin](https://www.linkedin.com/in/joannadubin/), for crisis response during 2020.",
       ],
     },
@@ -150,7 +150,7 @@ export const RESUME_DATA: ResumeData = {
       company: "Dolce & Gabbana",
       link: "https://www.dolcegabbana.com/en-us/",
       location: "New York, NY",
-      badges: ["Luxury Retail", "190K+ sq. ft.", "ServiceChannel"],
+      badges: ["Luxury Retail", "190K+ sq ft", "ServiceChannel"],
       title: "Facilities Manager, Americas",
       start: "Jul 2018",
       end: "Dec 2018",
@@ -167,7 +167,7 @@ export const RESUME_DATA: ResumeData = {
       location: "San Francisco, CA",
       badges: [
         "Boutique Fitness",
-        "130K+ sq. ft.",
+        "130K+ sq ft",
         "ServiceChannel",
         "Hybrid (Travel 60%)",
       ],
@@ -176,17 +176,17 @@ export const RESUME_DATA: ResumeData = {
       end: "Jun 2018",
       defaultOpen: true,
       description:
-        "Started overseeing NYC Metro studios; asked to relocate to San Francisco to stabilize West Coast operations and lead expansion into NorCal, Seattle, Vancouver, Chicago, and Texas. 33-studio portfolio across 6 markets. Traveled 60-70%.",
+        "Started overseeing NYC Metro studios; asked to relocate to San Francisco to stabilize West Coast operations and lead expansion into NorCal, Seattle, Vancouver, Chicago, and Texas. 33-studio portfolio across 6 markets. Traveled 60 to 70%.",
       highlights: [
         "Led the FM handoff for **16 studio launches** and supervised 1 technician directly, hiring their replacement when they moved on. **$450K annual OPEX** portfolio.",
-        "Delivered CapEx projects across the portfolio: **2-4 per location annually**, $5K-$50K per project.",
+        "Delivered CapEx projects across the portfolio: **2 to 4 per location annually**, $5K to $50K per project.",
       ],
     },
     {
       company: "J.Crew / Madewell",
       link: "https://www.jcrew.com",
       location: "New York, NY",
-      badges: ["High-End Retail", "700K+ sq. ft.", "ServiceChannel"],
+      badges: ["High-End Retail", "700K+ sq ft", "ServiceChannel"],
       title: "Facilities Coordinator",
       start: "May 2010",
       end: "Apr 2015",

@@ -21,7 +21,7 @@ function EducationPeriod({ location, start, end }: EducationPeriodProps) {
       title={`Period: ${start} to ${end}`}
     >
       {location && <>{location} · </>}
-      {start} - {end}
+      {start} to {end}
     </div>
   );
 }
