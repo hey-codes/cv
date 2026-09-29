@@ -3,20 +3,22 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
+// Short labels so all five fit the phone bar at 412px.
 const SECTIONS = [
-  { id: "about-section", index: "01", label: "Profile" },
-  { id: "career-highlights-section", index: "02", label: "Track record" },
-  { id: "work-experience", index: "03", label: "Experience" },
-  { id: "education-section", index: "04", label: "Credentials" },
-  { id: "skills-section", index: "05", label: "Capabilities" },
+  { id: "about-section", label: "Profile" },
+  { id: "career-highlights-section", label: "Record" },
+  { id: "work-experience", label: "Experience" },
+  { id: "education-section", label: "Credentials" },
+  { id: "skills-section", label: "Skills" },
 ] as const;
 
 /**
  * Scroll position indicator, in two shapes.
  *
- * Desktop (xl and up): a fixed rail in the left gutter. A red spine fills to
- * match page progress and a marker slides to whichever section is in view.
- * Mobile: a slim sticky bar of numbered segments with the same filling rule.
+ * Desktop (xl and up): a fixed rail of section labels in the left gutter. A
+ * red spine fills to match page progress and the section in view turns blue.
+ * Mobile: a slim bar of the same labels with the same filling rule; if the
+ * labels ever outgrow the bar, the bar scrolls sideways, never the page.
  *
  * Both derive from a single rAF-throttled scroll listener, and both collapse to
  * a static list when the reader prefers reduced motion.
@@ -85,8 +87,6 @@ export function ScrollNav() {
     });
   }, []);
 
-  const activeIndex = SECTIONS.findIndex((s) => s.id === activeId);
-
   return (
     <>
       {/* ---------- desktop rail ---------- */}
@@ -94,20 +94,19 @@ export function ScrollNav() {
         aria-label="Section progress"
         className="fixed left-6 top-1/2 z-40 hidden -translate-y-1/2 xl:block print:hidden"
       >
-        <ol className="relative flex list-none flex-col gap-y-4 pl-4">
+        <ol className="relative flex list-none flex-col pl-4">
           {/* track + fill */}
           <span
             aria-hidden="true"
-            className="absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-border"
+            className="absolute left-0 top-3 bottom-3 w-[2px] rounded-full bg-border"
           />
           <span
             aria-hidden="true"
-            className="scroll-spine absolute bottom-1 left-0 top-1 w-[2px] origin-top rounded-full bg-accent-red"
+            className="scroll-spine absolute bottom-3 left-0 top-3 w-[2px] origin-top rounded-full bg-accent-red"
             style={{ transform: `scaleY(${progress})` }}
           />
-          {SECTIONS.map((section, i) => {
+          {SECTIONS.map((section) => {
             const isActive = section.id === activeId;
-            const isPast = i < activeIndex;
             return (
               <li key={section.id}>
                 <button
@@ -115,32 +114,13 @@ export function ScrollNav() {
                   onClick={() => jumpTo(section.id)}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "scroll-tick group flex items-baseline gap-x-2 rounded-sm text-left text-xs uppercase tracking-[0.06em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    "scroll-tick flex min-h-11 items-center rounded-sm text-left text-xs uppercase tracking-[0.06em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     isActive
-                      ? "text-accent-brand"
-                      : isPast
-                        ? "text-muted-foreground"
-                        : "text-muted-foreground"
+                      ? "font-semibold text-accent-brand"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  <span
-                    className={cn(
-                      "scroll-tick__num font-bold",
-                      isActive && "scroll-tick__num--on"
-                    )}
-                  >
-                    {section.index}
-                  </span>
-                  <span
-                    className={cn(
-                      "scroll-tick__label",
-                      isActive
-                        ? "opacity-100"
-                        : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
-                    )}
-                  >
-                    {section.label}
-                  </span>
+                  {section.label}
                 </button>
               </li>
             );
@@ -156,7 +136,7 @@ export function ScrollNav() {
         // actually scrolls - the bar would simply scroll away.
         className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background xl:hidden print:hidden"
       >
-        <div className="flex items-center gap-x-1 px-4">
+        <div className="flex items-center gap-x-1 overflow-x-auto px-4">
           {SECTIONS.map((section) => {
             const isActive = section.id === activeId;
             return (
@@ -165,13 +145,12 @@ export function ScrollNav() {
                 type="button"
                 onClick={() => jumpTo(section.id)}
                 aria-current={isActive ? "true" : undefined}
-                aria-label={`Jump to ${section.label}`}
                 className={cn(
-                  "scroll-tick min-h-11 flex-1 rounded-sm text-center text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "scroll-tick min-h-11 flex-1 whitespace-nowrap rounded-sm px-1 text-center text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive ? "text-accent-brand" : "text-muted-foreground"
                 )}
               >
-                {section.index}
+                {section.label}
               </button>
             );
           })}
