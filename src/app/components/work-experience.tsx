@@ -336,7 +336,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
               type="button"
               onClick={toggleAll}
               aria-expanded={allOpen}
-              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[13px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground transition-[color,transform] duration-150 ease-out motion-safe:active:scale-[0.96] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
+              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground transition-[color,transform] duration-150 ease-out motion-safe:active:scale-[0.96] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
             >
               <span
                 aria-hidden="true"
@@ -375,7 +375,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
           <button
             type="button"
             onClick={clear}
-            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[13px] before:content-[''] text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.96]"
+            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.96]"
           >
             Clear
           </button>
