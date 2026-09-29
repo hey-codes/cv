@@ -34,7 +34,7 @@ interface EducationItemProps {
  * Individual education card component
  */
 function EducationItem({ education }: EducationItemProps) {
-  const { school, link, location, start, end, degree } = education;
+  const { school, location, start, end, degree } = education;
   const schoolId = `education-${school.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
@@ -45,25 +45,7 @@ function EducationItem({ education }: EducationItemProps) {
             className="text-balance text-base font-bold"
             id={schoolId}
           >
-            {link ? (
-              <a
-                className="link-wipe font-bold text-foreground"
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${school} website (opens in new tab)`}
-              >
-                {school}
-                <span
-                  aria-hidden="true"
-                  className="ml-1 text-sm text-accent-brand"
-                >
-                  &#8599;
-                </span>
-              </a>
-            ) : (
-              school
-            )}
+            {school}
           </h3>
           <EducationPeriod location={location} start={start} end={end} />
         </div>

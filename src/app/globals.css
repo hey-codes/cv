@@ -224,20 +224,17 @@ a:focus-visible {
   .chip {
     padding-block: 0.3rem;
   }
-  /* 44px tap zones on touch: each tag reaches 22px above and below its center,
-     and rows sit 16px apart so neighboring zones never overlap. */
+}
+/* 44px tap zones on touch and on phones: 10px of padding above and below each
+   tag button, pulled back out of the layout with a matching negative margin,
+   and rows 20px apart so neighboring zones never overlap. */
+@media (pointer: coarse), (max-width: 639px) {
   .tag-list {
-    row-gap: 16px;
+    row-gap: 20px;
   }
   .tag-hit {
-    position: relative;
-  }
-  .tag-hit::before {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    top: calc(50% - 22px);
-    bottom: calc(50% - 22px);
+    padding-block: 10px;
+    margin-block: -10px;
   }
 }
 

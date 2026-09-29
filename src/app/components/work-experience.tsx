@@ -15,25 +15,48 @@ type WorkBadges = readonly string[];
 
 /**
  * Chips are written for humans, so the same system shows up in more than one
- * shape: "FEXA" on one role and "Limble -> FEXA" on another, "Hybrid" here and
- * "Hybrid (Travel 60%)" there. Split on arrows and parentheses only - never on
- * commas, which would tear "35,000 sq. ft." in half - and treat any resulting
- * segment as a match.
+ * shape: "FEXA" on one role and "Limble → FEXA" on another. Split on arrows
+ * and parentheses only - never on commas, which would tear "35,000 sq ft" in
+ * half - and treat any resulting segment as a match.
  */
 function badgeSegments(badge: string): string[] {
   return badge
-    .split(/->|[()]/)
+    .split(/->|→|[()]/)
     .map((part) => part.trim())
     .filter(Boolean);
 }
 
 function badgeMatches(badge: string, tag: string): boolean {
   if (badge === tag) return true;
-  // Symmetric on purpose: tapping "FEXA" must reach "Limble -> FEXA", and
-  // tapping "Limble -> FEXA" must reach "FEXA". Comparing whole segments (not
+  // Symmetric on purpose: tapping "FEXA" must reach "Limble → FEXA", and
+  // tapping "Limble → FEXA" must reach "FEXA". Comparing whole segments (not
   // words) keeps "Luxury Retail" and "High-End Retail" apart.
   const tagParts = badgeSegments(tag);
   return badgeSegments(badge).some((part) => tagParts.includes(part));
+}
+
+/**
+ * Only industry and platform tags trace across roles. Sq ft, spend, OPEX, and
+ * one-off notes ("Parental Leave Cover", "Hybrid (Travel 60%)") stay static:
+ * a tag that only ever matches its own role is noise as a control.
+ */
+const TRACEABLE_SEGMENTS: ReadonlySet<string> = new Set([
+  // industries
+  "Flex Office",
+  "Thermal Wellness",
+  "Luxury Retail",
+  "EV / Automotive",
+  "Boutique Fitness",
+  "High-End Retail",
+  // platforms
+  "ServiceChannel",
+  "FEXA",
+  "Limble",
+  "MaintainX",
+]);
+
+function isTraceable(badge: string): boolean {
+  return badgeSegments(badge).every((part) => TRACEABLE_SEGMENTS.has(part));
 }
 
 function roleKey(item: WorkExperience): string {
@@ -52,9 +75,9 @@ interface BadgeListProps {
 }
 
 /**
- * Renders work-experience badges as toggle buttons. Tapping one filters the
- * whole section by that tag; tapping it again clears. Pointer- and
- * touch-equivalent, so phones get the same affordance desktop does.
+ * Renders work-experience badges. Industry and platform tags are toggles that
+ * light up every matching tag across roles (outlined in steel blue, so they
+ * read as controls); everything else is a flat gray static chip.
  */
 function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
   if (badges.length === 0) return null;
@@ -62,9 +85,21 @@ function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
   return (
     <ul
       className={cn("inline-flex list-none gap-x-1 p-0", className)}
-      aria-label="Highlight roles by tag"
+      aria-label="Tags"
     >
       {badges.map((badge) => {
+        if (!isTraceable(badge)) {
+          return (
+            <li key={badge}>
+              <Badge
+                variant="secondary"
+                className="min-h-6 align-middle text-xs hover:bg-secondary print:px-1 print:py-0.5 print:text-[8px] print:leading-tight"
+              >
+                {badge}
+              </Badge>
+            </li>
+          );
+        }
         const isActive = activeTag !== null && badgeMatches(badge, activeTag);
         return (
           <li key={badge}>
@@ -76,11 +111,11 @@ function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
               className="tag-hit rounded-md transition-transform duration-150 ease-out motion-safe:active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Badge
-                variant="secondary"
+                variant="outline"
                 className={cn(
-                  "chip min-h-6 align-middle text-xs print:px-1 print:py-0.5 print:text-[8px] print:leading-tight",
+                  "chip min-h-6 align-middle border-accent-brand/30 bg-background text-xs hover:bg-accent-brand/10 print:border-transparent print:bg-secondary print:px-1 print:py-0.5 print:text-[8px] print:leading-tight",
                   isActive &&
-                    "bg-accent-strong text-accent-ink hover:bg-accent-strong"
+                    "border-accent-strong bg-accent-strong text-accent-ink hover:bg-accent-strong"
                 )}
               >
                 {badge}
@@ -114,32 +149,6 @@ function WorkPeriod({ location, start, end }: WorkPeriodProps) {
   );
 }
 
-interface CompanyLinkProps {
-  company: WorkExperience["company"];
-  link: WorkExperience["link"];
-}
-
-/**
- * Renders company name with optional link
- */
-function CompanyLink({ company, link }: CompanyLinkProps) {
-  return (
-    <a
-      className="link-wipe font-bold text-foreground"
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${company} website (opens in new tab)`}
-    >
-      {company}
-      {/* Blue marks the clickable part, per the site's color rule. */}
-      <span aria-hidden="true" className="ml-1 text-sm text-accent-brand">
-        &#8599;
-      </span>
-    </a>
-  );
-}
-
 interface WorkExperienceItemProps {
   work: WorkExperience;
   activeTag: string | null;
@@ -161,7 +170,6 @@ function WorkExperienceItem({
 }: WorkExperienceItemProps) {
   const {
     company,
-    link,
     location,
     badges,
     title,
@@ -177,14 +185,21 @@ function WorkExperienceItem({
 
   return (
     <Card className="work-card border-none py-1 print:py-0">
-      {/* Toggle region: the header and the summary line. Chips and the expanded
-          bullets sit outside it, so tapping a chip still filters and links
-          inside the highlights still open. */}
-      <div className="relative">
-        <CardHeader className="print:space-y-1">
-          <div className="pointer-events-none relative z-10 flex flex-col items-start gap-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-x-2">
-            <h3 className="flex items-center gap-x-1.5 text-balance text-base font-bold print:text-sm">
-              {hasHighlights && (
+      <CardHeader className="print:space-y-1">
+        <div className="flex flex-col items-start gap-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-x-2">
+          <h3 className="text-balance text-base font-bold print:text-sm">
+            {/* The toggle is the caret and the company name only. Bullets and
+                the summary line are plain text, so selecting them never
+                collapses anything. Padding (offset by negative margin) makes
+                the hit area 44px tall without moving the layout. */}
+            {hasHighlights ? (
+              <button
+                type="button"
+                onClick={onToggleOpen}
+                aria-expanded={open}
+                aria-controls={panelId}
+                className="-my-[9px] inline-flex items-center gap-x-1.5 rounded-sm py-[9px] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring print:pointer-events-none"
+              >
                 <span
                   aria-hidden="true"
                   className={cn(
@@ -192,46 +207,25 @@ function WorkExperienceItem({
                     open && "is-open"
                   )}
                 >
-                  <ChevronRightIcon
-                    className="block size-3.5"
-                    strokeWidth={2}
-                  />
+                  <ChevronRightIcon className="block size-3.5" strokeWidth={2} />
                 </span>
-              )}
-              {/* the only interactive island in an otherwise click-through row */}
-              <span className="pointer-events-auto">
-                <CompanyLink company={company} link={link} />
-              </span>
-            </h3>
-            <WorkPeriod location={location} start={start} end={end} />
-          </div>
+                {company}
+              </button>
+            ) : (
+              company
+            )}
+          </h3>
+          <WorkPeriod location={location} start={start} end={end} />
+        </div>
 
-          <h4 className="pointer-events-none relative z-10 text-base font-semibold text-balance print:text-[12px]">
-            {title}
-          </h4>
-        </CardHeader>
+        <h4 className="text-base font-semibold text-balance text-foreground/80 print:text-[12px]">
+          {title}
+        </h4>
+      </CardHeader>
 
-        <p className="pointer-events-none relative z-10 mt-2 max-w-[68ch] text-base text-foreground/80 print:mt-1 print:max-w-none print:text-[10px] text-pretty">
-          {description}
-        </p>
-
-        {/* An overlay button rather than a wrapping div: the company name is a
-            link and cannot nest inside a button, and a div with onClick would
-            not be keyboard-operable. */}
-        {hasHighlights && (
-          <button
-            type="button"
-            onClick={onToggleOpen}
-            aria-expanded={open}
-            aria-controls={panelId}
-            className="absolute -inset-x-2 -inset-y-1 z-0 cursor-pointer rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden"
-          >
-            <span className="sr-only">
-              {open ? "Hide" : "Show"} highlights for {company}
-            </span>
-          </button>
-        )}
-      </div>
+      <p className="mt-2 max-w-[68ch] text-base text-foreground/80 print:mt-1 print:max-w-none print:text-[10px] text-pretty">
+        {description}
+      </p>
 
       <CardContent>
         {/* font-sans overrides CardContent's mono: bullets are prose, and the
@@ -240,6 +234,7 @@ function WorkExperienceItem({
           {hasHighlights && (
             <div
               id={panelId}
+              inert={!open}
               className={cn("role-panel", open && "role-panel--open")}
             >
               <div className="role-panel__inner">
