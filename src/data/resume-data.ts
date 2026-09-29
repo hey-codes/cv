@@ -41,10 +41,10 @@ export const RESUME_DATA: ResumeData = {
     },
   ],
   careerHighlights: [
-    "**2× first FM hire**: built the Americas programs at FENDI and Balenciaga from scratch, growing to **$5.3M** total managed spend and **$1.2M** OPEX respectively.",
-    "**400+ locations, 9 brands, 13 years**: luxury retail, EV/automotive, boutique fitness, and wellness; from J.Crew’s sales floor to programs for global luxury houses.",
-    "**3 net-new CMMS implementations** (ServiceChannel at FENDI and Balenciaga, FEXA at Rivian): standardized every portfolio; platforms inherited, finished, or expanded at 4 more brands, hands-on across **4 systems**.",
-    "**A permanent piece of the Castro**: coordinated the Harvey Milk 40th anniversary “HOPE WILL NEVER BE SILENT” neon memorial at SoulCycle Castro with [SF Illuminate](https://illuminate.org/), now part of Harvey Milk Plaza.",
+    "**2× first FM hire**: built the FM programs at FENDI Americas and Balenciaga from scratch, reaching **$5.3M** in yearly managed spend at FENDI and a **$1.2M** OPEX budget at Balenciaga.",
+    "**400+ locations, 9 brands, 13 years** across luxury retail, boutique fitness, EV service centers, wellness, and flex office, from J.Crew’s sales floor to FM programs for global luxury houses.",
+    "**3 net-new CMMS implementations**: ServiceChannel at FENDI and Balenciaga, FEXA at Rivian. Inherited, finished, or expanded platforms at 4 more brands, hands-on across **4 systems**.",
+    "**A permanent piece of the Castro**: coordinated vendors and contacts for the Harvey Milk 40th anniversary “HOPE WILL NEVER BE SILENT” neon memorial at SoulCycle Castro with [SF Illuminate](https://illuminate.org/), now part of Harvey Milk Plaza.",
   ],
   work: [
     {
@@ -57,10 +57,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Aug 2026",
       defaultOpen: true,
       description:
-        "Owned repair and maintenance for 48 flex-office locations across 5 West Coast districts (AZ, CA, CO, OR, WA). Brought in to cover a parental leave: interviewed on a Tuesday afternoon, started the following morning at 10am, and learned the brand’s people, processes, and standards in 2 weeks.",
+        "Owned repair and maintenance for 48 flex-office locations across 5 West Coast districts, covering an FM’s parental leave. Interviewed on a Tuesday afternoon, started the next morning; the contract was extended past its end date.",
       highlights: [
-        "Oversaw **1,500+ work orders** on FEXA (repairs, member bill-backs, and preventive maintenance), with **120 to 190** repair and bill-back tickets open at any given time.",
-        "Held West Coast facilities operations steady through a period of internal change: daily work-order intake and triage, preventive maintenance, and management of the in-house technician. Lightly assisted with CapEx where needed.",
+        "Oversaw **1,500+ work orders** on FEXA, with **120 to 190** repair and member bill-back tickets open at any given time.",
       ],
     },
     {
@@ -73,10 +72,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Nov 2024",
       defaultOpen: true,
       description:
-        "Brought on to formalize FM operations at a 35,000 sq\u00a0ft luxury thermal wellness facility: three levels (two underground) in a 27-story residential tower, where on-site bitcoin miners heat the thermal pools, serving 150 to 350 guests a day. Built the facility’s first preventive maintenance program across its critical MEP systems, moving the team from daily firefighting to scheduled maintenance.",
+        "Ran facilities and operations for a 35,000 sq\u00a0ft co-ed thermal spa serving 150 to 350 guests a day, where on-site bitcoin miners heat the 2 hottest pools. Led a 6-person technical team and began rolling out the facility’s first preventive maintenance program in MaintainX.",
       highlights: [
-        "Led a **6-person technical team** (3 facilities, 3 pool): defined roles, ownership areas, and shift accountability.",
-        "**Reduced OPEX 18%** ($36K) in the first three months by shifting outsourced work to in-house technicians and sourcing materials, tools, and hardware competitively (bulk buys, sales, trusted online suppliers).",
+        "**Cut OPEX 18%** ($36K) in the first 3 months by moving outsourced work in-house and switching to new parts and materials distributors.",
       ],
     },
     {
@@ -94,12 +92,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Dec 2023",
       defaultOpen: true,
       description:
-        "Balenciaga’s first FM hire globally, brought on to build a centralized, data-driven FM program across 54 locations in the U.S. and Canada. Grew the function from a solo role to a team.",
+        "Balenciaga’s first FM hire globally, brought on to build the FM program for 54 locations in the U.S. and Canada. Built and led a 3-person FM team on an OPEX budget that grew from $450K to $1.2M, plus a $1M shared CapEx budget.",
       highlights: [
-        "Deployed ServiceChannel across **54 locations**, onboarded **65+ vendors**, and processed **1,600+ maintenance tasks** annually with standardized workflows.",
-        "Built a **3-person FM team**: hired a Facilities Coordinator and selected 2 external consultants.",
-        "Managed NYC headquarters operations for 80+ Balenciaga staff.",
-        "Built the case for and secured OPEX budget growth from $450K to **$1.2M**, backed by maintenance tracking and needs analysis. Managed a **$1M shared CapEx** budget.",
+        "Set up ServiceChannel, which had been signed but never configured, and put all **54 stores** on one system with **65+ vendors** onboarded.",
       ],
     },
     {
@@ -117,11 +112,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Jul 2022",
       defaultOpen: true,
       description:
-        "Hybrid site launcher and facilities manager during Rivian’s rapid EV expansion: launched 6 East Coast service centers, built steady-state playbooks, and stayed on as the FM point of contact after launch.",
+        "Site launch and day-to-day facilities management during Rivian’s East Coast expansion: ran facilities readiness for 6 service center openings, then stayed on as the FM point of contact.",
       highlights: [
-        "Owned the **full site lifecycle**: construction coordination, punchlist, opening-day vendor mobilization, then steady-state R&M, with the punchlist-to-steady-state handoff improving over time.",
-        "Directed biweekly NSO calls with **40 to 80 people** per call across 8 cross-functional teams.",
-        "With the East Coast manager and coordinator, served as the core team on the Limble to FEXA migration, building the SOPs, protocols, and playbooks adopted across all **~30 Rivian locations** nationally.",
+        "Directed biweekly new site opening (NSO) calls for **40 to 80 people** across 8 teams; core team on the Limble to FEXA migration.",
       ],
     },
     {
@@ -139,11 +132,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Apr 2021",
       defaultOpen: true,
       description:
-        "First FM hire in the Americas: built FENDI Americas’ FM function from scratch across 67 locations in 4 countries. Grew the R&M budget from $600K to $1M as scope doubled within two years.",
+        "First FM hire for the Americas: built FENDI’s FM function from scratch across 67 locations in 4 countries and took ServiceChannel live in 4.5 weeks against a 12-week standard.",
       highlights: [
-        "Absorbed security and loss prevention, cleaning, and COVID-19 response into the FM function in 2020, growing total managed spend to **$5.3M**. Managed it all as sole FM, using ServiceChannel automation to process **1,100+ work orders** that year.",
-        "Managed NYC headquarters at 555 Madison (12,000 sq\u00a0ft, 90 staff) alongside the retail portfolio.",
-        "Peer-voted the inaugural “Above & Beyond” Award, recognized by the President of FENDI Americas, [Joanna M. Dubin](https://www.linkedin.com/in/joannadubin/), for crisis response during 2020.",
+        "Doubled FM scope as sole FM, taking on security and cleaning in 2020 with no added headcount, for **$5.3M** in yearly managed spend. Won the inaugural peer-voted “Above & Beyond” Award.",
       ],
     },
     {
@@ -156,10 +147,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Dec 2018",
       defaultOpen: true,
       description:
-        "First luxury retail FM role: finalized the ServiceChannel rollout across 48+ boutiques in the U.S. and Canada and established a centralized regional maintenance model.",
-      highlights: [
-        "Audited and reconfigured ServiceChannel platform workflows. Transitioned from a collaborative FM team to sole facilities manager for the entire Americas region.",
-      ],
+        "Sole FM for 48 boutiques across the U.S. and Canada: finished an inherited ServiceChannel rollout to full adoption. Recruited away by FENDI.",
     },
     {
       company: "SoulCycle",
@@ -176,10 +164,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Jun 2018",
       defaultOpen: true,
       description:
-        "Started overseeing NYC Metro studios; asked to relocate to San Francisco to stabilize West Coast operations and lead expansion into NorCal, Seattle, Vancouver, Chicago, and Texas. 33-studio portfolio across 6 markets. Traveled 60 to 70%.",
+        "Area Facilities Manager for a 33-studio portfolio across 6 markets: started with NYC Metro, then moved to San Francisco in 2016 to help restore the West Coast studios to brand standards.",
       highlights: [
-        "Led the FM handoff for **16 studio launches** and supervised 1 technician directly, hiring their replacement when they moved on. **$450K annual OPEX** portfolio.",
-        "Delivered CapEx projects across the portfolio: **2 to 4 per location annually**, $5K to $50K per project.",
+        "Supported **16 studio launches** and ran **2 to 4 CapEx projects** per studio a year at $5K to $50K each.",
       ],
     },
     {
@@ -192,10 +179,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Apr 2015",
       defaultOpen: true,
       description:
-        "Five years with the brand: from the sales floor in Broomfield, Colorado (2010) through Men’s merchandising at the NYC Flagship (2012) into facilities management in 2013, ultimately overseeing all repairs, maintenance and CapEx projects for the entire Madewell fleet and J.Crew’s NYC Metro region.",
+        "Came up from the sales floor (2010) and men’s merchandising at the NYC flagship into facilities in 2013, covering 140+ stores at peak, including the entire Madewell fleet and J.Crew’s NYC Metro region.",
       highlights: [
-        "Started with J.Crew West; expanded to the full Madewell fleet, then earned NYC Metro and its flagship locations.",
-        "Managed ServiceChannel workflows, in-store safety audits, and after-hours emergency response across **140+ stores**. Trained 3 new Facilities Coordinators.",
+        "Supported **50+ openings** and trained 3 new Facilities Coordinators.",
       ],
     },
   ],
@@ -203,15 +189,12 @@ export const RESUME_DATA: ResumeData = {
     {
       category: "Operations & Program Management",
       items: [
+        "New Site Openings (NSO)",
         "Multi-Site Portfolio Management",
         "Preventive Maintenance Programs",
-        "New Site Openings (NSO)",
-        "Work Order Management",
-        "Process Standardization",
         "Site Audits & Brand Standards",
         "SOP Development",
         "Landlord Relations",
-        "Tenant/Member Experience",
       ],
     },
     {
@@ -220,48 +203,28 @@ export const RESUME_DATA: ResumeData = {
         "ServiceChannel",
         "FEXA",
         "MaintainX",
-        "Procore",
-        "Confluence",
-        "Airtable",
-        "Asana",
-        "Notion",
-        "Microsoft Office",
-        "Google Workspace (Sheets, Drive)",
       ],
     },
     {
       category: "Technical Systems",
       items: [
-        "HVAC",
-        "Plumbing",
-        "Electrical",
-        "Fire/Life Safety",
-        "Building Automation/BMS",
-        "Dehumidification",
-        "Heat Exchangers",
         "MEP Systems",
+        "Building Automation/BMS",
       ],
     },
     {
       category: "Finance & Vendor Management",
       items: [
         "CapEx/OPEX Planning",
-        "Budget Development",
         "R&M Forecasting",
         "RFP Development",
-        "Multi-Trade Coordination",
-        "Sustainable Procurement",
       ],
     },
     {
       category: "AI & Automation",
       items: [
         "Claude AI (Code, Cowork)",
-        "Cursor",
-        "Prompt Engineering",
-        "Documentation Pipelines",
         "Workflow Automation",
-        "AI FM Strategies",
       ],
     },
   ],
