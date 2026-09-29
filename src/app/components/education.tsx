@@ -17,11 +17,11 @@ interface EducationPeriodProps {
 function EducationPeriod({ location, start, end }: EducationPeriodProps) {
   return (
     <div
-      className="shrink-0 whitespace-nowrap font-mono text-sm tabular-nums text-gray-500"
+      className="shrink-0 whitespace-nowrap font-mono text-sm tabular-nums text-gray-500 dark:text-gray-400"
       title={`Period: ${start} to ${end}`}
     >
       {location && <>{location} · </>}
-      {start} - {end}
+      {start} to {end}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { GlobeIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import type React from "react";
-import { GitHubIcon, LinkedInIcon } from "@/components/icons";
+import { GitHubIcon, InstagramIcon, LinkedInIcon } from "@/components/icons";
 import { XIcon } from "@/components/icons/x-icon";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
@@ -13,6 +13,7 @@ const ICON_MAP: Record<
 > = {
   github: GitHubIcon,
   linkedin: LinkedInIcon,
+  instagram: InstagramIcon,
   x: XIcon,
   globe: GlobeIcon,
   mail: MailIcon,
@@ -124,7 +125,9 @@ function ContactButtons({ contact }: ContactButtonsProps) {
             <SocialButton
               href={social.url}
               iconType={social.icon}
-              label={social.name}
+              label={
+                social.handle ? `${social.name} (${social.handle})` : social.name
+              }
             />
           )}
         </li>

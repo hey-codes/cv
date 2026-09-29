@@ -58,16 +58,11 @@ function StatValue({ stat, run }: { stat: Stat; run: boolean }) {
   const value = useCountUp(stat.value, decimals, run);
 
   return (
-    <div className="flex flex-col gap-y-0.5">
-      <span className="font-display text-[28px] font-bold leading-none tabular-nums lining-nums text-foreground">
-        {stat.prefix}
-        {value.toFixed(decimals)}
-        {stat.suffix}
-      </span>
-      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
-        {stat.label}
-      </span>
-    </div>
+    <dd className="m-0 font-display text-[28px] font-bold leading-none tabular-nums lining-nums text-foreground">
+      {stat.prefix}
+      {value.toFixed(decimals)}
+      {stat.suffix}
+    </dd>
   );
 }
 
@@ -116,11 +111,13 @@ export function StatStrip() {
           row; a single flowing row from sm up. */}
       <dl className="grid grid-cols-2 items-start gap-x-8 gap-y-4 sm:flex sm:flex-wrap">
         {STATS.map((stat) => (
-          <div key={stat.label}>
-            <dt className="sr-only">{stat.label}</dt>
-            <dd className="m-0">
-              <StatValue stat={stat} run={run} />
-            </dd>
+          // The visible label is the <dt>, so each pair is read once ("Years in
+          // FM, 13"); flex-col-reverse keeps the figure on top visually.
+          <div key={stat.label} className="flex flex-col-reverse gap-y-0.5">
+            <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+              {stat.label}
+            </dt>
+            <StatValue stat={stat} run={run} />
           </div>
         ))}
       </dl>

@@ -4,7 +4,14 @@ export type ResumeIcon =
   | React.ComponentType<React.SVGProps<SVGSVGElement>>
   | StaticImageData;
 
-export type IconType = "github" | "linkedin" | "x" | "globe" | "mail" | "phone";
+export type IconType =
+  | "github"
+  | "linkedin"
+  | "instagram"
+  | "x"
+  | "globe"
+  | "mail"
+  | "phone";
 
 export interface ResumeData {
   name: string;
@@ -21,6 +28,8 @@ export interface ResumeData {
       name: string;
       url: string;
       icon: IconType;
+      /** Public handle, added to the accessible name, e.g. "@codestergram". */
+      handle?: string;
     }>;
   };
   education: Array<{

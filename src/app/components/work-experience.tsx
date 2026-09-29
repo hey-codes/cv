@@ -15,22 +15,22 @@ type WorkBadges = readonly string[];
 
 /**
  * Chips are written for humans, so the same system shows up in more than one
- * shape: "FEXA" on one role and "Limble -> FEXA" on another, "Hybrid" here and
+ * shape: "FEXA" on one role and "Limble → FEXA" on another, "Hybrid" here and
  * "Hybrid (Travel 60%)" there. Split on arrows and parentheses only - never on
- * commas, which would tear "35,000 sq. ft." in half - and treat any resulting
+ * commas, which would tear "35,000 sq ft" in half - and treat any resulting
  * segment as a match.
  */
 function badgeSegments(badge: string): string[] {
   return badge
-    .split(/->|[()]/)
+    .split(/->|→|[()]/)
     .map((part) => part.trim())
     .filter(Boolean);
 }
 
 function badgeMatches(badge: string, tag: string): boolean {
   if (badge === tag) return true;
-  // Symmetric on purpose: tapping "FEXA" must reach "Limble -> FEXA", and
-  // tapping "Limble -> FEXA" must reach "FEXA". Comparing whole segments (not
+  // Symmetric on purpose: tapping "FEXA" must reach "Limble → FEXA", and
+  // tapping "Limble → FEXA" must reach "FEXA". Comparing whole segments (not
   // words) keeps "Luxury Retail" and "High-End Retail" apart.
   const tagParts = badgeSegments(tag);
   return badgeSegments(badge).some((part) => tagParts.includes(part));
@@ -109,7 +109,7 @@ function WorkPeriod({ location, start, end }: WorkPeriodProps) {
       title={`Employment period: ${start} to ${end ?? "Present"}`}
     >
       {location && <>{location} · </>}
-      {start} - {end ?? "Present"}
+      {start} to {end ?? "Present"}
     </div>
   );
 }
@@ -187,22 +187,22 @@ function WorkExperienceItem({
         </span>
       )}
 
-      {/* Toggle region: the header and the summary line. Chips and the expanded
-          bullets sit outside it, so tapping a chip still filters and links
-          inside the highlights still open. */}
-      <div className="relative">
-        <CardHeader className="print:space-y-1">
-          {/* Below the gutter breakpoint the margin note folds inline as a red
-              overline, so every reader gets the annotation, not just wide
-              desktops. */}
-          {note && (
-            <p
-              aria-hidden="true"
-              className="pointer-events-none relative z-10 font-mono text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-accent-red min-[1440px]:hidden print:hidden"
-            >
-              {note}
-            </p>
-          )}
+      <CardHeader className="print:space-y-1">
+        {/* Below the gutter breakpoint the margin note folds inline as a red
+            overline, so every reader gets the annotation, not just wide
+            desktops. */}
+        {note && (
+          <p
+            aria-hidden="true"
+            className="pointer-events-none relative z-10 font-mono text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-accent-red min-[1440px]:hidden print:hidden"
+          >
+            {note}
+          </p>
+        )}
+        {/* Toggle region: the caret and heading row only. The title, summary,
+            and bullets are plain text, so selecting them never collapses a
+            role. The overlay reaches 11px past the row for a 44px hit area. */}
+        <div className="relative">
           <div className="pointer-events-none relative z-10 flex flex-col items-start gap-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-x-2">
             <h3 className="flex items-center gap-x-1.5 text-balance text-[18px] font-semibold leading-tight print:text-sm">
               {hasHighlights && (
@@ -227,32 +227,34 @@ function WorkExperienceItem({
             <WorkPeriod location={location} start={start} end={end} />
           </div>
 
-          <h4 className="pointer-events-none relative z-10 font-mono text-[15px] font-bold leading-tight text-balance print:text-[12px]">
-            {title}
-          </h4>
-        </CardHeader>
+          {/* An overlay button rather than a wrapping one: the company name is
+              a link and cannot nest inside a button. */}
+          {hasHighlights && (
+            <button
+              type="button"
+              onClick={onToggleOpen}
+              aria-expanded={open}
+              aria-controls={panelId}
+              className="absolute -inset-x-2 -inset-y-[11px] z-0 cursor-pointer rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden"
+            >
+              <span className="sr-only">
+                {open ? "Hide" : "Show"} highlights for {company}
+              </span>
+            </button>
+          )}
+        </div>
 
-        <p className="pointer-events-none relative z-10 mt-2 max-w-[68ch] text-[15px] text-foreground/80 print:mt-1 print:max-w-none print:text-[10px] text-pretty">
-          {description}
-        </p>
+        <h4 className="relative z-10 font-mono text-[15px] font-bold leading-tight text-balance print:text-[12px]">
+          {title}
+        </h4>
+      </CardHeader>
 
-        {/* An overlay button rather than a wrapping div: the company name is a
-            link and cannot nest inside a button, and a div with onClick would
-            not be keyboard-operable. */}
-        {hasHighlights && (
-          <button
-            type="button"
-            onClick={onToggleOpen}
-            aria-expanded={open}
-            aria-controls={panelId}
-            className="absolute -inset-x-2 -inset-y-1 z-0 cursor-pointer rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden"
-          >
-            <span className="sr-only">
-              {open ? "Hide" : "Show"} highlights for {company}
-            </span>
-          </button>
-        )}
-      </div>
+      {/* Plain wrapping with the last two words tied together: no one-word
+          last line, and none of text-wrap: pretty's early breaks (it cut the
+          Bathhouse line short after "bitcoin miners"). */}
+      <p className="relative z-10 mt-2 max-w-[68ch] text-[15px] text-foreground/80 print:mt-1 print:max-w-none print:text-[10px] text-wrap">
+        {description.replace(/ (\S+)$/, "\u00a0$1")}
+      </p>
 
       <CardContent>
         {/* font-sans overrides CardContent's mono: bullets are prose, and the
@@ -363,7 +365,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
               type="button"
               onClick={toggleAll}
               aria-expanded={allOpen}
-              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[13px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground transition-[color,transform] duration-150 ease-out motion-safe:active:scale-[0.96] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
+              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground transition-[color,transform] duration-150 ease-out motion-safe:active:scale-[0.96] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
             >
               <span
                 aria-hidden="true"
@@ -402,7 +404,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
           <button
             type="button"
             onClick={clear}
-            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[13px] before:content-[''] font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.96]"
+            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.96]"
           >
             Clear
           </button>

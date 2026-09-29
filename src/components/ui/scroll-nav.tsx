@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const SECTIONS = [
@@ -87,6 +87,29 @@ export function ScrollNav() {
 
   const activeIndex = SECTIONS.findIndex((s) => s.id === activeId);
 
+  // The red fill ends at the active item, not at raw scroll percent: sections
+  // differ in length, so a percent fill sat on PROFILE while EXPERIENCE was
+  // the active label. Both now read from the same activeId.
+  const railRef = useRef<HTMLOListElement>(null);
+  const [fill, setFill] = useState(0);
+  useLayoutEffect(() => {
+    const measure = () => {
+      const rail = railRef.current;
+      const item = rail?.children[2 + activeIndex] as HTMLElement | undefined;
+      if (!rail || !item) return;
+      // Track spans top-1 to bottom-1 (4px insets) of the list.
+      const trackTop = 4;
+      const trackHeight = rail.clientHeight - 8;
+      const center = item.offsetTop + item.offsetHeight / 2 - trackTop;
+      setFill(
+        trackHeight > 0 ? Math.min(1, Math.max(0, center / trackHeight)) : 0
+      );
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [activeIndex]);
+
   return (
     <>
       {/* ---------- desktop rail ---------- */}
@@ -94,7 +117,7 @@ export function ScrollNav() {
         aria-label="Section progress"
         className="fixed left-6 top-1/2 z-40 hidden -translate-y-1/2 xl:block print:hidden"
       >
-        <ol className="relative flex list-none flex-col gap-y-4 pl-4">
+        <ol ref={railRef} className="relative flex list-none flex-col gap-y-4 pl-4">
           {/* track + fill */}
           <span
             aria-hidden="true"
@@ -103,7 +126,7 @@ export function ScrollNav() {
           <span
             aria-hidden="true"
             className="scroll-spine absolute bottom-1 left-0 top-1 w-[2px] origin-top rounded-full bg-accent-red"
-            style={{ transform: `scaleY(${progress})` }}
+            style={{ transform: `scaleY(${fill})` }}
           />
           {SECTIONS.map((section, i) => {
             const isActive = section.id === activeId;
@@ -115,7 +138,7 @@ export function ScrollNav() {
                   onClick={() => jumpTo(section.id)}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "scroll-tick group flex items-baseline gap-x-2 rounded-sm text-left font-mono text-[11px] uppercase tracking-[0.14em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    "scroll-tick group relative flex items-baseline gap-x-2 rounded-sm text-left font-mono text-[11px] before:absolute before:inset-x-0 before:-inset-y-[14px] before:content-[''] uppercase tracking-[0.14em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     isActive
                       ? "text-accent-brand"
                       : isPast

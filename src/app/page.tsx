@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CommandMenu } from "@/components/command-menu";
+import { CommandMenu, CommandMenuHint } from "@/components/command-menu";
 import { ScrollNav } from "@/components/ui/scroll-nav";
 import { RESUME_DATA } from "@/data/resume-data";
 import { generateResumeStructuredData } from "@/lib/structured-data";
@@ -113,7 +113,7 @@ export default function ResumePage() {
 
           <hr className="mt-12 border-t-[3px] border-accent-red" />
 
-          <footer className="pb-8 pt-4 text-center font-mono text-xs text-foreground/50 print:hidden">
+          <footer className="pb-8 pt-4 text-center font-mono text-xs text-foreground/70 dark:text-foreground/60 print:hidden">
             <p>
               Last updated:{" "}
               <time
@@ -123,6 +123,7 @@ export default function ResumePage() {
                 {LAST_UPDATED}
               </time>
             </p>
+            <CommandMenuHint />
           </footer>
         </section>
 

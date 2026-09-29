@@ -18,14 +18,32 @@ interface Props {
   links: { url: string; title: string }[];
 }
 
+/**
+ * The keyboard hint, inline in the footer on wide screens. It used to be a
+ * fixed bar at the bottom of the viewport, which sat over body text.
+ */
+export function CommandMenuHint() {
+  const [isMac, setIsMac] = React.useState(false);
+  React.useEffect(() => {
+    setIsMac(window.navigator.userAgent.includes("Mac"));
+  }, []);
+
+  return (
+    <p className="mt-1 hidden xl:block">
+      Press{" "}
+      <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[11px] font-medium text-[hsl(53.3_4.1%_40%)] opacity-100 dark:text-muted-foreground">
+        <span className="text-xs">{isMac ? "⌘" : "Ctrl"}</span>+K
+      </kbd>{" "}
+      to open the command menu
+    </p>
+  );
+}
+
 export const CommandMenu = ({ links }: Props) => {
   const [open, setOpen] = React.useState(false);
-  const [isMac, setIsMac] = React.useState(false);
   const { setTheme } = useTheme();
 
   React.useEffect(() => {
-    setIsMac(window.navigator.userAgent.includes("Mac"));
-
     // Cmd/Ctrl+K is the palette convention and, unlike J, is not claimed by the
     // browser (Chrome and Firefox bind Cmd+J to Downloads and win that race
     // inconsistently). J stays bound for muscle memory.
@@ -44,13 +62,6 @@ export const CommandMenu = ({ links }: Props) => {
 
   return (
     <>
-      <p className="fixed bottom-0 left-0 right-0 hidden bg-gradient-to-t from-[hsl(var(--background))] to-transparent p-1 pt-6 text-center text-sm text-muted-foreground xl:block print:hidden">
-        Press{" "}
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[11px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">{isMac ? "⌘" : "Ctrl"}</span>+K
-        </kbd>{" "}
-        to open the command menu
-      </p>
       <Button
         onClick={() => setOpen((open) => !open)}
         variant="outline"
