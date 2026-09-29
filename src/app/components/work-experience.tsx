@@ -333,7 +333,6 @@ export function WorkExperience({ work }: WorkExperienceProps) {
   return (
     <Section>
       <SectionHeading
-        index="03"
         kicker="Experience"
         id="work-experience"
         action={

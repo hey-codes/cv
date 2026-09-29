@@ -2,8 +2,6 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
-  /** Two-digit running order, e.g. "01". Rendered inside the kicker. */
-  index: string;
   /** Short uppercase eyebrow. Should add information, not repeat the title. */
   kicker: string;
   /** The Fraunces display title. */
@@ -15,14 +13,13 @@ interface SectionHeadingProps {
 }
 
 /**
- * FMWorks masthead pattern: a red pressmark dash, an uppercase mono eyebrow in
+ * FMWorks masthead pattern: a red pressmark dash, an uppercase eyebrow in
  * accent blue, then the display title. The dash is the brand's structural mark
  * and never signals interaction - that stays blue.
  *
  * Mirrors `.kicker` in FMWorks colors_and_type.css.
  */
 export function SectionHeading({
-  index,
   kicker,
   children,
   id,
@@ -36,7 +33,7 @@ export function SectionHeading({
         aria-hidden="true"
       >
         <span className="h-1 w-5 shrink-0 rounded-[1px] bg-accent-red" />
-        {index} &middot; {kicker}
+        {kicker}
       </p>
       <div className="flex items-baseline justify-between gap-x-4">
         <h2

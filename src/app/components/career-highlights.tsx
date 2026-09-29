@@ -18,7 +18,6 @@ export function CareerHighlights({
   return (
     <Section className={className}>
       <SectionHeading
-        index="02"
         kicker="Track record"
         id="career-highlights-section"
       >

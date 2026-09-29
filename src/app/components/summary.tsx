@@ -13,7 +13,7 @@ interface AboutProps {
 export function Summary({ summary, className }: AboutProps) {
   return (
     <Section className={className}>
-      <SectionHeading index="01" kicker="Profile" id="about-section">
+      <SectionHeading kicker="Profile" id="about-section">
         Profile
       </SectionHeading>
       <div className="max-w-[68ch] text-pretty text-base text-foreground/80 print:max-w-none print:text-[10px]">

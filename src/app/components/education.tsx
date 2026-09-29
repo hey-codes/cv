@@ -89,7 +89,7 @@ interface EducationListProps {
 export function Education({ education }: EducationListProps) {
   return (
     <Section>
-      <SectionHeading index="04" kicker="Credentials" id="education-section">
+      <SectionHeading kicker="Credentials" id="education-section">
         Credentials
       </SectionHeading>
       <div

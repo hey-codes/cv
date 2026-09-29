@@ -20,7 +20,7 @@ interface SkillsProps {
 export function Skills({ skills, className }: SkillsProps) {
   return (
     <Section className={className}>
-      <SectionHeading index="05" kicker="Capabilities" id="skills-section">
+      <SectionHeading kicker="Capabilities" id="skills-section">
         Capabilities
       </SectionHeading>
       <div className="space-y-4">
