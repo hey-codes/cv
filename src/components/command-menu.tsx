@@ -12,7 +12,6 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Button } from "./ui/button";
 
 interface Props {
   links: { url: string; title: string }[];
@@ -62,22 +61,21 @@ export const CommandMenu = ({ links }: Props) => {
 
   return (
     <>
-      <Button
+      <button
+        type="button"
         onClick={() => setOpen((open) => !open)}
-        variant="outline"
-        size="icon"
         aria-label="Open command menu"
         title="Command menu"
-        className="fixed bottom-4 right-4 hidden rounded-full shadow-2xl sm:flex xl:hidden print:hidden"
+        className="ctl fixed bottom-4 right-4 hidden size-10 items-center justify-center rounded-full shadow-2xl sm:flex xl:hidden print:hidden"
       >
-        <CommandIcon className="my-6 size-6" />
-      </Button>
+        <CommandIcon className="size-6" aria-hidden="true" />
+      </button>
       {/* Phones get the menu at the end of the page instead: a floating button
           there sits over the text and steals taps meant for tags and links. */}
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="mx-auto flex min-h-11 items-center px-4 font-mono text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground transition-[color,transform] duration-150 ease-out hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:active:scale-[0.96] sm:hidden print:hidden"
+        className="mx-auto flex min-h-11 items-center px-4 font-mono text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground transition-[color,transform] duration-[var(--t-fast)] ease-[var(--ease)] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:active:scale-[0.97] sm:hidden print:hidden"
       >
         Menu
       </button>

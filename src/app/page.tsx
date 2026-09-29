@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CommandMenu, CommandMenuHint } from "@/components/command-menu";
+import { RevealOnView } from "@/components/reveal-on-view";
 import { ScrollNav } from "@/components/ui/scroll-nav";
 import { RESUME_DATA } from "@/data/resume-data";
 import { generateResumeStructuredData } from "@/lib/structured-data";
@@ -128,6 +129,7 @@ export default function ResumePage() {
         </section>
 
         <ScrollNav />
+        <RevealOnView />
 
         <nav className="print:hidden" aria-label="Quick navigation">
           <CommandMenu links={getCommandMenuLinks()} />

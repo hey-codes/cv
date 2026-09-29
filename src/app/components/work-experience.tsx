@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronRightIcon } from "lucide-react";
+import type React from "react";
 import { useCallback, useEffect, useId, useState } from "react";
 import { parseLinks } from "@/components/parse-links";
 import { Badge } from "@/components/ui/badge";
@@ -64,24 +65,22 @@ function BadgeList({ className, badges, activeTag, onToggle }: BadgeListProps) {
       className={cn("inline-flex list-none gap-x-1 p-0", className)}
       aria-label="Highlight roles by tag"
     >
-      {badges.map((badge) => {
+      {badges.map((badge, index) => {
         const isActive = activeTag !== null && badgeMatches(badge, activeTag);
         return (
-          <li key={badge}>
+          // --i staggers the 1px lift on card hover, 20ms per tag.
+          <li key={badge} style={{ "--i": index } as React.CSSProperties}>
             <button
               type="button"
               onClick={() => onToggle(badge)}
               aria-pressed={isActive}
               aria-label={`Highlight every role tagged ${badge}`}
-              className="tag-hit rounded-md transition-transform duration-150 ease-out motion-safe:active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="tag-hit rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Badge
                 variant="secondary"
-                className={cn(
-                  "chip min-h-6 align-middle text-xs print:px-1 print:py-0.5 print:text-[8px] print:leading-tight",
-                  isActive &&
-                    "bg-accent-strong text-accent-ink hover:bg-accent-strong"
-                )}
+                data-active={isActive}
+                className="chip min-h-6 align-middle text-xs print:px-1 print:py-0.5 print:text-[8px] print:leading-tight"
               >
                 {badge}
               </Badge>
@@ -125,7 +124,7 @@ interface CompanyLinkProps {
 function CompanyLink({ company, link }: CompanyLinkProps) {
   return (
     <a
-      className="link-wipe font-bold text-foreground"
+      className="link-wipe role-company font-bold text-foreground"
       href={link}
       target="_blank"
       rel="noopener noreferrer"
@@ -365,7 +364,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
               type="button"
               onClick={toggleAll}
               aria-expanded={allOpen}
-              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground transition-[color,transform] duration-150 ease-out motion-safe:active:scale-[0.96] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
+              className="group relative before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] inline-flex shrink-0 items-center gap-x-1.5 rounded-sm font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground transition-[color,transform] duration-[var(--t-fast)] ease-[var(--ease)] motion-safe:active:scale-[0.97] hover:text-accent-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden"
             >
               <span
                 aria-hidden="true"
@@ -404,7 +403,7 @@ export function WorkExperience({ work }: WorkExperienceProps) {
           <button
             type="button"
             onClick={clear}
-            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.96]"
+            className="link-wipe before:absolute before:-inset-x-2 before:-inset-y-[14px] before:content-[''] font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground transition-transform duration-[var(--t-fast)] ease-[var(--ease)] motion-safe:active:scale-[0.97]"
           >
             Clear
           </button>

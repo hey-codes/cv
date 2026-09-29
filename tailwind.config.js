@@ -56,11 +56,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "accent-brand": "hsl(var(--accent-brand))",
+        "accent-brand": "hsl(var(--accent-brand) / <alpha-value>)",
         // FMWorks editorial pressmark - structure only, never interaction
-        "accent-red": "hsl(var(--accent-red))",
+        "accent-red": "hsl(var(--accent-red) / <alpha-value>)",
         "bg-soft": "hsl(var(--bg-soft))",
-        "accent-strong": "hsl(var(--accent-strong))",
+        "accent-strong": "hsl(var(--accent-strong) / <alpha-value>)",
         "accent-ink": "hsl(var(--accent-ink))",
       },
       borderRadius: {

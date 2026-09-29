@@ -37,7 +37,7 @@ export function Skills({ skills, className }: SkillsProps) {
                 <li key={skill}>
                   <Badge
                     variant="secondary"
-                    className="min-h-6 print:text-[10px]"
+                    className="min-h-6 cursor-default transition-none hover:bg-secondary print:text-[10px]"
                     aria-label={`Skill: ${skill}`}
                   >
                     {skill}

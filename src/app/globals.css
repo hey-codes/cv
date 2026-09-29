@@ -4,6 +4,22 @@
 
 @layer base {
   :root {
+    /* The two accents. Blue answers input; red marks structure. Never crossed.
+       --blue: links, active nav, focus ring, interactive borders, caret on
+       hover. #0070E0, 4.78:1 on white.
+       --red: rules, section dashes, rail indicator, progress, card hover bar.
+       #e10b00. */
+    --blue: 210 100% 43.9%;
+    --red: 2.9 100% 44.1%;
+    /* Borders on outlined controls (icon buttons, the LinkedIn chip). */
+    --control-border: 60 4.3% 91%;
+
+    /* Motion. Nothing interactive runs faster than --t-fast. */
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --t-fast: 180ms;
+    --t-med: 280ms;
+    --t-slow: 420ms;
+
     /* FMWorks light - white ground, warm-neutral ink, vibrant blue accent.
        Ported from ~/Projects/design-refs/FMWorks-Design-System/colors_and_type.css */
     --background: 0 0% 100%; /* #ffffff */
@@ -32,17 +48,22 @@
 
     --border: 60 4.3% 91%; /* #e9e9e7 */
     --input: 60 4.3% 91%;
-    --ring: 210 100% 43.9%; /* focus ring rides the brand blue */
+    --ring: var(--blue); /* focus ring rides the brand blue */
 
     --radius: 0.5rem;
-    --accent-brand: 210 100% 43.9%; /* #0070E0  interactive only, 4.78:1 on white */
-    --accent-red: 2.9 100% 44.1%; /* #e10b00  editorial pressmark */
+    --accent-brand: var(--blue); /* interactive only */
+    --accent-red: var(--red); /* editorial pressmark */
     --accent-strong: 212.7 100% 41.4%; /* #0060D3  AA-safe fill behind white */
     --accent-ink: 0 0% 100%; /* text on --accent-strong */
     --bg-soft: 30 20% 98%; /* #fbfaf9  hover surface */
   }
 
   .dark {
+    /* Blue #4DA3FF, 6.7:1 on #191919. Red #ff453a, 5.2:1 (at least 3:1). */
+    --blue: 211 100% 65.1%;
+    --red: 3.4 100% 61.4%;
+    --control-border: 0 0% 30%;
+
     /* FMWorks dark - Notion charcoal, brighter blue, warmer pressmark red. */
     --background: 0 0% 9.8%; /* #191919 */
     --foreground: 45 7.7% 89.8%; /* #e7e6e3 */
@@ -70,11 +91,11 @@
 
     --border: 0 0% 21.2%; /* #363636 */
     --input: 0 0% 21.2%;
-    --ring: 211 100% 65.1%;
+    --ring: var(--blue);
 
-    --accent-brand: 211 100% 65.1%; /* #4DA3FF, 6.7:1 on #191919 */
-    --accent-red: 3.4 100% 61.4%; /* #ff453a */
-    --accent-strong: 211 100% 65.1%; /* #4DA3FF, carries dark ink on top */
+    --accent-brand: var(--blue);
+    --accent-red: var(--red);
+    --accent-strong: var(--blue); /* carries dark ink on top */
     --accent-ink: 0 0% 4%;
     --bg-soft: 0 0% 12.5%; /* #202020 */
   }
@@ -101,7 +122,7 @@
 .animate-rise {
   opacity: 1;
   translate: 0 0;
-  transition: translate 400ms ease-out;
+  transition: translate var(--t-slow) var(--ease);
 }
 
 @starting-style {
@@ -110,7 +131,30 @@
   }
 }
 
+/* Section entrance (22). Sections below the fold rise 8px and fade in on first
+   view, children 60ms apart. The pending state is only ever added by
+   RevealOnView after the page has painted in a visible tab, so the frozen-
+   timeline failure in design-system/OPEN.md cannot hide text: without that
+   script, in print, or under reduced motion, nothing is ever pending. */
+.reveal-pending > * {
+  opacity: 0;
+  translate: 0 8px;
+}
+.reveal-armed > * {
+  transition:
+    opacity var(--t-slow) var(--ease),
+    translate var(--t-slow) var(--ease);
+}
+.reveal-armed > :nth-child(2) { transition-delay: 60ms; }
+.reveal-armed > :nth-child(3) { transition-delay: 120ms; }
+.reveal-armed > :nth-child(4) { transition-delay: 180ms; }
+.reveal-armed > :nth-child(n + 5) { transition-delay: 240ms; }
+
 @media print {
+  .reveal-pending > * {
+    opacity: 1 !important;
+    translate: none !important;
+  }
   .animate-rise {
     transition: none !important;
     opacity: 1 !important;
@@ -138,23 +182,26 @@
   right: 0;
   bottom: -2px;
   height: 1px;
-  background: currentColor;
+  background: hsl(var(--blue));
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 110ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--t-med) var(--ease);
 }
 .link-wipe:hover::after,
 .link-wipe:focus-visible::after {
   transform: scaleX(1);
 }
 
-/* Work records: lift a hair, warm the ground, and strike a red edge rule. */
+/* Work records, the signature interaction. On hover or focus-within: the red
+   bar grows down from the top, the ground warms, the caret turns blue and
+   leans toward its next state, the company name turns blue, and the tags lift
+   1px in sequence. Leaving plays it back. */
 .work-card {
   position: relative;
   margin-inline: -0.75rem;
   padding-inline: 0.75rem;
   border-radius: var(--radius);
-  transition: background-color 110ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background-color var(--t-fast) var(--ease);
 }
 .work-card::before {
   content: "";
@@ -164,9 +211,10 @@
   bottom: 0.35rem;
   width: 2px;
   border-radius: 1px;
-  background: hsl(var(--accent-red));
-  opacity: 0;
-  transition: opacity 110ms cubic-bezier(0.22, 1, 0.36, 1);
+  background: hsl(var(--red));
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform var(--t-med) var(--ease);
 }
 .work-card:hover,
 .work-card:focus-within {
@@ -174,7 +222,22 @@
 }
 .work-card:hover::before,
 .work-card:focus-within::before {
-  opacity: 1;
+  transform: scaleY(1);
+}
+.role-company {
+  transition: color var(--t-fast) var(--ease);
+}
+.work-card:hover .role-company,
+.work-card:focus-within .role-company {
+  color: hsl(var(--blue));
+}
+.work-card .tag-list > li {
+  transition: transform var(--t-fast) var(--ease);
+  transition-delay: calc(var(--i, 0) * 20ms);
+}
+.work-card:hover .tag-list > li,
+.work-card:focus-within .tag-list > li {
+  transform: translateY(-1px);
 }
 
 /* Focus is always the brand blue, never the pressmark. */
@@ -185,6 +248,13 @@ a:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal-pending > * {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+  .reveal-armed > * {
+    transition: none !important;
+  }
   .animate-rise {
     transition: none !important;
     opacity: 1 !important;
@@ -193,8 +263,13 @@ a:focus-visible {
   }
   .link-wipe::after,
   .work-card,
-  .work-card::before {
+  .work-card::before,
+  .role-company,
+  .work-card .tag-list > li {
     transition: none;
+  }
+  .work-card .tag-list > li {
+    transform: none !important;
   }
 }
 
@@ -211,13 +286,42 @@ a:focus-visible {
   }
 }
 
-/* Chips are tap targets: give touch users a comfortable hit area without
-   changing how they look. */
+/* One hover language for every outlined control and interactive chip: border
+   and text go blue, a blue wash at 8%, a 1px lift. Pressing scales to 0.97.
+   Static chips (Capabilities) never react, which is what tells them apart.
+   Text on the wash uses --accent-strong so it keeps 4.5:1. The .tag-hit
+   prefix outranks the Badge's own gray hover utility. */
+.ctl,
 .chip {
   cursor: pointer;
-  transition:
-    background-color 110ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 110ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-property: color, background-color, border-color, transform;
+  transition-duration: var(--t-fast);
+  transition-timing-function: var(--ease);
+}
+.ctl {
+  border: 1px solid hsl(var(--control-border));
+  background-color: hsl(var(--background));
+}
+.ctl:hover,
+.tag-hit .chip:hover {
+  border-color: hsl(var(--blue));
+  color: hsl(var(--accent-strong));
+  background-color: hsl(var(--blue) / 0.08);
+  transform: translateY(-1px);
+}
+.ctl:active,
+.tag-hit:active .chip {
+  transform: scale(0.97);
+}
+.tag-hit .chip[data-active="true"],
+.tag-hit .chip[data-active="true"]:hover {
+  border-color: transparent;
+  background-color: hsl(var(--accent-strong));
+  color: hsl(var(--accent-ink));
+}
+.ctl:focus-visible {
+  outline: 2px solid hsl(var(--blue));
+  outline-offset: 2px;
 }
 @media (pointer: coarse) {
   .chip {
@@ -241,8 +345,15 @@ a:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ctl,
   .chip {
     transition: none;
+  }
+  .ctl:hover,
+  .tag-hit .chip:hover,
+  .ctl:active,
+  .tag-hit:active .chip {
+    transform: none;
   }
 }
 
@@ -277,30 +388,35 @@ a:focus-visible {
 .scroll-spine {
   /* Scaled, not resized: this updates on every scroll frame, so animating
      height/width here would force layout on the hottest path in the page. */
-  transition: transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--t-fast) var(--ease);
   will-change: transform;
 }
+/* The red indicator slides to the active item. */
+.rail-indicator {
+  transition:
+    transform var(--t-slow) var(--ease),
+    height var(--t-slow) var(--ease);
+}
 .scroll-tick {
-  transition: color 150ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
 }
-.scroll-tick__label {
-  transition: opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
-  white-space: nowrap;
-}
-.scroll-tick__num {
-  display: inline-block;
-  transition: transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.scroll-tick__num--on {
-  transform: scale(1.25);
+.scroll-tick--rail:hover,
+.scroll-tick--rail:focus-visible {
+  color: hsl(var(--blue));
+  transform: translateX(4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-spine,
-  .scroll-tick,
-  .scroll-tick__label,
-  .scroll-tick__num {
+  .rail-indicator,
+  .scroll-tick {
     transition: none;
+  }
+  .scroll-tick--rail:hover,
+  .scroll-tick--rail:focus-visible {
+    transform: none;
   }
   html {
     scroll-behavior: auto;
@@ -315,7 +431,7 @@ a:focus-visible {
 .role-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-template-rows var(--t-med) var(--ease);
 }
 .role-panel--open {
   grid-template-rows: 1fr;
@@ -327,21 +443,36 @@ a:focus-visible {
 .role-caret {
   display: inline-block;
   transition:
-    transform 170ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 110ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform var(--t-med) var(--ease),
+    color var(--t-fast) var(--ease);
 }
 .role-caret.is-open {
   transform: rotate(90deg);
 }
+/* On card hover the caret turns blue and leans 20deg toward the state a click
+   would give it: a closed caret starts to open, an open one starts to close. */
 .work-card:hover .role-caret,
 .work-card:focus-within .role-caret {
-  color: hsl(var(--accent-brand));
+  color: hsl(var(--blue));
+  transform: rotate(20deg);
+}
+.work-card:hover .role-caret.is-open,
+.work-card:focus-within .role-caret.is-open {
+  transform: rotate(70deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .role-panel,
   .role-caret {
     transition: none;
+  }
+  .work-card:hover .role-caret,
+  .work-card:focus-within .role-caret {
+    transform: none;
+  }
+  .work-card:hover .role-caret.is-open,
+  .work-card:focus-within .role-caret.is-open {
+    transform: rotate(90deg);
   }
 }
 
@@ -360,7 +491,7 @@ a:focus-visible {
 
 /* ---------------------------------------------------------------------------
    Command dialog exit: quieter than its entrance. A fixed 12px lift, a fade
-   and a 4px blur over 150ms, ease-out. The entrance keeps its zoom.
+   and a 4px blur over --t-fast. The entrance keeps its zoom.
    --------------------------------------------------------------------------- */
 @keyframes dialog-exit {
   to {
@@ -370,7 +501,7 @@ a:focus-visible {
   }
 }
 .dialog-content[data-state="closed"] {
-  animation: dialog-exit 150ms ease-out forwards;
+  animation: dialog-exit var(--t-fast) var(--ease) forwards;
 }
 @media (prefers-reduced-motion: reduce) {
   .dialog-content[data-state="closed"] {
