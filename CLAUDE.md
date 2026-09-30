@@ -62,7 +62,7 @@ The roast-fixes pass (2026-09-28) broke all of these and was reverted on branch
 - **`src/data/resume-data.ts` career facts.** Every number was vetted against
   sources outside this repo during resume work, and the site is read side by
   side with the PDF resume. Never rewrite a fact for visual reasons.
-- **The four stat-strip figures** (13 / 400+ / 3M+ / $5.3M) and the five section
+- **The four stat-strip figures** (13 / 400+ / 2.9M+ / $5.3M) and the five section
   names and their order. The scroll rail depends on the numbering.
 - **The live app, when exploring.** Explorations ship as a self-contained HTML
   specimen under `design-explorations/YYYY-MM-DD-<name>/` with the app reverted.

@@ -7,7 +7,7 @@ export const RESUME_DATA: ResumeData = {
   locationLink: "https://www.google.com/maps/place/Chicago",
   about: "Facilities, Operations & New Site Launches",
   summary:
-    "9 brands, 400+ locations, 3M+ sq\u00a0ft managed, from luxury maisons and flexible coworking to launching Rivian’s East Coast service centers. Solo and with incredible teams.",
+    "9 brands, 400+ locations, 2.9M+ sq\u00a0ft managed, from luxury maisons and flexible coworking to launching Rivian’s East Coast service centers. Solo and with incredible teams.",
   personalWebsiteUrl: "https://codymitch.works",
   contact: {
     social: [
@@ -51,8 +51,8 @@ export const RESUME_DATA: ResumeData = {
       company: "Industrious",
       link: "https://www.industriousoffice.com/",
       location: "Remote (Chicago)",
-      badges: ["Flex Office", "1.3M+ sq ft", "FEXA", "Parental Leave Cover"],
-      title: "Facilities Consultant, West Coast Portfolio",
+      badges: ["Flex Office", "1.2M+ sq ft", "FEXA", "Parental Leave Cover"],
+      title: "Facilities Consultant (Contract)",
       start: "Apr 2026",
       end: "Aug 2026",
       defaultOpen: true,
@@ -103,7 +103,7 @@ export const RESUME_DATA: ResumeData = {
       location: "New York, NY",
       badges: [
         "EV / Automotive",
-        "260K+ sq ft",
+        "200K+ sq ft",
         "Limble → FEXA",
         "Hybrid (Travel 60%)",
       ],
@@ -132,7 +132,7 @@ export const RESUME_DATA: ResumeData = {
       end: "Apr 2021",
       defaultOpen: true,
       description:
-        "First FM hire for the Americas: built FENDI’s FM function from scratch across 67 locations in 4 countries and took ServiceChannel live in 4.5 weeks against a 12-week standard.",
+        "First FM hire for the Americas: built FENDI’s FM function from scratch across 67 locations in 3 countries and took ServiceChannel live in 4.5 weeks against a 12-week standard.",
       highlights: [
         "Doubled FM scope as sole FM, taking on security and cleaning in 2020 with no added headcount, for **$5.3M** in yearly managed spend. Won the inaugural peer-voted “Above & Beyond” Award.",
       ],
@@ -155,9 +155,9 @@ export const RESUME_DATA: ResumeData = {
       location: "San Francisco, CA",
       badges: [
         "Boutique Fitness",
-        "130K+ sq ft",
+        "100K+ sq ft",
         "ServiceChannel",
-        "Hybrid (Travel 60%)",
+        "Hybrid (Travel 60-70%)",
       ],
       title: "Area Facilities Manager",
       start: "Apr 2015",
@@ -179,9 +179,9 @@ export const RESUME_DATA: ResumeData = {
       end: "Apr 2015",
       defaultOpen: true,
       description:
-        "Came up from the sales floor (2010) and men’s merchandising at the NYC flagship into facilities in 2013, covering 140+ stores at peak, including the entire Madewell fleet and J.Crew’s NYC Metro region.",
+        "Came up from the sales floor (2010) and men’s merchandising at the NYC flagship into facilities in 2013, covering 153 stores at peak, including the entire Madewell fleet and J.Crew’s Retail West region.",
       highlights: [
-        "Supported **50+ openings** and trained 3 new Facilities Coordinators.",
+        "Supported openings during Madewell’s rapid expansion and trained **3 new Facilities Coordinators**.",
       ],
     },
   ],

@@ -17,7 +17,7 @@ type Stat = {
 const STATS: readonly Stat[] = [
   { value: 13, label: "Years in FM" },
   { value: 400, suffix: "+", label: "Locations" },
-  { value: 3, suffix: "M+", label: "Sq ft managed" },
+  { value: 2.9, suffix: "M+", label: "Sq ft managed", decimals: 1 },
   {
     value: 5.3,
     prefix: "$",
